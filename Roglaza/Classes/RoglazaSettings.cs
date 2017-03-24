@@ -15,6 +15,7 @@ namespace Roglaza
    }
    public class RoglazaSettings
     {
+       public string LogsPath = RoglazaInstaller.GetRoglazaAPPDataPath()+"\\Logs";
        public string GeneralSettingsFilePath = "config.rog";
        public static string DefaultPassword = "weloveyou";
        public int WaitInPasswordFailed = 60;
@@ -28,7 +29,8 @@ namespace Roglaza
 
        public RoglazaSettings()
        {
-           GeneralSettingsFilePath = RoglazaHelper.GetRoglazaAPPDataPath() + "//config.rog";
+           GeneralSettingsFilePath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\config.rog";
+           
        }
 
        public RoglazaSettings(bool p)
@@ -68,6 +70,8 @@ namespace Roglaza
                    string value = key_value[1].Trim();
                    switch (key)
                    {
+                       case "LogsPath":
+                       case "logspath": LogsPath = System.IO.Path.GetFullPath(Decode(value)); break;
                        case "RoglazaName":
                        case "roglazaname": RoglazaName = Decode(value); break;
                        case "allowbrowserhistory":
@@ -81,7 +85,7 @@ namespace Roglaza
                        case "RoglazaIconPath":
                        case "roglazaiconpath": RoglazaIconPath = Decode(value); break;
                        case "generalsettingsfilepath":
-                       case "GeneralSettingsFilePath": GeneralSettingsFilePath = Decode(value); break;
+                       case "GeneralSettingsFilePath": GeneralSettingsFilePath = System.IO.Path.GetFullPath(Decode(value)); break;
                        case "password":
                        case "key":
                        case "access":
@@ -121,6 +125,7 @@ namespace Roglaza
            data += "AllowScreenShots:" + AllowScreenShots + "\r\n";
            data += "RoglazaIconPath:" + Encode(RoglazaIconPath)+"\r\n";
            data += "RoglazaName:" + RoglazaName + "\r\n";
+           data += "LogsPath:" + Encode(LogsPath)+"\r\n";
            return RoglazaHelper.FileWriteText(GeneralSettingsFilePath, data);         
             
        }

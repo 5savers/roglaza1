@@ -31,11 +31,13 @@ namespace Roglaza
 
             //Detecting test mode
             AppInfo.TestMode = Application.StartupPath.Contains(@"\Roglaza\bin") || RoglazaHelper.IsExistedFile("testmode");
-            RoglazaInstaller.InstallDirectories(Application.StartupPath);
             ProgramSettings = new RoglazaSettings();
+            ProgramSettings.LoadFromFile();
 
-            bool Force_creat = RoglazaHelper.IsExistedFile(Application.StartupPath + "//create");
+            RoglazaInstaller.InstallDirectories();
 
+            bool Force_creat = RoglazaHelper.IsExistedFile(Application.StartupPath + "\\create");
+             
             if (ProgramSettings.LoadFromFile()|| Force_creat )
             {
                 DBManager.CreateNewDataBase();   

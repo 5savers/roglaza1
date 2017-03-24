@@ -11,9 +11,10 @@ namespace Roglaza.Classes
 
         public static string GetTurned_off_reactivate_message()
         {
-            string s = " if you want to re-activate it "+Environment.NewLine+"Please Delete the kill file at " +Environment.NewLine+ RoglazaHelper.getKillFilePath();
+            string s = " if you want to re-activate it "+Environment.NewLine+"Please Delete the kill file at " +Environment.NewLine+ RoglazaInstaller.getKillFilePath();
             s = s.Replace("//", "\\");
-            return s.Replace("\\Temp\\\\..","");
+             s=s.Replace("\\Temp\\\\..","");
+             return System.IO.Path.GetFullPath(s);
         }
         public static string GetTurned_off_reactivate_message_caption = "Program is turned off ";
 

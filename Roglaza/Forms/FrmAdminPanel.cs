@@ -89,7 +89,9 @@ namespace Roglaza.Forms
             label_Banner.Text = AppInfo.AppBanner;
             label_app_Name.Text = AppInfo.AppName;
             this.numericUpDown_screenShotInterval.Value = Program.ProgramSettings.ScreenShotInterValMinutes<numericUpDown_screenShotInterval.Maximum?Program.ProgramSettings.ScreenShotInterValMinutes:60;
-            
+            if (AppInfo.TestMode)
+                this.timerWatcher.Interval = 5000;
+
             this.timerWatcher.Start();
             if (AppInfo.TestMode)
                 this.Opacity = .1;
@@ -107,7 +109,7 @@ namespace Roglaza.Forms
                     this.Icon = new Icon(Program.ProgramSettings.RoglazaIconPath);
             }
             catch { }
-
+            textBox_logsPath.Text = Program.ProgramSettings.LogsPath;
             FormLoaded = true;
 
         }
@@ -156,7 +158,7 @@ namespace Roglaza.Forms
 
         private void timerWatcher_Tick(object sender, EventArgs e)
         {
-             
+            Capture_count++;
 
             var bmpScreenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width,
                                Screen.PrimaryScreen.Bounds.Height,
@@ -174,7 +176,6 @@ namespace Roglaza.Forms
                                         CopyPixelOperation.SourceCopy);
 
             // Save the screenshot to the specified path .
-
             string _date = RoglazaHelper.RemoveInvalidPathChars(DateTime.Now.ToShortDateString());
             int current_hour = DateTime.Now.Hour;
             string current_hour_str="12 PM";
@@ -186,12 +187,10 @@ namespace Roglaza.Forms
                 current_hour_str = (current_hour - 12) + " PM";
 
 
-            string Album_Directory= Program.GetWorkingDirectory() + "\\Logs\\Screens\\" + _date + "\\" + current_hour_str;
+            string Album_Directory= Program.ProgramSettings.LogsPath + "\\Screens\\" + _date + "\\" + current_hour_str;
             Album_Directory = RoglazaHelper.createDirectoryIfNotFound(Album_Directory);
-
-            string TimeStamp_ = Album_Directory + "\\" +RoglazaHelper.RemoveInvalidPathChars( DateTime.Now.ToShortTimeString().Replace(" ","-"+(DateTime.Now.Millisecond).ToString()));
-
-            string Path_ =   TimeStamp_ + ".png";
+            string TimeStamp_ =  "\\" +RoglazaHelper.RemoveInvalidPathChars( DateTime.Now.ToShortTimeString().ToString());
+            string Path_ = Album_Directory + TimeStamp_ +"  "+this.Capture_count+ ".png";
             bmpScreenshot.Save(Path_, ImageFormat.Png);
 
           
@@ -221,7 +220,7 @@ namespace Roglaza.Forms
 
         private void linkLabelOpenLogsFolder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            RoglazaHelper.StartProcess(Program.GetWorkingDirectory());
+            RoglazaHelper.StartProcess(Program.ProgramSettings.LogsPath);
         }
 
         private void panel1_VisibleChanged(object sender, EventArgs e)
@@ -347,7 +346,32 @@ namespace Roglaza.Forms
         private void buttonKill_VisibleChanged(object sender, EventArgs e)
         {
             buttonCancelUnistallation.Visible = !buttonKill.Visible;
-        } 
+        }
+
+        private void linkLabel_app_data_dir_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RoglazaHelper.StartProcess(RoglazaInstaller.GetRoglazaAPPDataPath());
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (FormLoaded)
+            {
+                Program.ProgramSettings.LogsPath = textBox_logsPath.Text;
+                Program.ProgramSettings.SaveSettings();
+            }
+        }
+
+        private void button_Browse_logs_path_Click(object sender, EventArgs e)
+        {
+
+            FolderBrowserDialog f = new FolderBrowserDialog();
+            if (f.ShowDialog() == DialogResult.OK)
+                textBox_logsPath.Text = f.SelectedPath;
+          
+        }
+
+        public int Capture_count = 1;
     }
     //Refernce
     //http://stackoverflow.com/questions/18291448/how-do-i-detect-keypress-while-not-focused

