@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown_screenShotInterval = new System.Windows.Forms.NumericUpDown();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.button_Browse_logs_path = new System.Windows.Forms.Button();
             this.textBox_logsPath = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -61,7 +62,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.timerSession = new System.Windows.Forms.Timer(this.components);
             this.groupBoxMain = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_screenShotInterval)).BeginInit();
             this.panelBody.SuspendLayout();
             this.groupBox_Functions.SuspendLayout();
@@ -133,6 +133,16 @@
             this.panelBody.TabIndex = 2;
             this.panelBody.VisibleChanged += new System.EventHandler(this.panel1_VisibleChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(591, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // button_Browse_logs_path
             // 
             this.button_Browse_logs_path.Location = new System.Drawing.Point(720, 151);
@@ -163,23 +173,25 @@
             // 
             // buttonCancelUnistallation
             // 
+            this.buttonCancelUnistallation.BackColor = System.Drawing.Color.Lime;
             this.buttonCancelUnistallation.Location = new System.Drawing.Point(359, 181);
             this.buttonCancelUnistallation.Name = "buttonCancelUnistallation";
             this.buttonCancelUnistallation.Size = new System.Drawing.Size(138, 23);
             this.buttonCancelUnistallation.TabIndex = 12;
             this.buttonCancelUnistallation.Text = "Cancel unistalling";
-            this.buttonCancelUnistallation.UseVisualStyleBackColor = true;
+            this.buttonCancelUnistallation.UseVisualStyleBackColor = false;
             this.buttonCancelUnistallation.Visible = false;
             this.buttonCancelUnistallation.Click += new System.EventHandler(this.buttonCancelUnistallation_Click);
             // 
             // buttonKill
             // 
+            this.buttonKill.BackColor = System.Drawing.Color.Red;
             this.buttonKill.Location = new System.Drawing.Point(277, 181);
             this.buttonKill.Name = "buttonKill";
             this.buttonKill.Size = new System.Drawing.Size(75, 23);
             this.buttonKill.TabIndex = 11;
             this.buttonKill.Text = "Unistall";
-            this.buttonKill.UseVisualStyleBackColor = true;
+            this.buttonKill.UseVisualStyleBackColor = false;
             this.buttonKill.VisibleChanged += new System.EventHandler(this.buttonKill_VisibleChanged);
             this.buttonKill.Click += new System.EventHandler(this.buttonKill_Click);
             // 
@@ -411,16 +423,6 @@
             this.groupBoxMain.Size = new System.Drawing.Size(790, 420);
             this.groupBoxMain.TabIndex = 5;
             this.groupBoxMain.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(591, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // FrmAdminPanel
             // 

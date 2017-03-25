@@ -24,7 +24,7 @@ namespace Roglaza
              
         private void FrmGate_Load(object sender, EventArgs e)
         {
-
+            textBox_password.PasswordChar = '*';
         }
         private int Tries = 0;
         private int LockerTiks = 0;
@@ -90,6 +90,15 @@ namespace Roglaza
             {
                 button_password_Click(this, new EventArgs());
             }
+        }
+
+        private void linkLabel_ShowPas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (textBox_password.PasswordChar == '\0')
+                textBox_password.PasswordChar = '*';
+            else
+                textBox_password.PasswordChar = '\0';
+
         }
 
     }

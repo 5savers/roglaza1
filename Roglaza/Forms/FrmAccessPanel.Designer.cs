@@ -36,30 +36,36 @@
             this.timerLocker = new System.Windows.Forms.Timer(this.components);
             this.labelwaitLocker = new System.Windows.Forms.Label();
             this.labelTryResult = new System.Windows.Forms.Label();
+            this.linkLabel_ShowPas = new System.Windows.Forms.LinkLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 20);
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(53, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 13);
+            this.label1.Size = new System.Drawing.Size(139, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Password Required";
             // 
             // textBox_password
             // 
-            this.textBox_password.Location = new System.Drawing.Point(29, 45);
+            this.textBox_password.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_password.Location = new System.Drawing.Point(19, 52);
             this.textBox_password.Name = "textBox_password";
-            this.textBox_password.Size = new System.Drawing.Size(159, 20);
+            this.textBox_password.Size = new System.Drawing.Size(206, 28);
             this.textBox_password.TabIndex = 1;
             this.textBox_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_password_KeyDown);
             // 
             // Btn_access
             // 
-            this.Btn_access.Location = new System.Drawing.Point(54, 71);
+            this.Btn_access.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_access.Location = new System.Drawing.Point(77, 92);
             this.Btn_access.Name = "Btn_access";
-            this.Btn_access.Size = new System.Drawing.Size(75, 23);
+            this.Btn_access.Size = new System.Drawing.Size(98, 34);
             this.Btn_access.TabIndex = 2;
             this.Btn_access.Text = "Access";
             this.Btn_access.UseVisualStyleBackColor = true;
@@ -81,27 +87,53 @@
             // labelTryResult
             // 
             this.labelTryResult.AutoSize = true;
-            this.labelTryResult.Location = new System.Drawing.Point(122, 99);
+            this.labelTryResult.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTryResult.Location = new System.Drawing.Point(112, 129);
             this.labelTryResult.Name = "labelTryResult";
-            this.labelTryResult.Size = new System.Drawing.Size(28, 13);
+            this.labelTryResult.Size = new System.Drawing.Size(30, 20);
             this.labelTryResult.TabIndex = 4;
             this.labelTryResult.Text = ".......";
+            // 
+            // linkLabel_ShowPas
+            // 
+            this.linkLabel_ShowPas.AutoSize = true;
+            this.linkLabel_ShowPas.Location = new System.Drawing.Point(231, 60);
+            this.linkLabel_ShowPas.Name = "linkLabel_ShowPas";
+            this.linkLabel_ShowPas.Size = new System.Drawing.Size(14, 13);
+            this.linkLabel_ShowPas.TabIndex = 5;
+            this.linkLabel_ShowPas.TabStop = true;
+            this.linkLabel_ShowPas.Text = "S";
+            this.linkLabel_ShowPas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_ShowPas_LinkClicked);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.linkLabel_ShowPas);
+            this.groupBox1.Controls.Add(this.textBox_password);
+            this.groupBox1.Controls.Add(this.labelTryResult);
+            this.groupBox1.Controls.Add(this.Btn_access);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(282, 180);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Access Panel";
             // 
             // FrmGate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 144);
-            this.Controls.Add(this.labelTryResult);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(302, 204);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelwaitLocker);
-            this.Controls.Add(this.Btn_access);
-            this.Controls.Add(this.textBox_password);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmGate";
             this.Text = "Roglaza";
             this.Load += new System.EventHandler(this.FrmGate_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,6 +147,8 @@
         private System.Windows.Forms.Timer timerLocker;
         private System.Windows.Forms.Label labelwaitLocker;
         private System.Windows.Forms.Label labelTryResult;
+        private System.Windows.Forms.LinkLabel linkLabel_ShowPas;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
