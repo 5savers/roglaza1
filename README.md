@@ -14,7 +14,7 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - Loggings key strokes
 - Storing browser history  to monitor internet activitiy.
 
-##<h3>Team</h3>
+<h3>Team</h3>
 
 1- Esraa Montasser
 2- Esraa Ragab
@@ -22,14 +22,14 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 4- Nourah Mohamed
 
 
-##<h3>Used Tecknologies </h3>
+<h3>Used Tecknologies </h3>
 
 - C#.Net
 - .Net Framework 4.5
 - Sqlite
 - KeyStealer 
 
-##<h3>Features</h3>
+<h3>Features</h3>
 
 - Screen Capturing 			(✓)
 - Camera Capturing  		(w)
