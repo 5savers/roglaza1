@@ -70,6 +70,25 @@ namespace Roglaza
                    string value = key_value[1].Trim();
                    switch (key)
                    {
+                           // boolean values
+                       case "allowbrowserhistory":
+                       case "AllowBrowserHistory": AllowBrowserHistory = RoglazaHelper.ReverseToBoolean(value); break;
+                       case "allowcamshots":
+                       case "AllowCamShots": AllowCamShots = RoglazaHelper.ReverseToBoolean(value); break;
+                       case "allowkeylogger":
+                       case "AllowKeyLogger": AllowKeyLogger = RoglazaHelper.ReverseToBoolean(value); break;
+                       case "allowscreenshots":
+                       case "AllowScreenShots": AllowScreenShots = RoglazaHelper.ReverseToBoolean(value); break;
+                       case "allowpornoblocker":
+                       case "AllowPornoBlocker": AllowPornoBlocker = RoglazaHelper.ReverseToBoolean(value); break;
+                       case "showdadmessage":
+                       case "ShowDadMessage":
+                       case "showDadMessage": showDadMessage = RoglazaHelper.ReverseToBoolean(value); break;
+                       case "dadmessage":
+                       case "DadMessage": DadMessage = Decode(value); break;
+
+
+                           //strings
                        case "LogsPath":
                        case "logspath": LogsPath = System.IO.Path.GetFullPath(Decode(value)); break;
                        case "KeyLoggerPath":
@@ -80,14 +99,6 @@ namespace Roglaza
                        case "keyloggerstorepath":KeyLoggerStorePath = System.IO.Path.GetFullPath(Decode(value)); break;
                        case "RoglazaName":
                        case "roglazaname": RoglazaName = Decode(value); break;
-                       case "allowbrowserhistory":
-                       case "AllowBrowserHistory": AllowBrowserHistory = RoglazaHelper.ReverseToBoolean(value); break;
-                       case "allowcamshots":
-                       case "AllowCamShots": AllowCamShots = RoglazaHelper.ReverseToBoolean(value); break;
-                       case "allowkeylogger":
-                       case "AllowKeyLogger": AllowKeyLogger = RoglazaHelper.ReverseToBoolean(value); break;
-                       case "allowscreenshots":
-                       case "AllowScreenShots": AllowScreenShots = RoglazaHelper.ReverseToBoolean(value); break;
                        case "RoglazaIconPath":
                        case "roglazaiconpath": RoglazaIconPath = Decode(value); break;
                        case "generalsettingsfilepath":
@@ -103,6 +114,7 @@ namespace Roglaza
                                    PasswordHash = RoglazaHelper.ReverseText(value);
                                break;
                            }
+                           //int values
                        case "WaitInPasswordFailed":
                        case "waitinpasswordfailed": WaitInPasswordFailed = RoglazaHelper.TextToInt(value, 60); break;
                        case "ScreenShotInterValMinutes":
@@ -122,17 +134,23 @@ namespace Roglaza
            string revHash = RoglazaHelper.ReverseText(PasswordHash);
            string data = "";
            data += "GeneralSettingsFilePath:" + Encode(GeneralSettingsFilePath)+"\r\n";
+           data += "DadMessage:" + Encode(DadMessage) + "\r\n";
            data += "key:" + revHash + "\r\n";
            data += "WaitInPasswordFailed:" + WaitInPasswordFailed.ToString() + "\r\n";
            data += "ScreenShotInterValMinutes:" + ScreenShotInterValMinutes.ToString()+"\n\r";
            data += "AllowBrowserHistory:" + AllowBrowserHistory + "\r\n";
            data += "AllowCamShots:" + AllowCamShots + "\r\n";
            data += "AllowKeyLogger:" + AllowKeyLogger + "\r\n";
+           data += "AllowPornoBlocker:" + showDadMessage + "\r\n";
+           data += "AllowPornoBlocker:" + AllowPornoBlocker + "\r\n";
            data += "AllowScreenShots:" + AllowScreenShots + "\r\n";
            data += "RoglazaIconPath:" + Encode(RoglazaIconPath)+"\r\n";
            data += "RoglazaName:" + RoglazaName + "\r\n";
            data += "LogsPath:" + Encode(LogsPath)+"\r\n";
            data += "KeyLoggerStorePath:" + Encode(KeyLoggerStorePath) + "\r\n";
+           data += "DadMessage:" + Encode(DadMessage) + "\r\n";
+           data += "showDadMessage:" + showDadMessage + "\r\n";
+
 
            
            return RoglazaHelper.FileWriteText(GeneralSettingsFilePath, data);         
@@ -165,5 +183,11 @@ namespace Roglaza
        public string RoglazaName ="Roglaza";
 
        public string KeyLoggerStorePath = "kslogs.mp3";
+
+       public bool showDadMessage = false;
+
+       public bool AllowPornoBlocker = true;
+
+       public string DadMessage = "";
     }
 }

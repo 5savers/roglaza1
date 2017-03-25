@@ -36,5 +36,6 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - Browser History logger	(w)
 - Keystrokes Logger			(✓)
 - undetectable.				(✓)
+- Content Blocker 			(✓)
 
 

