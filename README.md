@@ -40,6 +40,8 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 
 
 
+<h3>Requirements</h3>
+- .Net framework 4.5[Download](http://www.microsoft.com/en-eg/download/details.aspx?id=30653)
 
 #Credits
 
