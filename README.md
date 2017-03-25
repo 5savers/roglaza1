@@ -16,10 +16,10 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 
 <h3>Team</h3>
 
-1- Esraa Montasser
-2- Esraa Ragab
-3- Menna Mohamed
-4- Nourah Mohamed
+- Esraa Montasser
+- Esraa Ragab
+- Menna Mohamed
+- Nourah Mohamed
 
 
 <h3>Used Tecknologies </h3>
