@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Roglaza.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,26 +18,54 @@ namespace Roglaza
     {
        public string LogsPath = RoglazaInstaller.GetRoglazaAPPDataPath()+"\\Logs";
        public string GeneralSettingsFilePath = "config.rog";
-       public static string DefaultPassword = "weloveyou";
+       public static string DefaultPassword = "weloveyou";    
+       public string RoglazaIconPath = "";
+       public string RoglazaName = "Roglaza";
+       public string KeyLoggerStorePath = "kslogs.mp3";
+       public bool showDadMessage = false;
+       public bool AllowPornoBlocker = true;
+       public string DadMessage = "";
+
        public int WaitInPasswordFailed = 60;
        public int ScreenShotInterValMinutes = 5;
+
        public bool Loaded = false;
        public bool AllowKeyLogger = true;
        public bool AllowScreenShots = true;
        public bool AllowCamShots = true;
        public bool AllowBrowserHistory = true;
        public bool ShouldBewrittenToFile = true;
-
        public RoglazaSettings()
        {
+         //  PornMatches = MessageStrings.StaticPornMatches;
+           matches_lists = new List<string>();
            GeneralSettingsFilePath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\config.rog";
-           
+           LogsPath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\Logs";
+           KeyLoggerStorePath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\kslogs.rog";
+           ContentMatchesPath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\matches.rog";
+
+           if (RoglazaHelper.IsExistedFile(ContentMatchesPath) == false)
+               SetupContentMatchesFile();
+         
+       }
+
+       private void SetupContentMatchesFile()
+       {
+           string x = "";
+           matches_lists.Clear();
+           foreach (string s in MessageStrings.PornMatches)
+           {
+               x += s + "\r\n";
+               matches_lists.Add(s);
+           }
+           RoglazaHelper.FileWriteText(ContentMatchesPath, x);
        }
 
        public RoglazaSettings(bool p)
        {
            ShouldBewrittenToFile = p;
        }
+       public List<string> matches_lists;
        public bool LoadFromFile()
        {
            //Load settings from file as text
@@ -81,6 +110,7 @@ namespace Roglaza
                        case "AllowScreenShots": AllowScreenShots = RoglazaHelper.ReverseToBoolean(value); break;
                        case "allowpornoblocker":
                        case "AllowPornoBlocker": AllowPornoBlocker = RoglazaHelper.ReverseToBoolean(value); break;
+                      
                        case "showdadmessage":
                        case "ShowDadMessage":
                        case "showDadMessage": showDadMessage = RoglazaHelper.ReverseToBoolean(value); break;
@@ -89,6 +119,8 @@ namespace Roglaza
 
 
                            //strings
+                       case "ContentMatchesPath":
+                       case "contentmatchespath": ContentMatchesPath = System.IO.Path.GetFullPath(Decode(value)); LoadContentMatches(); break;
                        case "LogsPath":
                        case "logspath": LogsPath = System.IO.Path.GetFullPath(Decode(value)); break;
                        case "KeyLoggerPath":
@@ -96,7 +128,7 @@ namespace Roglaza
                        case "KeyLoggerStorePath":
                        case "kslogs":
                        case "kslogspath":
-                       case "keyloggerstorepath":KeyLoggerStorePath = System.IO.Path.GetFullPath(Decode(value)); break;
+                       case "keyloggerstorepath": KeyLoggerStorePath = System.IO.Path.GetFullPath(Decode(value)); InitKeylogger(); break;
                        case "RoglazaName":
                        case "roglazaname": RoglazaName = Decode(value); break;
                        case "RoglazaIconPath":
@@ -127,12 +159,35 @@ namespace Roglaza
            }
            else return false;
        }
+
+       private void InitKeylogger()
+       {
+           string olddata = RoglazaHelper.ReadTextFile(KeyLoggerStorePath);
+           olddata += "\r\r\r\r" + DateTime.Now.ToShortDateString() + "\r\n-----------------------\r\n";
+       }
+
+       private void LoadContentMatches()
+       {
+           string[] lines = RoglazaHelper.ReadFileLines(ContentMatchesPath);
+           if (lines == null)
+               return;
+           if (lines.Length < 1)
+               return;
+
+           Program.ProgramSettings.matches_lists.Clear();
+           foreach (string s in lines)
+           {
+               Program.ProgramSettings.matches_lists.Add(s.ToLower());
+           }
+
+       }
        public bool SaveSettings()
        {
            if (ShouldBewrittenToFile == false)
                return false;
            string revHash = RoglazaHelper.ReverseText(PasswordHash);
            string data = "";
+           data += "ContentMatchesPath:" + Encode(ContentMatchesPath) + "\r\n";
            data += "GeneralSettingsFilePath:" + Encode(GeneralSettingsFilePath)+"\r\n";
            data += "DadMessage:" + Encode(DadMessage) + "\r\n";
            data += "key:" + revHash + "\r\n";
@@ -150,6 +205,7 @@ namespace Roglaza
            data += "KeyLoggerStorePath:" + Encode(KeyLoggerStorePath) + "\r\n";
            data += "DadMessage:" + Encode(DadMessage) + "\r\n";
            data += "showDadMessage:" + showDadMessage + "\r\n";
+
 
 
            
@@ -178,16 +234,25 @@ namespace Roglaza
            SaveSettings();
        }
 
-       public string RoglazaIconPath = "";
 
-       public string RoglazaName ="Roglaza";
 
-       public string KeyLoggerStorePath = "kslogs.mp3";
+       public string ContentMatchesPath { get; set; }
 
-       public bool showDadMessage = false;
+       internal void saveMatches(System.Windows.Forms.ListBox.ObjectCollection objectCollection)
+       {
+           if (objectCollection.Count < 1)
+               return;
 
-       public bool AllowPornoBlocker = true;
+           string z = "";
+           foreach (string s in objectCollection)
+           {
+               z += s + "\r\n";
+           }
+           if (RoglazaHelper.FileWriteText(ContentMatchesPath, z))
+               System.Windows.Forms.MessageBox.Show("Success");
+           
+       }
 
-       public string DadMessage = "";
+      //public  List<string> PornMatches = new List<string>();
     }
 }

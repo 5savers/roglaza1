@@ -16,7 +16,7 @@ namespace Roglaza
         /// 
         [STAThread]
 
-        static void Main()
+         public static void Main()
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Roglaza
 
             //Detecting test mode
             AppInfo.TestMode = Application.StartupPath.Contains(@"\Roglaza\bin") || RoglazaHelper.IsExistedFile("testmode");
-            LoadSettings();
+            
 
             RoglazaInstaller.InstallDirectories();
 
@@ -65,6 +65,7 @@ namespace Roglaza
             {
                 ProgramSettings = new RoglazaSettings();
                 ProgramSettings.LoadFromFile();
+
             }
             catch { }
       }

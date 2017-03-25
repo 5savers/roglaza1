@@ -19,7 +19,6 @@ E:\Roglaza\Roglaza\obj\Debug\Roglaza.exe
 E:\Roglaza\Roglaza\obj\Debug\Roglaza.pdb
 E:\Roglaza\Roglaza\bin\Debug\Roglaza.exe
 E:\Roglaza\Roglaza\bin\Debug\Roglaza.pdb
-E:\Roglaza\Roglaza\obj\Debug\Roglaza.csprojResolveAssemblyReference.cache
 E:\Roglaza\Roglaza\obj\Debug\Roglaza.Forms.FrmAdminPanel.resources
 E:\Roglaza\Roglaza\obj\Debug\Roglaza.FrmGate.resources
 E:\Roglaza\Roglaza\obj\Debug\Roglaza.Properties.Resources.resources
@@ -28,3 +27,4 @@ E:\Roglaza\Roglaza\bin\Debug\System.Data.SQLite.dll
 E:\Roglaza\Roglaza\bin\Debug\System.Data.SQLite.xml
 E:\Roglaza\Roglaza\bin\Debug\System.Data.SQLite.Linq.dll
 E:\Roglaza\Roglaza\bin\Debug\Roglaza.exe.config
+E:\Roglaza\Roglaza\obj\Debug\Roglaza.csprojResolveAssemblyReference.cache

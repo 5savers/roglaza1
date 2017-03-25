@@ -193,6 +193,15 @@ namespace Roglaza
             }
         }
 
-      
+
+
+        internal static string[] ReadFileLines(string path)
+        {
+            try
+            {
+                return System.IO.File.ReadAllLines(path); 
+            }
+            catch { return null; }
+        }
     }
 }

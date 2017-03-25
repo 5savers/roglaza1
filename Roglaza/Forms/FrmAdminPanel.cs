@@ -31,7 +31,7 @@ namespace Roglaza.Forms
         private void ShowAccesspanel()
         {
             Pressed_busy = true;
-            if (!(this.Visible && this.panelContainer.Visible))
+            if (!(this.Visible && this.tabControl1.Visible))
             {
                 var f = new FrmGate();
                 f.ShowInTaskbar = true;
@@ -71,7 +71,7 @@ namespace Roglaza.Forms
                 this.ShowInTaskbar = p;
                 this.Focus();
             }
-            panelContainer.Visible = p;
+            tabControl1.Visible = p;
             this.WindowState = p ? FormWindowState.Normal : FormWindowState.Minimized;
 
 
@@ -86,8 +86,7 @@ namespace Roglaza.Forms
         private void FrmAdminPanel_Load(object sender, EventArgs e)
         {
 
-            labelBannerHidden.Visible = false;
-            labelBannerHidden.Visible = true;
+
             labelBannerHidden.Text = MessageStrings.ImHidden;
             label_Banner.Text = AppInfo.AppBanner;
             label_app_Name.Text = AppInfo.AppName;
@@ -116,7 +115,17 @@ namespace Roglaza.Forms
             catch { }
             textBox_logsPath.Text = Program.ProgramSettings.LogsPath;
             FormLoaded = true;
+            LoadMatches();
+            button_save.Visible = false;
 
+        }
+
+        private void LoadMatches()
+        {
+            foreach (string s in Program.ProgramSettings.matches_lists)
+                if (listBox_matches.Items.Contains(s) == false)
+                    listBox_matches.Items.Add(s);
+            addnew_match("");
         }
         private bool Pressed_busy = false;
         private KeyHandler ghk;
@@ -142,7 +151,7 @@ namespace Roglaza.Forms
         {
 
             if (this.WindowState== FormWindowState.Minimized)
-                panelContainer.Visible = false;
+                tabControl1.Visible = false;
            
         }
 
@@ -230,7 +239,7 @@ namespace Roglaza.Forms
 
         private void panel1_VisibleChanged(object sender, EventArgs e)
         {
-            this.labelBannerHidden.Visible = !panelContainer.Visible;
+            this.labelBannerHidden.Visible = !tabControl1.Visible;
         }
 
 
@@ -387,17 +396,17 @@ namespace Roglaza.Forms
         {
             // Credits to 
             //https://github.com/Kalpeshk9967016292/Antiporn
-
             try
             {
                 var proxes = Process.GetProcesses();
                 int myid = Process.GetCurrentProcess().Id;
                 foreach (Process p in proxes)
                 {
-                    string cp = p.MainWindowTitle.ToString();
-                    foreach (string value in MessageStrings.PornMatches)
+                    string cp = p.MainWindowTitle.ToString().ToLower();
+                    foreach (string value in  MessageStrings.PornMatches)
                     {
-                        if (cp.Contains(value.ToString())&&cp.Contains("oglaza")==false&&myid!=p.Id)
+
+                        if (cp.Contains(value.ToString()) &&cp.Contains("oglaza") &&myid!=p.Id&&cp.Contains("microsoft visual studio")==false&&cp.Contains(".rog")==false)
                         {
                             timer_porn_blocker.Stop();
                             timer_porn_blocker.Enabled = false;
@@ -418,12 +427,72 @@ namespace Roglaza.Forms
         private void checkBox_BlockPorno_CheckedChanged(object sender, EventArgs e)
         {
             if (FormLoaded)
-                Program.ProgramSettings.AllowPornoBlocker = checkBox_BlockPorno.Checked;
+                Program.ProgramSettings.AllowPornoBlocker =panel_content_Container.Enabled= checkBox_BlockPorno.Checked;
             Program.ProgramSettings.SaveSettings();
 
             if (Program.ProgramSettings.AllowPornoBlocker)
                 timer_porn_blocker.Start();
 
+        }
+
+        private void panelContainer_VisibleChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl1_VisibleChanged(object sender, EventArgs e)
+        {
+            labelBannerHidden.Visible = !tabControl1.Visible;
+            panelContainer.Visible = tabControl1.Visible;
+        }
+
+        private void button_clear_Click(object sender, EventArgs e)
+        {
+            listBox_matches.Items.Clear();
+            addnew_match("");
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button_Remove_match.Enabled = listBox_matches.SelectedIndex >= 0;
+        }
+
+        private void button_add_new_match_Click(object sender, EventArgs e)
+        {
+            string nm = textBox_New_match.Text.Trim().ToLower();
+            if (listBox_matches.Items.Contains(nm))
+                return;
+            addnew_match(nm);
+        }
+
+        private void addnew_match(string nm)
+        {
+            if (nm != "")
+                listBox_matches.Items.Add(nm);
+            label_matches_count.Text = listBox_matches.Items.Count.ToString() + " items";
+            button_save.Visible = true;
+
+        }
+
+        private void button_Remove_match_Click(object sender, EventArgs e)
+        {
+            int i = listBox_matches.SelectedIndex;
+            if (listBox_matches.SelectedIndex >= 0)
+                listBox_matches.Items.RemoveAt(i);
+            if (listBox_matches.Items.Count > i)
+                listBox_matches.SelectedIndex = i;
+            addnew_match("");
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            Program.ProgramSettings.saveMatches(listBox_matches.Items);
+            button_save.Visible = false;
+        }
+
+        private void textBox_New_match_TextChanged(object sender, EventArgs e)
+        {
+            button_add_new_match.Enabled = textBox_New_match.Text.Trim().Length > 2;
         }
     }
     //Refernce
