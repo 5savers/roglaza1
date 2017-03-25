@@ -536,6 +536,16 @@ namespace Roglaza.Forms
             comboBox_capture_day.DisplayMember = "Text";
             comboBox_capture_day.ValueMember = "Value";
 
+
+            comboBox_Capture_hour.Items.Clear();
+            comboBox_Capture_hour.DisplayMember = "Text";
+            comboBox_Capture_hour.ValueMember = "Value";
+
+
+            comboBox_file.Items.Clear();
+            comboBox_file.DisplayMember = "Text";
+            comboBox_file.ValueMember = "Value";
+
             string logsPath = Program.ProgramSettings.LogsPath+"\\"+(comboBox_capture_device.SelectedIndex==0?"Screens":"Cams");
             string[] dirs = RoglazaHelper.GetDirectories(logsPath);
             if (dirs == null)
@@ -554,13 +564,19 @@ namespace Roglaza.Forms
 
         private void comboBox_capture_day_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox_capture_day.SelectedIndex < 0)
-                return;
+            
 
             comboBox_Capture_hour.Items.Clear();
             comboBox_Capture_hour.DisplayMember = "Text";
             comboBox_Capture_hour.ValueMember = "Value";
-            
+
+
+            comboBox_file.Items.Clear();
+            comboBox_file.DisplayMember = "Text";
+            comboBox_file.ValueMember = "Value";
+
+            if (comboBox_capture_day.SelectedIndex < 0)
+                return;
             string logsPath =  ((CMBX_Item)comboBox_capture_day.SelectedItem).Value;
             string[] dirs = RoglazaHelper.GetDirectories(logsPath);
             if (dirs == null)
@@ -580,12 +596,12 @@ namespace Roglaza.Forms
 
         private void comboBox_Capture_hour_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox_capture_day.SelectedIndex < 0)
-                return;
+            
             comboBox_file.Items.Clear();
             comboBox_file.DisplayMember = "Text";
             comboBox_file.ValueMember = "Value";
-
+            if (comboBox_capture_day.SelectedIndex < 0)
+                return;
             string logsPath = ((CMBX_Item)comboBox_Capture_hour.SelectedItem).Value;
             string[] dirs = RoglazaHelper.GetFiles(logsPath);
             if (dirs == null)
@@ -609,6 +625,7 @@ namespace Roglaza.Forms
                 pictureBox_Capture_Viewer.Image=Image.FromFile(r.Value);
                 pictureBox_Capture_Viewer.Tag = r.Value;
                 label_images_counter.Text = (comboBox_file.SelectedIndex + 1).ToString();
+              
                 button_NextImage.Visible = comboBox_file.SelectedIndex < comboBox_file.Items.Count - 1;
                 button_Prev_image.Visible = comboBox_file.SelectedIndex > 0;
             }
@@ -628,7 +645,7 @@ namespace Roglaza.Forms
         private void button_Prev_image_Click(object sender, EventArgs e)
         {
             int i = comboBox_file.SelectedIndex - 1;
-            if (i <= 0)
+            if (i < 0)
                i= comboBox_file.Items.Count-1;
             comboBox_file.SelectedIndex = i;
         }

@@ -619,7 +619,7 @@
             "Camera"});
             this.comboBox_Capture_hour.Location = new System.Drawing.Point(370, 59);
             this.comboBox_Capture_hour.Name = "comboBox_Capture_hour";
-            this.comboBox_Capture_hour.Size = new System.Drawing.Size(74, 21);
+            this.comboBox_Capture_hour.Size = new System.Drawing.Size(106, 21);
             this.comboBox_Capture_hour.TabIndex = 7;
             this.comboBox_Capture_hour.SelectedIndexChanged += new System.EventHandler(this.comboBox_Capture_hour_SelectedIndexChanged);
             // 
@@ -641,7 +641,7 @@
             "Camera"});
             this.comboBox_capture_day.Location = new System.Drawing.Point(216, 59);
             this.comboBox_capture_day.Name = "comboBox_capture_day";
-            this.comboBox_capture_day.Size = new System.Drawing.Size(63, 21);
+            this.comboBox_capture_day.Size = new System.Drawing.Size(94, 21);
             this.comboBox_capture_day.TabIndex = 5;
             this.comboBox_capture_day.SelectedIndexChanged += new System.EventHandler(this.comboBox_capture_day_SelectedIndexChanged);
             // 
