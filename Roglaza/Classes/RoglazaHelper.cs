@@ -203,5 +203,34 @@ namespace Roglaza
             }
             catch { return null; }
         }
+
+        internal static string[] GetDirectories(string logsPath)
+        {
+            try
+            {
+                return System.IO.Directory.GetDirectories(logsPath);
+            }
+            catch { return null; }
+        }
+
+        internal static string ReturnLastSplit(string s, char p)
+        {
+
+            if (s.Contains(p))
+            {
+                string[] x = s.Split(p);
+                return x[x.Length - 1];
+            }
+            return s;
+        }
+
+        internal static string[] GetFiles(string logsPath)
+        {
+            try
+            {
+                return System.IO.Directory.GetFiles(logsPath);
+            }
+            catch { return null; }
+        }
     }
 }

@@ -221,6 +221,12 @@ namespace Roglaza
        {
            return s.Replace("$COLON$",":");
        }
+       public void SetNewPassword(string plain)
+       {
+       PasswordHash =Crypter.GetMd5Hash(plain);
+       SaveSettings();
+
+       }
        public string PasswordHash =Crypter.GetMd5Hash(DefaultPassword);
        public static string ConvertTextPasswordToRevHash(string s)
        {
@@ -228,16 +234,13 @@ namespace Roglaza
            hash = RoglazaHelper.ReverseText(hash);
            return hash;
        }
+      
        internal void SETScreenShotInterValMinutes(int p)
        {
            this.ScreenShotInterValMinutes = p;
            SaveSettings();
        }
-
-
-
-       public string ContentMatchesPath { get; set; }
-
+       public string ContentMatchesPath =""; 
        internal void saveMatches(System.Windows.Forms.ListBox.ObjectCollection objectCollection)
        {
            if (objectCollection.Count < 1)
@@ -253,6 +256,5 @@ namespace Roglaza
            
        }
 
-      //public  List<string> PornMatches = new List<string>();
     }
 }

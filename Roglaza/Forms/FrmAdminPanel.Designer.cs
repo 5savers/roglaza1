@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAdminPanel));
             this.timerWatcher = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown_screenShotInterval = new System.Windows.Forms.NumericUpDown();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.button_setPassword = new System.Windows.Forms.Button();
+            this.textBox_new_password = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.button_Browse_logs_path = new System.Windows.Forms.Button();
             this.textBox_logsPath = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@
             this.checkBoxKeyLogger = new System.Windows.Forms.CheckBox();
             this.linkLabel_app_data_dir = new System.Windows.Forms.LinkLabel();
             this.linkLabelOpenLogsFolder = new System.Windows.Forms.LinkLabel();
-            this.label_minutes = new System.Windows.Forms.Label();
             this.pictureBox_Spy = new System.Windows.Forms.PictureBox();
             this.labelBannerHidden = new System.Windows.Forms.Label();
             this.label_app_Name = new System.Windows.Forms.Label();
@@ -65,7 +65,31 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_General = new System.Windows.Forms.TabPage();
             this.tabPage_Capture = new System.Windows.Forms.TabPage();
+            this.panel_capture_main = new System.Windows.Forms.Panel();
+            this.panel_capture_control = new System.Windows.Forms.Panel();
+            this.button_NextImage = new System.Windows.Forms.Button();
+            this.button_Prev_image = new System.Windows.Forms.Button();
+            this.label_images_counter = new System.Windows.Forms.Label();
+            this.pictureBox_Capture_Viewer = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBox_file = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBox_Capture_hour = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox_capture_day = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox_capture_device = new System.Windows.Forms.ComboBox();
+            this.label_minutes = new System.Windows.Forms.Label();
+            this.numericUpDown_screenShotInterval = new System.Windows.Forms.NumericUpDown();
+            this.label_shots_every = new System.Windows.Forms.Label();
             this.tabPage_Logs = new System.Windows.Forms.TabPage();
+            this.panel_logs_container = new System.Windows.Forms.Panel();
+            this.label_keystrok_banner = new System.Windows.Forms.Label();
+            this.label_keystrokes_path = new System.Windows.Forms.Label();
+            this.panel_Logs_control = new System.Windows.Forms.Panel();
+            this.button_export = new System.Windows.Forms.Button();
+            this.button1_Clear_keystrokes_ = new System.Windows.Forms.Button();
+            this.richTextBox_keystrokes_viewer = new System.Windows.Forms.RichTextBox();
             this.tabPage_content = new System.Windows.Forms.TabPage();
             this.panel_content_main = new System.Windows.Forms.Panel();
             this.panel_content_Container = new System.Windows.Forms.Panel();
@@ -78,7 +102,7 @@
             this.listBox_matches = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.timer_porn_blocker = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_screenShotInterval)).BeginInit();
+            this.timer_global = new System.Windows.Forms.Timer(this.components);
             this.panelBody.SuspendLayout();
             this.groupBox_Functions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Spy)).BeginInit();
@@ -86,6 +110,14 @@
             this.groupBoxMain.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage_General.SuspendLayout();
+            this.tabPage_Capture.SuspendLayout();
+            this.panel_capture_main.SuspendLayout();
+            this.panel_capture_control.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Capture_Viewer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_screenShotInterval)).BeginInit();
+            this.tabPage_Logs.SuspendLayout();
+            this.panel_logs_container.SuspendLayout();
+            this.panel_Logs_control.SuspendLayout();
             this.tabPage_content.SuspendLayout();
             this.panel_content_main.SuspendLayout();
             this.panel_content_Container.SuspendLayout();
@@ -97,39 +129,15 @@
             this.timerWatcher.Interval = 300000;
             this.timerWatcher.Tick += new System.EventHandler(this.timerWatcher_Tick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Take  Shot Every";
-            // 
-            // numericUpDown_screenShotInterval
-            // 
-            this.numericUpDown_screenShotInterval.Location = new System.Drawing.Point(144, 20);
-            this.numericUpDown_screenShotInterval.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown_screenShotInterval.Name = "numericUpDown_screenShotInterval";
-            this.numericUpDown_screenShotInterval.Size = new System.Drawing.Size(58, 20);
-            this.numericUpDown_screenShotInterval.TabIndex = 1;
-            this.numericUpDown_screenShotInterval.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown_screenShotInterval.ValueChanged += new System.EventHandler(this.numericUpDown_screenShotInterval_ValueChanged);
-            // 
             // panelBody
             // 
             this.panelBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelBody.BackColor = System.Drawing.Color.Transparent;
+            this.panelBody.Controls.Add(this.button_setPassword);
+            this.panelBody.Controls.Add(this.textBox_new_password);
+            this.panelBody.Controls.Add(this.label10);
             this.panelBody.Controls.Add(this.button_Browse_logs_path);
             this.panelBody.Controls.Add(this.textBox_logsPath);
             this.panelBody.Controls.Add(this.label5);
@@ -144,20 +152,43 @@
             this.panelBody.Controls.Add(this.groupBox_Functions);
             this.panelBody.Controls.Add(this.linkLabel_app_data_dir);
             this.panelBody.Controls.Add(this.linkLabelOpenLogsFolder);
-            this.panelBody.Controls.Add(this.label_minutes);
-            this.panelBody.Controls.Add(this.numericUpDown_screenShotInterval);
-            this.panelBody.Controls.Add(this.label1);
             this.panelBody.Location = new System.Drawing.Point(9, 75);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(741, 339);
             this.panelBody.TabIndex = 2;
             this.panelBody.VisibleChanged += new System.EventHandler(this.panel1_VisibleChanged);
             // 
+            // button_setPassword
+            // 
+            this.button_setPassword.Location = new System.Drawing.Point(375, 197);
+            this.button_setPassword.Name = "button_setPassword";
+            this.button_setPassword.Size = new System.Drawing.Size(75, 23);
+            this.button_setPassword.TabIndex = 18;
+            this.button_setPassword.Text = "Change";
+            this.button_setPassword.UseVisualStyleBackColor = true;
+            this.button_setPassword.Click += new System.EventHandler(this.button_setPassword_Click);
+            // 
+            // textBox_new_password
+            // 
+            this.textBox_new_password.Location = new System.Drawing.Point(108, 197);
+            this.textBox_new_password.Name = "textBox_new_password";
+            this.textBox_new_password.Size = new System.Drawing.Size(254, 20);
+            this.textBox_new_password.TabIndex = 17;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(15, 205);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 13);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Password";
+            // 
             // button_Browse_logs_path
             // 
-            this.button_Browse_logs_path.Location = new System.Drawing.Point(696, 163);
+            this.button_Browse_logs_path.Location = new System.Drawing.Point(376, 140);
             this.button_Browse_logs_path.Name = "button_Browse_logs_path";
-            this.button_Browse_logs_path.Size = new System.Drawing.Size(35, 23);
+            this.button_Browse_logs_path.Size = new System.Drawing.Size(74, 23);
             this.button_Browse_logs_path.TabIndex = 15;
             this.button_Browse_logs_path.Text = "...";
             this.button_Browse_logs_path.UseVisualStyleBackColor = true;
@@ -168,7 +199,7 @@
             this.textBox_logsPath.Location = new System.Drawing.Point(108, 165);
             this.textBox_logsPath.Name = "textBox_logsPath";
             this.textBox_logsPath.ReadOnly = true;
-            this.textBox_logsPath.Size = new System.Drawing.Size(582, 20);
+            this.textBox_logsPath.Size = new System.Drawing.Size(254, 20);
             this.textBox_logsPath.TabIndex = 14;
             this.textBox_logsPath.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -216,7 +247,7 @@
             // 
             this.textBoxAppName.Location = new System.Drawing.Point(108, 138);
             this.textBoxAppName.Name = "textBoxAppName";
-            this.textBoxAppName.Size = new System.Drawing.Size(582, 20);
+            this.textBoxAppName.Size = new System.Drawing.Size(254, 20);
             this.textBoxAppName.TabIndex = 9;
             this.textBoxAppName.TextChanged += new System.EventHandler(this.textBoxAppName_TextChanged);
             // 
@@ -231,9 +262,9 @@
             // 
             // buttonBrwseicon
             // 
-            this.buttonBrwseicon.Location = new System.Drawing.Point(695, 111);
+            this.buttonBrwseicon.Location = new System.Drawing.Point(375, 111);
             this.buttonBrwseicon.Name = "buttonBrwseicon";
-            this.buttonBrwseicon.Size = new System.Drawing.Size(36, 23);
+            this.buttonBrwseicon.Size = new System.Drawing.Size(75, 23);
             this.buttonBrwseicon.TabIndex = 7;
             this.buttonBrwseicon.Text = "...";
             this.buttonBrwseicon.UseVisualStyleBackColor = true;
@@ -244,7 +275,7 @@
             this.textBox_Icon_path.Location = new System.Drawing.Point(108, 111);
             this.textBox_Icon_path.Name = "textBox_Icon_path";
             this.textBox_Icon_path.ReadOnly = true;
-            this.textBox_Icon_path.Size = new System.Drawing.Size(582, 20);
+            this.textBox_Icon_path.Size = new System.Drawing.Size(254, 20);
             this.textBox_Icon_path.TabIndex = 6;
             this.textBox_Icon_path.TextChanged += new System.EventHandler(this.textBox_Icon_path_TextChanged);
             // 
@@ -329,7 +360,7 @@
             // linkLabel_app_data_dir
             // 
             this.linkLabel_app_data_dir.AutoSize = true;
-            this.linkLabel_app_data_dir.Location = new System.Drawing.Point(452, 206);
+            this.linkLabel_app_data_dir.Location = new System.Drawing.Point(513, 281);
             this.linkLabel_app_data_dir.Name = "linkLabel_app_data_dir";
             this.linkLabel_app_data_dir.Size = new System.Drawing.Size(78, 13);
             this.linkLabel_app_data_dir.TabIndex = 3;
@@ -340,22 +371,13 @@
             // linkLabelOpenLogsFolder
             // 
             this.linkLabelOpenLogsFolder.AutoSize = true;
-            this.linkLabelOpenLogsFolder.Location = new System.Drawing.Point(554, 206);
+            this.linkLabelOpenLogsFolder.Location = new System.Drawing.Point(640, 281);
             this.linkLabelOpenLogsFolder.Name = "linkLabelOpenLogsFolder";
             this.linkLabelOpenLogsFolder.Size = new System.Drawing.Size(91, 13);
             this.linkLabelOpenLogsFolder.TabIndex = 3;
             this.linkLabelOpenLogsFolder.TabStop = true;
             this.linkLabelOpenLogsFolder.Text = "Open Logs Folder";
             this.linkLabelOpenLogsFolder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelOpenLogsFolder_LinkClicked);
-            // 
-            // label_minutes
-            // 
-            this.label_minutes.AutoSize = true;
-            this.label_minutes.Location = new System.Drawing.Point(208, 27);
-            this.label_minutes.Name = "label_minutes";
-            this.label_minutes.Size = new System.Drawing.Size(43, 13);
-            this.label_minutes.TabIndex = 2;
-            this.label_minutes.Text = "minutes";
             // 
             // pictureBox_Spy
             // 
@@ -475,6 +497,7 @@
             // 
             // tabPage_Capture
             // 
+            this.tabPage_Capture.Controls.Add(this.panel_capture_main);
             this.tabPage_Capture.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Capture.Name = "tabPage_Capture";
             this.tabPage_Capture.Padding = new System.Windows.Forms.Padding(3);
@@ -483,8 +506,206 @@
             this.tabPage_Capture.Text = "Capture";
             this.tabPage_Capture.UseVisualStyleBackColor = true;
             // 
+            // panel_capture_main
+            // 
+            this.panel_capture_main.Controls.Add(this.panel_capture_control);
+            this.panel_capture_main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_capture_main.Location = new System.Drawing.Point(3, 3);
+            this.panel_capture_main.Name = "panel_capture_main";
+            this.panel_capture_main.Size = new System.Drawing.Size(762, 423);
+            this.panel_capture_main.TabIndex = 0;
+            // 
+            // panel_capture_control
+            // 
+            this.panel_capture_control.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_capture_control.Controls.Add(this.button_NextImage);
+            this.panel_capture_control.Controls.Add(this.button_Prev_image);
+            this.panel_capture_control.Controls.Add(this.label_images_counter);
+            this.panel_capture_control.Controls.Add(this.pictureBox_Capture_Viewer);
+            this.panel_capture_control.Controls.Add(this.label9);
+            this.panel_capture_control.Controls.Add(this.comboBox_file);
+            this.panel_capture_control.Controls.Add(this.label8);
+            this.panel_capture_control.Controls.Add(this.comboBox_Capture_hour);
+            this.panel_capture_control.Controls.Add(this.label7);
+            this.panel_capture_control.Controls.Add(this.comboBox_capture_day);
+            this.panel_capture_control.Controls.Add(this.label1);
+            this.panel_capture_control.Controls.Add(this.comboBox_capture_device);
+            this.panel_capture_control.Controls.Add(this.label_minutes);
+            this.panel_capture_control.Controls.Add(this.numericUpDown_screenShotInterval);
+            this.panel_capture_control.Controls.Add(this.label_shots_every);
+            this.panel_capture_control.Location = new System.Drawing.Point(4, 55);
+            this.panel_capture_control.Name = "panel_capture_control";
+            this.panel_capture_control.Size = new System.Drawing.Size(755, 365);
+            this.panel_capture_control.TabIndex = 0;
+            // 
+            // button_NextImage
+            // 
+            this.button_NextImage.Location = new System.Drawing.Point(682, 4);
+            this.button_NextImage.Name = "button_NextImage";
+            this.button_NextImage.Size = new System.Drawing.Size(49, 23);
+            this.button_NextImage.TabIndex = 14;
+            this.button_NextImage.Text = ">";
+            this.button_NextImage.UseVisualStyleBackColor = true;
+            this.button_NextImage.Click += new System.EventHandler(this.button_NextImage_Click);
+            // 
+            // button_Prev_image
+            // 
+            this.button_Prev_image.Location = new System.Drawing.Point(592, 4);
+            this.button_Prev_image.Name = "button_Prev_image";
+            this.button_Prev_image.Size = new System.Drawing.Size(45, 23);
+            this.button_Prev_image.TabIndex = 13;
+            this.button_Prev_image.Text = "<";
+            this.button_Prev_image.UseVisualStyleBackColor = true;
+            this.button_Prev_image.Click += new System.EventHandler(this.button_Prev_image_Click);
+            // 
+            // label_images_counter
+            // 
+            this.label_images_counter.AutoSize = true;
+            this.label_images_counter.Location = new System.Drawing.Point(648, 11);
+            this.label_images_counter.Name = "label_images_counter";
+            this.label_images_counter.Size = new System.Drawing.Size(13, 13);
+            this.label_images_counter.TabIndex = 12;
+            this.label_images_counter.Text = "..";
+            // 
+            // pictureBox_Capture_Viewer
+            // 
+            this.pictureBox_Capture_Viewer.Location = new System.Drawing.Point(64, 95);
+            this.pictureBox_Capture_Viewer.Name = "pictureBox_Capture_Viewer";
+            this.pictureBox_Capture_Viewer.Size = new System.Drawing.Size(554, 250);
+            this.pictureBox_Capture_Viewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_Capture_Viewer.TabIndex = 11;
+            this.pictureBox_Capture_Viewer.TabStop = false;
+            this.pictureBox_Capture_Viewer.Click += new System.EventHandler(this.pictureBox_Capture_Viewer_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(507, 64);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(23, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "File";
+            // 
+            // comboBox_file
+            // 
+            this.comboBox_file.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_file.FormattingEnabled = true;
+            this.comboBox_file.Items.AddRange(new object[] {
+            "Screen",
+            "Camera"});
+            this.comboBox_file.Location = new System.Drawing.Point(546, 59);
+            this.comboBox_file.Name = "comboBox_file";
+            this.comboBox_file.Size = new System.Drawing.Size(185, 21);
+            this.comboBox_file.TabIndex = 9;
+            this.comboBox_file.SelectedIndexChanged += new System.EventHandler(this.comboBox_file_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(328, 64);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Hour";
+            // 
+            // comboBox_Capture_hour
+            // 
+            this.comboBox_Capture_hour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Capture_hour.FormattingEnabled = true;
+            this.comboBox_Capture_hour.Items.AddRange(new object[] {
+            "Screen",
+            "Camera"});
+            this.comboBox_Capture_hour.Location = new System.Drawing.Point(370, 59);
+            this.comboBox_Capture_hour.Name = "comboBox_Capture_hour";
+            this.comboBox_Capture_hour.Size = new System.Drawing.Size(74, 21);
+            this.comboBox_Capture_hour.TabIndex = 7;
+            this.comboBox_Capture_hour.SelectedIndexChanged += new System.EventHandler(this.comboBox_Capture_hour_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(182, 64);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Day";
+            // 
+            // comboBox_capture_day
+            // 
+            this.comboBox_capture_day.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_capture_day.FormattingEnabled = true;
+            this.comboBox_capture_day.Items.AddRange(new object[] {
+            "Screen",
+            "Camera"});
+            this.comboBox_capture_day.Location = new System.Drawing.Point(216, 59);
+            this.comboBox_capture_day.Name = "comboBox_capture_day";
+            this.comboBox_capture_day.Size = new System.Drawing.Size(63, 21);
+            this.comboBox_capture_day.TabIndex = 5;
+            this.comboBox_capture_day.SelectedIndexChanged += new System.EventHandler(this.comboBox_capture_day_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Device";
+            // 
+            // comboBox_capture_device
+            // 
+            this.comboBox_capture_device.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_capture_device.FormattingEnabled = true;
+            this.comboBox_capture_device.Items.AddRange(new object[] {
+            "Screen",
+            "Camera"});
+            this.comboBox_capture_device.Location = new System.Drawing.Point(67, 59);
+            this.comboBox_capture_device.Name = "comboBox_capture_device";
+            this.comboBox_capture_device.Size = new System.Drawing.Size(82, 21);
+            this.comboBox_capture_device.TabIndex = 3;
+            this.comboBox_capture_device.SelectedIndexChanged += new System.EventHandler(this.comboBox_capture_device_SelectedIndexChanged);
+            // 
+            // label_minutes
+            // 
+            this.label_minutes.AutoSize = true;
+            this.label_minutes.Location = new System.Drawing.Point(208, 27);
+            this.label_minutes.Name = "label_minutes";
+            this.label_minutes.Size = new System.Drawing.Size(43, 13);
+            this.label_minutes.TabIndex = 2;
+            this.label_minutes.Text = "minutes";
+            // 
+            // numericUpDown_screenShotInterval
+            // 
+            this.numericUpDown_screenShotInterval.Location = new System.Drawing.Point(144, 20);
+            this.numericUpDown_screenShotInterval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_screenShotInterval.Name = "numericUpDown_screenShotInterval";
+            this.numericUpDown_screenShotInterval.Size = new System.Drawing.Size(58, 20);
+            this.numericUpDown_screenShotInterval.TabIndex = 1;
+            this.numericUpDown_screenShotInterval.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_screenShotInterval.ValueChanged += new System.EventHandler(this.numericUpDown_screenShotInterval_ValueChanged);
+            // 
+            // label_shots_every
+            // 
+            this.label_shots_every.AutoSize = true;
+            this.label_shots_every.Location = new System.Drawing.Point(9, 27);
+            this.label_shots_every.Name = "label_shots_every";
+            this.label_shots_every.Size = new System.Drawing.Size(90, 13);
+            this.label_shots_every.TabIndex = 0;
+            this.label_shots_every.Text = "Take  Shot Every";
+            // 
             // tabPage_Logs
             // 
+            this.tabPage_Logs.Controls.Add(this.panel_logs_container);
             this.tabPage_Logs.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Logs.Name = "tabPage_Logs";
             this.tabPage_Logs.Padding = new System.Windows.Forms.Padding(3);
@@ -492,6 +713,80 @@
             this.tabPage_Logs.TabIndex = 2;
             this.tabPage_Logs.Text = "Logs";
             this.tabPage_Logs.UseVisualStyleBackColor = true;
+            // 
+            // panel_logs_container
+            // 
+            this.panel_logs_container.Controls.Add(this.label_keystrok_banner);
+            this.panel_logs_container.Controls.Add(this.label_keystrokes_path);
+            this.panel_logs_container.Controls.Add(this.panel_Logs_control);
+            this.panel_logs_container.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_logs_container.Location = new System.Drawing.Point(3, 3);
+            this.panel_logs_container.Name = "panel_logs_container";
+            this.panel_logs_container.Size = new System.Drawing.Size(762, 423);
+            this.panel_logs_container.TabIndex = 1;
+            // 
+            // label_keystrok_banner
+            // 
+            this.label_keystrok_banner.AutoSize = true;
+            this.label_keystrok_banner.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+            this.label_keystrok_banner.Location = new System.Drawing.Point(199, 0);
+            this.label_keystrok_banner.Name = "label_keystrok_banner";
+            this.label_keystrok_banner.Size = new System.Drawing.Size(196, 26);
+            this.label_keystrok_banner.TabIndex = 2;
+            this.label_keystrok_banner.Text = "Stored Key strokes";
+            // 
+            // label_keystrokes_path
+            // 
+            this.label_keystrokes_path.AutoSize = true;
+            this.label_keystrokes_path.Location = new System.Drawing.Point(5, 28);
+            this.label_keystrokes_path.Name = "label_keystrokes_path";
+            this.label_keystrokes_path.Size = new System.Drawing.Size(0, 13);
+            this.label_keystrokes_path.TabIndex = 1;
+            // 
+            // panel_Logs_control
+            // 
+            this.panel_Logs_control.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_Logs_control.Controls.Add(this.button_export);
+            this.panel_Logs_control.Controls.Add(this.button1_Clear_keystrokes_);
+            this.panel_Logs_control.Controls.Add(this.richTextBox_keystrokes_viewer);
+            this.panel_Logs_control.Location = new System.Drawing.Point(4, 55);
+            this.panel_Logs_control.Name = "panel_Logs_control";
+            this.panel_Logs_control.Size = new System.Drawing.Size(755, 365);
+            this.panel_Logs_control.TabIndex = 0;
+            // 
+            // button_export
+            // 
+            this.button_export.Location = new System.Drawing.Point(583, 17);
+            this.button_export.Name = "button_export";
+            this.button_export.Size = new System.Drawing.Size(75, 23);
+            this.button_export.TabIndex = 1;
+            this.button_export.Text = "Export";
+            this.button_export.UseVisualStyleBackColor = true;
+            this.button_export.Click += new System.EventHandler(this.button_export_Click);
+            // 
+            // button1_Clear_keystrokes_
+            // 
+            this.button1_Clear_keystrokes_.Location = new System.Drawing.Point(664, 17);
+            this.button1_Clear_keystrokes_.Name = "button1_Clear_keystrokes_";
+            this.button1_Clear_keystrokes_.Size = new System.Drawing.Size(75, 23);
+            this.button1_Clear_keystrokes_.TabIndex = 1;
+            this.button1_Clear_keystrokes_.Text = "Clear";
+            this.button1_Clear_keystrokes_.UseVisualStyleBackColor = true;
+            this.button1_Clear_keystrokes_.Click += new System.EventHandler(this.button1_Clear_keystrokes__Click);
+            // 
+            // richTextBox_keystrokes_viewer
+            // 
+            this.richTextBox_keystrokes_viewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox_keystrokes_viewer.Location = new System.Drawing.Point(0, 46);
+            this.richTextBox_keystrokes_viewer.Name = "richTextBox_keystrokes_viewer";
+            this.richTextBox_keystrokes_viewer.ReadOnly = true;
+            this.richTextBox_keystrokes_viewer.Size = new System.Drawing.Size(755, 319);
+            this.richTextBox_keystrokes_viewer.TabIndex = 0;
+            this.richTextBox_keystrokes_viewer.Text = "";
             // 
             // tabPage_content
             // 
@@ -610,6 +905,12 @@
             this.timer_porn_blocker.Interval = 1000;
             this.timer_porn_blocker.Tick += new System.EventHandler(this.timer_porn_blocker_Tick);
             // 
+            // timer_global
+            // 
+            this.timer_global.Enabled = true;
+            this.timer_global.Interval = 10000;
+            this.timer_global.Tick += new System.EventHandler(this.timer_global_Tick);
+            // 
             // FrmAdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,7 +928,6 @@
             this.Load += new System.EventHandler(this.FrmAdminPanel_Load);
             this.VisibleChanged += new System.EventHandler(this.FrmAdminPanel_VisibleChanged);
             this.Resize += new System.EventHandler(this.FrmAdminPanel_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_screenShotInterval)).EndInit();
             this.panelBody.ResumeLayout(false);
             this.panelBody.PerformLayout();
             this.groupBox_Functions.ResumeLayout(false);
@@ -639,6 +939,16 @@
             this.groupBoxMain.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage_General.ResumeLayout(false);
+            this.tabPage_Capture.ResumeLayout(false);
+            this.panel_capture_main.ResumeLayout(false);
+            this.panel_capture_control.ResumeLayout(false);
+            this.panel_capture_control.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Capture_Viewer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_screenShotInterval)).EndInit();
+            this.tabPage_Logs.ResumeLayout(false);
+            this.panel_logs_container.ResumeLayout(false);
+            this.panel_logs_container.PerformLayout();
+            this.panel_Logs_control.ResumeLayout(false);
             this.tabPage_content.ResumeLayout(false);
             this.panel_content_main.ResumeLayout(false);
             this.panel_content_Container.ResumeLayout(false);
@@ -650,13 +960,10 @@
         #endregion
 
         private System.Windows.Forms.Timer timerWatcher;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_screenShotInterval;
         private System.Windows.Forms.Panel panelBody;
         private System.Windows.Forms.Label label_app_Name;
         private System.Windows.Forms.Label label_Banner;
         private System.Windows.Forms.Panel panelContainer;
-        private System.Windows.Forms.Label label_minutes;
         private System.Windows.Forms.LinkLabel linkLabelOpenLogsFolder;
         private System.Windows.Forms.Label labelBannerHidden;
         private System.Windows.Forms.GroupBox groupBox_Functions;
@@ -697,6 +1004,34 @@
         private System.Windows.Forms.Button button_Remove_match;
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Label label_matches_count;
+        private System.Windows.Forms.Label label_minutes;
+        private System.Windows.Forms.NumericUpDown numericUpDown_screenShotInterval;
+        private System.Windows.Forms.Label label_shots_every;
+        private System.Windows.Forms.Panel panel_capture_main;
+        private System.Windows.Forms.Panel panel_capture_control;
+        private System.Windows.Forms.Panel panel_logs_container;
+        private System.Windows.Forms.Panel panel_Logs_control;
+        private System.Windows.Forms.RichTextBox richTextBox_keystrokes_viewer;
+        private System.Windows.Forms.Label label_keystrokes_path;
+        private System.Windows.Forms.Timer timer_global;
+        private System.Windows.Forms.Label label_keystrok_banner;
+        private System.Windows.Forms.Button button_export;
+        private System.Windows.Forms.Button button1_Clear_keystrokes_;
+        private System.Windows.Forms.ComboBox comboBox_capture_device;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBox_capture_day;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBox_Capture_hour;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox_file;
+        private System.Windows.Forms.PictureBox pictureBox_Capture_Viewer;
+        private System.Windows.Forms.Label label_images_counter;
+        private System.Windows.Forms.Button button_NextImage;
+        private System.Windows.Forms.Button button_Prev_image;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox_new_password;
+        private System.Windows.Forms.Button button_setPassword;
 
     }
 }
