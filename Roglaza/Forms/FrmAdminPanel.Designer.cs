@@ -61,6 +61,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.timerSession = new System.Windows.Forms.Timer(this.components);
             this.groupBoxMain = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_screenShotInterval)).BeginInit();
             this.panelBody.SuspendLayout();
             this.groupBox_Functions.SuspendLayout();
@@ -108,6 +109,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelBody.BackColor = System.Drawing.Color.Transparent;
+            this.panelBody.Controls.Add(this.button1);
             this.panelBody.Controls.Add(this.button_Browse_logs_path);
             this.panelBody.Controls.Add(this.textBox_logsPath);
             this.panelBody.Controls.Add(this.label5);
@@ -410,6 +412,16 @@
             this.groupBoxMain.TabIndex = 5;
             this.groupBoxMain.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(591, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // FrmAdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,6 +486,7 @@
         private System.Windows.Forms.Button button_Browse_logs_path;
         private System.Windows.Forms.TextBox textBox_logsPath;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
 
     }
 }

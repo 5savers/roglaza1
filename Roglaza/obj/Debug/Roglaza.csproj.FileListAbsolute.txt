@@ -27,3 +27,4 @@ E:\Roglaza\Roglaza\obj\Debug\Roglaza.csproj.GenerateResource.Cache
 E:\Roglaza\Roglaza\bin\Debug\System.Data.SQLite.dll
 E:\Roglaza\Roglaza\bin\Debug\System.Data.SQLite.xml
 E:\Roglaza\Roglaza\bin\Debug\System.Data.SQLite.Linq.dll
+E:\Roglaza\Roglaza\bin\Debug\Roglaza.exe.config

@@ -83,7 +83,8 @@ namespace Roglaza
             }
             else
             {
-              return   RoglazaHelper.DeleteFile(file);
+                 RoglazaHelper.DeleteFile(file);
+                 return RoglazaHelper.IsExistedFile(file)==false;
             }
         }
 

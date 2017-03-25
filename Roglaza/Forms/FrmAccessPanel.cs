@@ -30,7 +30,9 @@ namespace Roglaza
         private int LockerTiks = 0;
         private void button_password_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.No;
+           // this.DialogResult = System.Windows.Forms.DialogResult.No;
+            if (Btn_access.Visible == false)
+                return;
             if (textBox_password.Text == "")
             {
                 labelTryResult.Text = "Empty password";

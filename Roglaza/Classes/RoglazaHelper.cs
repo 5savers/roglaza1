@@ -185,7 +185,7 @@ namespace Roglaza
             try
             {
                 System.IO.File.Delete(file);
-                return false;
+                return true;
             }
             catch
             {

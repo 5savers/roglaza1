@@ -24,6 +24,7 @@ namespace Roglaza.Forms
             InitializeComponent();
             SetVisibility(allowAccess); 
             ghk = new KeyHandler(Keys.PrintScreen, this);
+           
             ghk.Register();
         }
         private void ShowAccesspanel()
@@ -372,6 +373,11 @@ namespace Roglaza.Forms
         }
 
         public int Capture_count = 1;
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
     //Refernce
     //http://stackoverflow.com/questions/18291448/how-do-i-detect-keypress-while-not-focused

