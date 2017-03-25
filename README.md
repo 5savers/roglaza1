@@ -13,6 +13,7 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - Capturing faces to determine who was setting on your computer.
 - Loggings key strokes
 - Storing browser history  to monitor internet activitiy.
+- Prevent kids from positive contents.
 
 <h3>Team</h3>
 
