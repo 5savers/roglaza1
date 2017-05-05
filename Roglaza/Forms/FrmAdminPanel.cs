@@ -85,6 +85,8 @@ namespace Roglaza.Forms
 
         private void FrmAdminPanel_Load(object sender, EventArgs e)
         {
+            LoadCamerainTabControl();
+            ////////////////
             comboBox_capture_device.SelectedIndex = 0;
 
             labelBannerHidden.Text = MessageStrings.ImHidden;
@@ -119,6 +121,22 @@ namespace Roglaza.Forms
             button_save.Visible = false;
 
             LoadStoredKeystrokes();
+        }
+
+        private void LoadCamerainTabControl()
+        {
+
+            try
+            {
+                FormCamera objForm = new FormCamera();
+                objForm.TopLevel = false;
+                panel_camera.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+
+            }
+            catch { }
         }
 
         private void LoadStoredKeystrokes()
@@ -532,6 +550,7 @@ namespace Roglaza.Forms
 
         private void OrganizeCaptureView()
         {
+            pictureBox_Capture_Viewer.Image = null;
             comboBox_capture_day.Items.Clear();
             comboBox_capture_day.DisplayMember = "Text";
             comboBox_capture_day.ValueMember = "Value";
@@ -669,6 +688,13 @@ namespace Roglaza.Forms
                 Program.ProgramSettings.SetNewPassword(textBox_new_password.Text);
                 MessageBox.Show("Success");
             }
+        }
+
+        private void linkLabel_TestCamera_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormCamera c = new FormCamera(true);
+            c.Icon = this.Icon;
+            c.ShowDialog();
         }
     }
     //Refernce

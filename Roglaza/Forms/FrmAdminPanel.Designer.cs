@@ -67,6 +67,7 @@
             this.tabPage_Capture = new System.Windows.Forms.TabPage();
             this.panel_capture_main = new System.Windows.Forms.Panel();
             this.panel_capture_control = new System.Windows.Forms.Panel();
+            this.linkLabel_TestCamera = new System.Windows.Forms.LinkLabel();
             this.button_NextImage = new System.Windows.Forms.Button();
             this.button_Prev_image = new System.Windows.Forms.Button();
             this.label_images_counter = new System.Windows.Forms.Label();
@@ -101,6 +102,8 @@
             this.button_add_new_match = new System.Windows.Forms.Button();
             this.listBox_matches = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.tabPage_Camera = new System.Windows.Forms.TabPage();
+            this.panel_camera = new System.Windows.Forms.Panel();
             this.timer_porn_blocker = new System.Windows.Forms.Timer(this.components);
             this.timer_global = new System.Windows.Forms.Timer(this.components);
             this.panelBody.SuspendLayout();
@@ -121,6 +124,7 @@
             this.tabPage_content.SuspendLayout();
             this.panel_content_main.SuspendLayout();
             this.panel_content_Container.SuspendLayout();
+            this.tabPage_Camera.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerWatcher
@@ -476,6 +480,7 @@
             this.tabControl1.Controls.Add(this.tabPage_Capture);
             this.tabControl1.Controls.Add(this.tabPage_Logs);
             this.tabControl1.Controls.Add(this.tabPage_content);
+            this.tabControl1.Controls.Add(this.tabPage_Camera);
             this.tabControl1.Location = new System.Drawing.Point(8, 19);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -520,6 +525,7 @@
             this.panel_capture_control.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_capture_control.Controls.Add(this.linkLabel_TestCamera);
             this.panel_capture_control.Controls.Add(this.button_NextImage);
             this.panel_capture_control.Controls.Add(this.button_Prev_image);
             this.panel_capture_control.Controls.Add(this.label_images_counter);
@@ -539,6 +545,17 @@
             this.panel_capture_control.Name = "panel_capture_control";
             this.panel_capture_control.Size = new System.Drawing.Size(755, 365);
             this.panel_capture_control.TabIndex = 0;
+            // 
+            // linkLabel_TestCamera
+            // 
+            this.linkLabel_TestCamera.AutoSize = true;
+            this.linkLabel_TestCamera.Location = new System.Drawing.Point(648, 105);
+            this.linkLabel_TestCamera.Name = "linkLabel_TestCamera";
+            this.linkLabel_TestCamera.Size = new System.Drawing.Size(67, 13);
+            this.linkLabel_TestCamera.TabIndex = 15;
+            this.linkLabel_TestCamera.TabStop = true;
+            this.linkLabel_TestCamera.Text = "Test Camera";
+            this.linkLabel_TestCamera.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_TestCamera_LinkClicked);
             // 
             // button_NextImage
             // 
@@ -900,6 +917,25 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Roglaza will close any application attempt to load content matches the following";
             // 
+            // tabPage_Camera
+            // 
+            this.tabPage_Camera.Controls.Add(this.panel_camera);
+            this.tabPage_Camera.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Camera.Name = "tabPage_Camera";
+            this.tabPage_Camera.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Camera.Size = new System.Drawing.Size(768, 429);
+            this.tabPage_Camera.TabIndex = 4;
+            this.tabPage_Camera.Text = "Camera";
+            this.tabPage_Camera.UseVisualStyleBackColor = true;
+            // 
+            // panel_camera
+            // 
+            this.panel_camera.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_camera.Location = new System.Drawing.Point(3, 3);
+            this.panel_camera.Name = "panel_camera";
+            this.panel_camera.Size = new System.Drawing.Size(762, 423);
+            this.panel_camera.TabIndex = 1;
+            // 
             // timer_porn_blocker
             // 
             this.timer_porn_blocker.Interval = 1000;
@@ -953,6 +989,7 @@
             this.panel_content_main.ResumeLayout(false);
             this.panel_content_Container.ResumeLayout(false);
             this.panel_content_Container.PerformLayout();
+            this.tabPage_Camera.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1032,6 +1069,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox_new_password;
         private System.Windows.Forms.Button button_setPassword;
+        private System.Windows.Forms.LinkLabel linkLabel_TestCamera;
+        private System.Windows.Forms.TabPage tabPage_Camera;
+        private System.Windows.Forms.Panel panel_camera;
 
     }
 }

