@@ -52,7 +52,31 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - [SQL](http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/)
 - [KeyStealer](https://codeload.github.com/htll/KeyStealer/zip/master)
 - [Camera Capture](http://www.aforgenet.com/)
-- [Content matches inspired by ](https://github.com/Kalpeshk9967016292/Antiporn)
+- [Content matches inspired by Kalpeshk](https://github.com/Kalpeshk9967016292/Antiporn)
 
 
+<h3> ScreenShots</h3>
+*Main interface is hidden when app is running , semi-visible in test mode*
+1- <img src='http://i.imgur.com/sgWdZtj.jpg' /> <br />
 
+
+2- Access Panel when you press the control button (PRTSC SYSRq) at that time
+<img src="http://i.imgur.com/FwgeNU3.jpg" /> <br />
+
+3- General Settings interface
+<img src='http://i.imgur.com/O7Soqeu.jpg' /> <br />
+
+
+4- Viewing captured images 
+<img src='http://i.imgur.com/yuwa2Nf.jpg' /> <br />
+
+
+5- Viewing Stored key strokes
+<img src='http://i.imgur.com/mW3djil.jpg' /> <br />
+
+6- Content Blocker 
+<img src='http://i.imgur.com/7TsAiYo.jpg' /> <br />
+
+
+7- Camera Test 
+<img src='http://i.imgur.com/Aa5n0SS.jpg' /> <br />
