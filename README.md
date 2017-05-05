@@ -56,7 +56,10 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 
 
 <h3> ScreenShots</h3>
+
 *Main interface is hidden when app is running , semi-visible in test mode*
+
+ 
 1- <img src='http://i.imgur.com/sgWdZtj.jpg' /> <br />
 
 
@@ -83,6 +86,6 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 
 
 
-7- Camera Test 
+7- Camera Test  
 <img src='http://i.imgur.com/Aa5n0SS.jpg' /> <br /> <br />
 

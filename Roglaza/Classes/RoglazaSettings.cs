@@ -53,7 +53,7 @@ namespace Roglaza
        {
            string x = "";
            matches_lists.Clear();
-           foreach (string s in MessageStrings.PornMatches)
+           foreach (string s in MessageStrings.ContentBlockerMatches)
            {
                x += s + "\r\n";
                matches_lists.Add(s);

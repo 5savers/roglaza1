@@ -68,4 +68,3 @@ E:\Roglaza\Roglaza\bin\Debug\AForge.Video.Kinect.xml
 E:\Roglaza\Roglaza\bin\Debug\AForge.Video.VFW.xml
 E:\Roglaza\Roglaza\bin\Debug\AForge.Video.Ximea.xml
 E:\Roglaza\Roglaza\bin\Debug\AForge.Vision.xml
-E:\Roglaza\Roglaza\obj\Debug\Roglaza.Forms.FormCamera.resources

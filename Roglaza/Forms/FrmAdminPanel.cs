@@ -14,11 +14,19 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
+     
+using System.Threading.Tasks; 
+using AForge.Video;
+using AForge.Video.DirectShow;
+using AForge.Video.VFW;
+using AForge.Video.FFMPEG; 
 
 namespace Roglaza.Forms
 {
     public partial class FrmAdminPanel : Form
     {
+
+        VideoCaptureDevice videosource; int Camera_ticks = 0;
 
         public FrmAdminPanel(bool allowAccess=false)
         {
@@ -85,7 +93,7 @@ namespace Roglaza.Forms
 
         private void FrmAdminPanel_Load(object sender, EventArgs e)
         {
-            LoadCamerainTabControl();
+            Camera_Load();
             ////////////////
             comboBox_capture_device.SelectedIndex = 0;
 
@@ -123,21 +131,7 @@ namespace Roglaza.Forms
             LoadStoredKeystrokes();
         }
 
-        private void LoadCamerainTabControl()
-        {
-
-            try
-            {
-                FormCamera objForm = new FormCamera();
-                objForm.TopLevel = false;
-                panel_camera.Controls.Add(objForm);
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                objForm.Show();
-
-            }
-            catch { }
-        }
+     
 
         private void LoadStoredKeystrokes()
         {
@@ -188,58 +182,115 @@ namespace Roglaza.Forms
 
         private void FrmAdminPanel_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            this.Activate();
-            this.Pressed_busy = false;
+            if (Program.WillExit == false)
+            {
+                e.Cancel = true;
+                this.Activate();
+                this.Pressed_busy = false;
+            }
+        }
+
+        private void Camera_Load()
+        {
+            FilterInfoCollection videosorces = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+
+            if (videosorces != null)
+            {
+                videosource = new VideoCaptureDevice(videosorces[0].MonikerString);
+
+                try
+                {
+                    if (videosource.VideoCapabilities.Length > 0)
+                    {
+                        string highestresolution = "0;0";
+
+                        for (int i = 0; i < videosource.VideoCapabilities.Length; i++)
+                        {
+                            if (videosource.VideoCapabilities[i].FrameSize.Width > Convert.ToInt32(highestresolution.Split(';')[0]))
+                            {
+                                highestresolution = videosource.VideoCapabilities[i].FrameSize.Width.ToString() + ";" + i.ToString();
+                            }
+                        }
+
+                        videosource.VideoResolution = videosource.VideoCapabilities[Convert.ToInt32(highestresolution.Split(';')[1])];
+                    }
+                }
+                catch { }
+
+                videosource.NewFrame += new AForge.Video.NewFrameEventHandler(videoSource_NewFrame);
+                videosource.Start();
+            }
 
         }
 
+        void videoSource_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
+        {
+            pictureBox_camera.BackgroundImage = (Bitmap)eventArgs.Frame.Clone();
 
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (videosource != null && videosource.IsRunning)
+            {
+                videosource.SignalToStop();
+                videosource = null;
+            }
+        }
         private void timerWatcher_Tick(object sender, EventArgs e)
         {
+
             Capture_count++;
-
-            var bmpScreenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width,
-                               Screen.PrimaryScreen.Bounds.Height,
-                               PixelFormat.Format32bppArgb);
-
-            // Create a graphics object from the bitmap.
-            var gfxScreenshot = Graphics.FromImage(bmpScreenshot);
-
-            // Take the screenshot from the upper left corner to the right bottom corner.
-            gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X,
-                                        Screen.PrimaryScreen.Bounds.Y,
-                                        0,
-                                        0,
-                                        Screen.PrimaryScreen.Bounds.Size,
-                                        CopyPixelOperation.SourceCopy);
-
-            // Save the screenshot to the specified path .
+            // Constructing__path.
             string _date = RoglazaHelper.RemoveInvalidPathChars(DateTime.Now.ToShortDateString());
             int current_hour = DateTime.Now.Hour;
-            string current_hour_str="12 PM";
-            if (current_hour ==0)
-                current_hour_str =  "12 AM";            
-            else if (current_hour <12)
+            string current_hour_str = "12 PM";
+            if (current_hour == 0)
+                current_hour_str = "12 AM";
+            else if (current_hour < 12)
                 current_hour_str = current_hour + " AM";
-            else   if (current_hour > 12)
+            else if (current_hour > 12)
                 current_hour_str = (current_hour - 12) + " PM";
 
 
-            string Album_Directory= Program.ProgramSettings.LogsPath + "\\Screens\\" + _date + "\\" + current_hour_str;
-            Album_Directory = RoglazaHelper.createDirectoryIfNotFound(Album_Directory);
-            string TimeStamp_ =  "\\" +RoglazaHelper.RemoveInvalidPathChars( DateTime.Now.ToShortTimeString().ToString());
-            string Path_ = Album_Directory + TimeStamp_ +"  "+this.Capture_count+ ".png";
-            bmpScreenshot.Save(Path_, ImageFormat.Png);
+            string Screens_Directory = Program.ProgramSettings.LogsPath + "\\Screens\\" + _date + "\\" + current_hour_str;
+            string Cams_Directory = Program.ProgramSettings.LogsPath + "\\Cams\\" + _date + "\\" + current_hour_str;
 
-          
-                  // { "key", "433a1bf4743dd8d7845629b95b5ca1b4" },
-            //string url = (RoglazaHelper.Upload(Path_, ""));
-            //if (url.StartsWith("http"))
-            //{
-            //    File.Move(Path_, Path_ + ".upd");
+            Screens_Directory = RoglazaHelper.createDirectoryIfNotFound(Screens_Directory);
+            Cams_Directory = RoglazaHelper.createDirectoryIfNotFound(Cams_Directory);
 
-            //}
+
+            string TimeStamp_ = "\\" + RoglazaHelper.RemoveInvalidPathChars(DateTime.Now.ToShortTimeString().ToString());
+
+            string Screen_Path_ = Screens_Directory + TimeStamp_ + "  " + this.Capture_count + ".png";
+            string Cams_Path_ = Cams_Directory + TimeStamp_ + "  " + this.Capture_count + ".png";
+
+
+            if (Program.ProgramSettings.AllowScreenShots)
+            {
+                var bmpScreenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width,
+                                   Screen.PrimaryScreen.Bounds.Height,
+                                   PixelFormat.Format32bppArgb);
+
+                // Create a graphics object from the bitmap.
+                var gfxScreenshot = Graphics.FromImage(bmpScreenshot);
+
+                // Take the screenshot from the upper left corner to the right bottom corner.
+                gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X,
+                                            Screen.PrimaryScreen.Bounds.Y,
+                                            0,
+                                            0,
+                                            Screen.PrimaryScreen.Bounds.Size,
+                                            CopyPixelOperation.SourceCopy);
+
+
+
+                bmpScreenshot.Save(Screen_Path_, ImageFormat.Png);
+            }
+
+            if(pictureBox_camera.BackgroundImage!=null && Program.ProgramSettings.AllowCamShots)
+                pictureBox_camera.BackgroundImage.Save(Cams_Path_, ImageFormat.Png);
+
+        
                   
         }
 
@@ -359,8 +410,8 @@ namespace Roglaza.Forms
                 f.StartPosition = FormStartPosition.CenterParent;
                 if (f.ShowDialog() != DialogResult.OK)
                     return;
-            
 
+                Program.WillExit = true;
 
             DialogResult d = MessageBox.Show(MessageStrings.DoYouWantToStopTheApplication, MessageStrings.Warning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (d == DialogResult.OK || d==DialogResult.Yes)
@@ -379,6 +430,7 @@ namespace Roglaza.Forms
             if (RoglazaInstaller.SetKillFile(false))
             {
                 buttonKill.Visible = true;
+                Program.WillExit = false;
                 MessageBox.Show(MessageStrings.ProgramWillContinueWorking, MessageStrings.Thanks);
             }
         }
@@ -429,7 +481,7 @@ namespace Roglaza.Forms
                 foreach (Process p in proxes)
                 {
                     string cp = p.MainWindowTitle.ToString().ToLower();
-                    foreach (string value in  MessageStrings.PornMatches)
+                    foreach (string value in  MessageStrings.ContentBlockerMatches)
                     {
 
                         if (cp.Contains(value.ToString()) &&cp.Contains("oglaza") &&myid!=p.Id&&cp.Contains("microsoft visual studio")==false&&cp.Contains(".rog")==false)
@@ -690,11 +742,23 @@ namespace Roglaza.Forms
             }
         }
 
-        private void linkLabel_TestCamera_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+       
+
+        private void panel_content_Container_Paint(object sender, PaintEventArgs e)
         {
-            FormCamera c = new FormCamera(true);
-            c.Icon = this.Icon;
-            c.ShowDialog();
+
+        }
+
+        private void linkLabel1_LoadDefaults_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string[] lst = MessageStrings.ContentBlockerMatches__static.Split(',');
+            foreach (string s in lst)
+            {
+                string v = s.Trim();
+                if (listBox_matches.Items.Contains(v))
+                    continue;
+                listBox_matches.Items.Add(v);
+            }
         }
     }
     //Refernce

@@ -18,6 +18,8 @@ namespace Roglaza
 
          public static void Main()
         {
+            string x = RoglazaHelper.ReadTextFile(@"C:\Users\Exception\AppData\Local\Roglaza\matches.rog");
+            x = x.Replace("\r\n", ",");
             try
             {
                 Roglaza.Program.LoadSettings();
@@ -80,6 +82,8 @@ namespace Roglaza
             return Application.StartupPath.ToString();
 
         }
+
+        public static bool WillExit =false; 
     }
 
 
