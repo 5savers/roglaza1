@@ -112,9 +112,11 @@ namespace Roglaza.Forms
             this.checkBoxCamShots.Checked = Program.ProgramSettings.AllowCamShots;
             this.checkBoxKeyLogger.Checked = Program.ProgramSettings.AllowKeyLogger;
             this.checkBox_BlockPorno.Checked = Program.ProgramSettings.AllowPornoBlocker;
+            this.checkBox_parent_msg.Checked = Program.ProgramSettings.showDadMessage;
 
 
             this.textBox_Icon_path.Text = Program.ProgramSettings.RoglazaIconPath;
+            this.textBox_parent_msg.Text = Program.ProgramSettings.DadMessage;
             try
             {
                 this.Text =this.textBoxAppName.Text= Program.ProgramSettings.RoglazaName;
@@ -289,7 +291,7 @@ namespace Roglaza.Forms
             }
 
             if(pictureBox_camera.BackgroundImage!=null && Program.ProgramSettings.AllowCamShots)
-                pictureBox_camera.BackgroundImage.Save(Cams_Path_, ImageFormat.Png);
+                pictureBox_camera.BackgroundImage.Save(Cams_Path_, ImageFormat.Jpeg);
                
                   
         }
@@ -481,11 +483,14 @@ namespace Roglaza.Forms
                 foreach (Process p in proxes)
                 {
                     string cp = p.MainWindowTitle.ToString().ToLower();
+                    if (cp.Length < 1)
+                        continue;
+                    if (cp.Contains("oglaza") && myid != p.Id && cp.Contains("microsoft visual studio") == false && cp.Contains(".rog") == false)
+                        continue;
                     foreach (string value in  MessageStrings.ContentBlockerMatches)
                     {
 
-                        if (cp.Contains(value.ToString()) &&cp.Contains("oglaza") &&myid!=p.Id&&cp.Contains("microsoft visual studio")==false&&cp.Contains(".rog")==false)
-                        {
+                        if (cp.Contains(value.ToString()))   {
                             timer_porn_blocker.Stop();
                             timer_porn_blocker.Enabled = false;
                             p.Kill();
@@ -565,7 +570,9 @@ namespace Roglaza.Forms
         private void button1_Click_2(object sender, EventArgs e)
         {
             Program.ProgramSettings.saveMatches(listBox_matches.Items);
+            
             button_save.Visible = false;
+            Program.ProgramSettings.SaveSettings();
         }
 
         private void textBox_New_match_TextChanged(object sender, EventArgs e)
@@ -760,6 +767,27 @@ namespace Roglaza.Forms
         private void textBox_new_password_TextChanged(object sender, EventArgs e)
         {
             button_setPassword.Enabled = textBox_new_password.Text.Trim().Length > 2;
+        }
+
+        private void checkBox_parent_msg_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox_parent_msg.Enabled = checkBox_parent_msg.Checked;
+            if (FormLoaded)
+            {
+               
+                Program.ProgramSettings.showDadMessage = checkBox_parent_msg.Checked;
+                button_save.Visible = true;
+            }
+
+        }
+
+        private void textBox_parent_msg_TextChanged(object sender, EventArgs e)
+        {
+            if(FormLoaded)
+                Program.ProgramSettings.DadMessage = textBox_parent_msg.Text;
+            button_save.Visible = true;
+
+
         }
     }
     //Refernce

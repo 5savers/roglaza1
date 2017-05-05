@@ -20,7 +20,7 @@ namespace Roglaza.Classes
         }
         public static string GetTurned_off_reactivate_message_caption = "Program is turned off ";
 
-        public static string UnistallationMessage ="Program will stop working Next restart";
+        public static string UnistallationMessage ="Program will stop working Next restart\n You can close it now ";
         public static string UnistallationMessage_Caption = "Dead Time";
 
 

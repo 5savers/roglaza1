@@ -93,6 +93,8 @@
             this.tabPage_content = new System.Windows.Forms.TabPage();
             this.panel_content_main = new System.Windows.Forms.Panel();
             this.panel_content_Container = new System.Windows.Forms.Panel();
+            this.textBox_parent_msg = new System.Windows.Forms.TextBox();
+            this.checkBox_parent_msg = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label_matches_count = new System.Windows.Forms.Label();
             this.button_save = new System.Windows.Forms.Button();
@@ -820,6 +822,8 @@
             // 
             // panel_content_Container
             // 
+            this.panel_content_Container.Controls.Add(this.textBox_parent_msg);
+            this.panel_content_Container.Controls.Add(this.checkBox_parent_msg);
             this.panel_content_Container.Controls.Add(this.linkLabel1);
             this.panel_content_Container.Controls.Add(this.label_matches_count);
             this.panel_content_Container.Controls.Add(this.button_save);
@@ -834,6 +838,26 @@
             this.panel_content_Container.Size = new System.Drawing.Size(756, 369);
             this.panel_content_Container.TabIndex = 0;
             this.panel_content_Container.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_content_Container_Paint);
+            // 
+            // textBox_parent_msg
+            // 
+            this.textBox_parent_msg.Enabled = false;
+            this.textBox_parent_msg.Location = new System.Drawing.Point(127, 313);
+            this.textBox_parent_msg.Name = "textBox_parent_msg";
+            this.textBox_parent_msg.Size = new System.Drawing.Size(469, 20);
+            this.textBox_parent_msg.TabIndex = 8;
+            this.textBox_parent_msg.TextChanged += new System.EventHandler(this.textBox_parent_msg_TextChanged);
+            // 
+            // checkBox_parent_msg
+            // 
+            this.checkBox_parent_msg.AutoSize = true;
+            this.checkBox_parent_msg.Location = new System.Drawing.Point(17, 313);
+            this.checkBox_parent_msg.Name = "checkBox_parent_msg";
+            this.checkBox_parent_msg.Size = new System.Drawing.Size(103, 17);
+            this.checkBox_parent_msg.TabIndex = 7;
+            this.checkBox_parent_msg.Text = "Parent Message";
+            this.checkBox_parent_msg.UseVisualStyleBackColor = true;
+            this.checkBox_parent_msg.CheckedChanged += new System.EventHandler(this.checkBox_parent_msg_CheckedChanged);
             // 
             // linkLabel1
             // 
@@ -910,7 +934,7 @@
             this.listBox_matches.FormattingEnabled = true;
             this.listBox_matches.Location = new System.Drawing.Point(17, 39);
             this.listBox_matches.Name = "listBox_matches";
-            this.listBox_matches.Size = new System.Drawing.Size(579, 303);
+            this.listBox_matches.Size = new System.Drawing.Size(579, 264);
             this.listBox_matches.TabIndex = 1;
             this.listBox_matches.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -1091,6 +1115,8 @@
         private System.Windows.Forms.Panel panel_camera;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.PictureBox pictureBox_camera;
+        private System.Windows.Forms.CheckBox checkBox_parent_msg;
+        private System.Windows.Forms.TextBox textBox_parent_msg;
 
     }
 }
