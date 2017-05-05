@@ -11,13 +11,15 @@ namespace Roglaza
 {
     class RoglazaHelper
     {
-        internal static string ReadTextFile(string path)
+        internal static string ReadTextFile(string path,string return_result="")
         {
             try
             {
                 return System.IO.File.ReadAllText(path);
             }
             catch {
+                if (return_result != "")
+                    return return_result;
                 return GeneralErros.Not_found.ToString();
             }
         }

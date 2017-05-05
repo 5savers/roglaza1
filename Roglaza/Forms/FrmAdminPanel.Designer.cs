@@ -78,7 +78,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox_capture_day = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox_capture_device = new System.Windows.Forms.ComboBox();
+            this.comboBox_capture_Type = new System.Windows.Forms.ComboBox();
             this.label_minutes = new System.Windows.Forms.Label();
             this.numericUpDown_screenShotInterval = new System.Windows.Forms.NumericUpDown();
             this.label_shots_every = new System.Windows.Forms.Label();
@@ -541,7 +541,7 @@
             this.panel_capture_control.Controls.Add(this.label7);
             this.panel_capture_control.Controls.Add(this.comboBox_capture_day);
             this.panel_capture_control.Controls.Add(this.label1);
-            this.panel_capture_control.Controls.Add(this.comboBox_capture_device);
+            this.panel_capture_control.Controls.Add(this.comboBox_capture_Type);
             this.panel_capture_control.Controls.Add(this.label_minutes);
             this.panel_capture_control.Controls.Add(this.numericUpDown_screenShotInterval);
             this.panel_capture_control.Controls.Add(this.label_shots_every);
@@ -664,18 +664,18 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Device";
             // 
-            // comboBox_capture_device
+            // comboBox_capture_Type
             // 
-            this.comboBox_capture_device.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_capture_device.FormattingEnabled = true;
-            this.comboBox_capture_device.Items.AddRange(new object[] {
+            this.comboBox_capture_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_capture_Type.FormattingEnabled = true;
+            this.comboBox_capture_Type.Items.AddRange(new object[] {
             "Screen",
             "Camera"});
-            this.comboBox_capture_device.Location = new System.Drawing.Point(67, 59);
-            this.comboBox_capture_device.Name = "comboBox_capture_device";
-            this.comboBox_capture_device.Size = new System.Drawing.Size(82, 21);
-            this.comboBox_capture_device.TabIndex = 3;
-            this.comboBox_capture_device.SelectedIndexChanged += new System.EventHandler(this.comboBox_capture_device_SelectedIndexChanged);
+            this.comboBox_capture_Type.Location = new System.Drawing.Point(67, 59);
+            this.comboBox_capture_Type.Name = "comboBox_capture_Type";
+            this.comboBox_capture_Type.Size = new System.Drawing.Size(82, 21);
+            this.comboBox_capture_Type.TabIndex = 3;
+            this.comboBox_capture_Type.SelectedIndexChanged += new System.EventHandler(this.comboBox_capture_device_SelectedIndexChanged);
             // 
             // label_minutes
             // 
@@ -1072,7 +1072,7 @@
         private System.Windows.Forms.Label label_keystrok_banner;
         private System.Windows.Forms.Button button_export;
         private System.Windows.Forms.Button button1_Clear_keystrokes_;
-        private System.Windows.Forms.ComboBox comboBox_capture_device;
+        private System.Windows.Forms.ComboBox comboBox_capture_Type;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBox_capture_day;

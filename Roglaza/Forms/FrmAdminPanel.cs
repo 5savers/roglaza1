@@ -93,9 +93,8 @@ namespace Roglaza.Forms
 
         private void FrmAdminPanel_Load(object sender, EventArgs e)
         {
-            Camera_Load();
-            ////////////////
-            comboBox_capture_device.SelectedIndex = 0;
+            Camera_Load(); 
+            comboBox_capture_Type.SelectedIndex = 0;
 
             labelBannerHidden.Text = MessageStrings.ImHidden;
             label_Banner.Text = AppInfo.AppBanner;
@@ -618,7 +617,7 @@ namespace Roglaza.Forms
             comboBox_file.DisplayMember = "Text";
             comboBox_file.ValueMember = "Value";
 
-            string logsPath = Program.ProgramSettings.LogsPath+"\\"+(comboBox_capture_device.SelectedIndex==0?"Screens":"Cams");
+            string logsPath = Program.ProgramSettings.LogsPath+"\\"+(comboBox_capture_Type.SelectedIndex==0?"Screens":"Cams");
             string[] dirs = RoglazaHelper.GetDirectories(logsPath);
             if (dirs == null)
                 return;

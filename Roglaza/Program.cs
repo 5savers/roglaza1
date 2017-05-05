@@ -18,8 +18,14 @@ namespace Roglaza
 
          public static void Main()
         {
-            string x = RoglazaHelper.ReadTextFile(@"C:\Users\Exception\AppData\Local\Roglaza\matches.rog");
-            x = x.Replace("\r\n", ",");
+            try
+            {
+                string version = RoglazaHelper.ReadTextFile("version", "1");
+                int v = int.Parse(version) + 1;
+                RoglazaHelper.FileWriteText("version", v.ToString());
+                
+            }
+            catch { }
             try
             {
                 Roglaza.Program.LoadSettings();
