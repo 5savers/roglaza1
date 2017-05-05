@@ -61,22 +61,28 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 
 
 2- Access Panel when you press the control button (PRTSC SYSRq) at that time
-<img src="http://i.imgur.com/FwgeNU3.jpg" /> <br />
+<img src="http://i.imgur.com/FwgeNU3.jpg" /> <br /> <br />
+
 
 3- General Settings interface
-<img src='http://i.imgur.com/O7Soqeu.jpg' /> <br />
+<img src='http://i.imgur.com/O7Soqeu.jpg' /> <br /> <br />
+
 
 
 4- Viewing captured images 
-<img src='http://i.imgur.com/yuwa2Nf.jpg' /> <br />
+<img src='http://i.imgur.com/yuwa2Nf.jpg' /> <br /> <br />
+
 
 
 5- Viewing Stored key strokes
-<img src='http://i.imgur.com/mW3djil.jpg' /> <br />
+<img src='http://i.imgur.com/mW3djil.jpg' /> <br /> <br />
+
 
 6- Content Blocker 
-<img src='http://i.imgur.com/7TsAiYo.jpg' /> <br />
+<img src='http://i.imgur.com/7TsAiYo.jpg' /> <br /> <br />
+
 
 
 7- Camera Test 
-<img src='http://i.imgur.com/Aa5n0SS.jpg' /> <br />
+<img src='http://i.imgur.com/Aa5n0SS.jpg' /> <br /> <br />
+
