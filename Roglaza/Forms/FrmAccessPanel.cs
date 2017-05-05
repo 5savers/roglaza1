@@ -1,4 +1,5 @@
-﻿using Roglaza.Forms;
+﻿using Roglaza.Classes;
+using Roglaza.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,10 +22,16 @@ namespace Roglaza
             Program.icon = this.Icon;
             this.RoglazaSettingsInstance = Program.ProgramSettings;
         }
-             
+
         private void FrmGate_Load(object sender, EventArgs e)
         {
             textBox_password.PasswordChar = '*';
+
+            if (AppInfo.TestMode)
+            {
+                textBox_password.Text = "watermelon";
+               // button_password_Click(null, null);
+            }
         }
         private int Tries = 0;
         private int LockerTiks = 0;

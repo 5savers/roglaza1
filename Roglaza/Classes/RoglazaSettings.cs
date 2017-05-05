@@ -32,7 +32,7 @@ namespace Roglaza
        public bool Loaded = false;
        public bool AllowKeyLogger = true;
        public bool AllowScreenShots = true;
-       public bool AllowCamShots = true;
+       public bool AllowCamShots = false;
        public bool AllowBrowserHistory = true;
        public bool ShouldBewrittenToFile = true;
        public RoglazaSettings()
@@ -110,7 +110,11 @@ namespace Roglaza
                        case "AllowScreenShots": AllowScreenShots = RoglazaHelper.ReverseToBoolean(value); break;
                        case "allowpornoblocker":
                        case "AllowPornoBlocker": AllowPornoBlocker = RoglazaHelper.ReverseToBoolean(value); break;
-                      
+
+
+                       case "allowappmanager":
+                       case "AllowAppManager": AllowAppManager = RoglazaHelper.ReverseToBoolean(value); break;
+
                        case "showdadmessage":
                        case "ShowDadMessage":
                        case "showDadMessage": showDadMessage = RoglazaHelper.ReverseToBoolean(value); break;
@@ -135,6 +139,8 @@ namespace Roglaza
                        case "roglazaiconpath": RoglazaIconPath = Decode(value); break;
                        case "generalsettingsfilepath":
                        case "GeneralSettingsFilePath": GeneralSettingsFilePath = System.IO.Path.GetFullPath(Decode(value)); break;
+                       case "managedapps":
+                       case "ManagedApps": DeserializeApps(Decode(value)); break;
                        case "password":
                        case "key":
                        case "access":
@@ -181,6 +187,29 @@ namespace Roglaza
            }
 
        }
+       internal List<ManagedApp> Managed__apps_list = new List<ManagedApp>();
+       public string Serialize_app_list()
+       {
+
+           string result = "";
+           foreach (var a in Managed__apps_list)
+               result += a.ToString().Replace("From:","").Replace("To:","") + "$sep$";
+           if (result.Length > 5)
+               result = result.Substring(0, result.Length - 5);
+           return result;
+
+       }
+       public void DeserializeApps(string s)
+       {
+           Managed__apps_list.Clear();
+           string[] appListarr = s.Split(new string[]{"$sep$"},StringSplitOptions.RemoveEmptyEntries);
+           foreach (string sa in appListarr)
+           {
+               ManagedApp m = new ManagedApp(sa);
+               this.Managed__apps_list.Add(m);
+           }
+
+       }
        public bool SaveSettings()
        {
            if (ShouldBewrittenToFile == false)
@@ -195,6 +224,7 @@ namespace Roglaza
            data += "ScreenShotInterValMinutes:" + ScreenShotInterValMinutes.ToString()+"\n\r";
            data += "AllowBrowserHistory:" + AllowBrowserHistory + "\r\n";
            data += "AllowCamShots:" + AllowCamShots + "\r\n";
+           data += "AllowAppManager:" + AllowAppManager + "\r\n";
            data += "AllowKeyLogger:" + AllowKeyLogger + "\r\n";
            data += "AllowPornoBlocker:" + showDadMessage + "\r\n";
            data += "AllowPornoBlocker:" + AllowPornoBlocker + "\r\n";
@@ -205,6 +235,7 @@ namespace Roglaza
            data += "KeyLoggerStorePath:" + Encode(KeyLoggerStorePath) + "\r\n";
            data += "DadMessage:" + Encode(DadMessage) + "\r\n";
            data += "showDadMessage:" + showDadMessage + "\r\n";
+           data += "ManagedApps:" + Encode(Serialize_app_list());
 
 
 
@@ -256,5 +287,20 @@ namespace Roglaza
            
        }
 
+
+       public bool AllowAppManager = true;
+
+       internal void add_new_managed_app(ManagedApp m)
+       {
+           if (m.path.Length < 3)
+               return;
+
+           for (int i = 0; i < Managed__apps_list.Count; i++)
+           {
+               if (Managed__apps_list[i].path == m.path)
+                   Managed__apps_list.RemoveAt(i);
+           }
+           Managed__apps_list.Add(m);
+       }
     }
 }

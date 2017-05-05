@@ -47,6 +47,7 @@
             this.textBox_Icon_path = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox_Functions = new System.Windows.Forms.GroupBox();
+            this.checkBox_apManager = new System.Windows.Forms.CheckBox();
             this.checkBox_BlockPorno = new System.Windows.Forms.CheckBox();
             this.checkBoxScreenShots = new System.Windows.Forms.CheckBox();
             this.checkBoxCamShots = new System.Windows.Forms.CheckBox();
@@ -107,7 +108,29 @@
             this.tabPage_Camera = new System.Windows.Forms.TabPage();
             this.panel_camera = new System.Windows.Forms.Panel();
             this.pictureBox_camera = new System.Windows.Forms.PictureBox();
-            this.timer_porn_blocker = new System.Windows.Forms.Timer(this.components);
+            this.tabPageAppManger = new System.Windows.Forms.TabPage();
+            this.panel_app_manager = new System.Windows.Forms.Panel();
+            this.linkLabel_eddited_selected_app = new System.Windows.Forms.LinkLabel();
+            this.panel_blocking_time = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.Rb_custom_time = new System.Windows.Forms.RadioButton();
+            this.panel_time_selector = new System.Windows.Forms.Panel();
+            this.numericUpDown_blocker_stop = new System.Windows.Forms.NumericUpDown();
+            this.comboBox_Clock_decider_stop = new System.Windows.Forms.ComboBox();
+            this.numericUpDown_blocker_start = new System.Windows.Forms.NumericUpDown();
+            this.comboBox_Clock_decider_start = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.RB_always = new System.Windows.Forms.RadioButton();
+            this.label_selected_path_managed_app_statue = new System.Windows.Forms.Label();
+            this.button_clear_managed_apps = new System.Windows.Forms.Button();
+            this.button_remove_managed_app = new System.Windows.Forms.Button();
+            this.button_add_mannaged_app = new System.Windows.Forms.Button();
+            this.button_loadManagedApp = new System.Windows.Forms.Button();
+            this.textBox_selecctedapp_path = new System.Windows.Forms.TextBox();
+            this.label_ap_path = new System.Windows.Forms.Label();
+            this.listBox_apps = new System.Windows.Forms.ListBox();
+            this.timer__blocker = new System.Windows.Forms.Timer(this.components);
             this.timer_global = new System.Windows.Forms.Timer(this.components);
             this.panelBody.SuspendLayout();
             this.groupBox_Functions.SuspendLayout();
@@ -130,6 +153,12 @@
             this.tabPage_Camera.SuspendLayout();
             this.panel_camera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_camera)).BeginInit();
+            this.tabPageAppManger.SuspendLayout();
+            this.panel_app_manager.SuspendLayout();
+            this.panel_blocking_time.SuspendLayout();
+            this.panel_time_selector.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_blocker_stop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_blocker_start)).BeginInit();
             this.SuspendLayout();
             // 
             // timerWatcher
@@ -301,6 +330,7 @@
             // 
             // groupBox_Functions
             // 
+            this.groupBox_Functions.Controls.Add(this.checkBox_apManager);
             this.groupBox_Functions.Controls.Add(this.checkBox_BlockPorno);
             this.groupBox_Functions.Controls.Add(this.checkBoxScreenShots);
             this.groupBox_Functions.Controls.Add(this.checkBoxCamShots);
@@ -313,10 +343,21 @@
             this.groupBox_Functions.TabStop = false;
             this.groupBox_Functions.Text = "Functions";
             // 
+            // checkBox_apManager
+            // 
+            this.checkBox_apManager.AutoSize = true;
+            this.checkBox_apManager.Location = new System.Drawing.Point(552, 19);
+            this.checkBox_apManager.Name = "checkBox_apManager";
+            this.checkBox_apManager.Size = new System.Drawing.Size(90, 17);
+            this.checkBox_apManager.TabIndex = 2;
+            this.checkBox_apManager.Text = "App Manager";
+            this.checkBox_apManager.UseVisualStyleBackColor = true;
+            this.checkBox_apManager.CheckedChanged += new System.EventHandler(this.checkBox_apManager_CheckedChanged);
+            // 
             // checkBox_BlockPorno
             // 
             this.checkBox_BlockPorno.AutoSize = true;
-            this.checkBox_BlockPorno.Location = new System.Drawing.Point(558, 20);
+            this.checkBox_BlockPorno.Location = new System.Drawing.Point(432, 19);
             this.checkBox_BlockPorno.Name = "checkBox_BlockPorno";
             this.checkBox_BlockPorno.Size = new System.Drawing.Size(102, 17);
             this.checkBox_BlockPorno.TabIndex = 1;
@@ -327,7 +368,7 @@
             // checkBoxScreenShots
             // 
             this.checkBoxScreenShots.AutoSize = true;
-            this.checkBoxScreenShots.Location = new System.Drawing.Point(306, 19);
+            this.checkBoxScreenShots.Location = new System.Drawing.Point(230, 19);
             this.checkBoxScreenShots.Name = "checkBoxScreenShots";
             this.checkBoxScreenShots.Size = new System.Drawing.Size(87, 17);
             this.checkBoxScreenShots.TabIndex = 0;
@@ -338,7 +379,7 @@
             // checkBoxCamShots
             // 
             this.checkBoxCamShots.AutoSize = true;
-            this.checkBoxCamShots.Location = new System.Drawing.Point(460, 19);
+            this.checkBoxCamShots.Location = new System.Drawing.Point(333, 20);
             this.checkBoxCamShots.Name = "checkBoxCamShots";
             this.checkBoxCamShots.Size = new System.Drawing.Size(77, 17);
             this.checkBoxCamShots.TabIndex = 0;
@@ -349,7 +390,7 @@
             // checkBoxBrowserHistory
             // 
             this.checkBoxBrowserHistory.AutoSize = true;
-            this.checkBoxBrowserHistory.Location = new System.Drawing.Point(156, 19);
+            this.checkBoxBrowserHistory.Location = new System.Drawing.Point(110, 19);
             this.checkBoxBrowserHistory.Name = "checkBoxBrowserHistory";
             this.checkBoxBrowserHistory.Size = new System.Drawing.Size(99, 17);
             this.checkBoxBrowserHistory.TabIndex = 0;
@@ -488,6 +529,7 @@
             this.tabControl1.Controls.Add(this.tabPage_Logs);
             this.tabControl1.Controls.Add(this.tabPage_content);
             this.tabControl1.Controls.Add(this.tabPage_Camera);
+            this.tabControl1.Controls.Add(this.tabPageAppManger);
             this.tabControl1.Location = new System.Drawing.Point(8, 19);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -976,10 +1018,262 @@
             this.pictureBox_camera.TabIndex = 0;
             this.pictureBox_camera.TabStop = false;
             // 
-            // timer_porn_blocker
+            // tabPageAppManger
             // 
-            this.timer_porn_blocker.Interval = 1000;
-            this.timer_porn_blocker.Tick += new System.EventHandler(this.timer_porn_blocker_Tick);
+            this.tabPageAppManger.Controls.Add(this.panel_app_manager);
+            this.tabPageAppManger.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAppManger.Name = "tabPageAppManger";
+            this.tabPageAppManger.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAppManger.Size = new System.Drawing.Size(768, 429);
+            this.tabPageAppManger.TabIndex = 5;
+            this.tabPageAppManger.Text = "Apps Manger";
+            this.tabPageAppManger.UseVisualStyleBackColor = true;
+            // 
+            // panel_app_manager
+            // 
+            this.panel_app_manager.Controls.Add(this.linkLabel_eddited_selected_app);
+            this.panel_app_manager.Controls.Add(this.panel_blocking_time);
+            this.panel_app_manager.Controls.Add(this.label_selected_path_managed_app_statue);
+            this.panel_app_manager.Controls.Add(this.button_clear_managed_apps);
+            this.panel_app_manager.Controls.Add(this.button_remove_managed_app);
+            this.panel_app_manager.Controls.Add(this.button_add_mannaged_app);
+            this.panel_app_manager.Controls.Add(this.button_loadManagedApp);
+            this.panel_app_manager.Controls.Add(this.textBox_selecctedapp_path);
+            this.panel_app_manager.Controls.Add(this.label_ap_path);
+            this.panel_app_manager.Controls.Add(this.listBox_apps);
+            this.panel_app_manager.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_app_manager.Location = new System.Drawing.Point(3, 3);
+            this.panel_app_manager.Name = "panel_app_manager";
+            this.panel_app_manager.Size = new System.Drawing.Size(762, 423);
+            this.panel_app_manager.TabIndex = 1;
+            // 
+            // linkLabel_eddited_selected_app
+            // 
+            this.linkLabel_eddited_selected_app.AutoSize = true;
+            this.linkLabel_eddited_selected_app.Location = new System.Drawing.Point(710, 103);
+            this.linkLabel_eddited_selected_app.Name = "linkLabel_eddited_selected_app";
+            this.linkLabel_eddited_selected_app.Size = new System.Drawing.Size(25, 13);
+            this.linkLabel_eddited_selected_app.TabIndex = 17;
+            this.linkLabel_eddited_selected_app.TabStop = true;
+            this.linkLabel_eddited_selected_app.Text = "Edit";
+            this.linkLabel_eddited_selected_app.Visible = false;
+            this.linkLabel_eddited_selected_app.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_eddited_selected_app_LinkClicked);
+            // 
+            // panel_blocking_time
+            // 
+            this.panel_blocking_time.Controls.Add(this.label11);
+            this.panel_blocking_time.Controls.Add(this.Rb_custom_time);
+            this.panel_blocking_time.Controls.Add(this.panel_time_selector);
+            this.panel_blocking_time.Controls.Add(this.RB_always);
+            this.panel_blocking_time.Enabled = false;
+            this.panel_blocking_time.Location = new System.Drawing.Point(21, 160);
+            this.panel_blocking_time.Name = "panel_blocking_time";
+            this.panel_blocking_time.Size = new System.Drawing.Size(694, 85);
+            this.panel_blocking_time.TabIndex = 16;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 31);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(74, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Tag = "Path";
+            this.label11.Text = "Blocking Time";
+            // 
+            // Rb_custom_time
+            // 
+            this.Rb_custom_time.AutoSize = true;
+            this.Rb_custom_time.Checked = true;
+            this.Rb_custom_time.Location = new System.Drawing.Point(183, 31);
+            this.Rb_custom_time.Name = "Rb_custom_time";
+            this.Rb_custom_time.Size = new System.Drawing.Size(60, 17);
+            this.Rb_custom_time.TabIndex = 15;
+            this.Rb_custom_time.TabStop = true;
+            this.Rb_custom_time.Text = "Custom";
+            this.Rb_custom_time.UseVisualStyleBackColor = true;
+            this.Rb_custom_time.CheckedChanged += new System.EventHandler(this.checkBox_custom_time_CheckedChanged);
+            // 
+            // panel_time_selector
+            // 
+            this.panel_time_selector.Controls.Add(this.numericUpDown_blocker_stop);
+            this.panel_time_selector.Controls.Add(this.comboBox_Clock_decider_stop);
+            this.panel_time_selector.Controls.Add(this.numericUpDown_blocker_start);
+            this.panel_time_selector.Controls.Add(this.comboBox_Clock_decider_start);
+            this.panel_time_selector.Controls.Add(this.label12);
+            this.panel_time_selector.Controls.Add(this.label13);
+            this.panel_time_selector.Location = new System.Drawing.Point(284, 23);
+            this.panel_time_selector.Name = "panel_time_selector";
+            this.panel_time_selector.Size = new System.Drawing.Size(404, 47);
+            this.panel_time_selector.TabIndex = 14;
+            // 
+            // numericUpDown_blocker_stop
+            // 
+            this.numericUpDown_blocker_stop.Location = new System.Drawing.Point(272, 15);
+            this.numericUpDown_blocker_stop.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.numericUpDown_blocker_stop.Name = "numericUpDown_blocker_stop";
+            this.numericUpDown_blocker_stop.Size = new System.Drawing.Size(70, 20);
+            this.numericUpDown_blocker_stop.TabIndex = 7;
+            this.numericUpDown_blocker_stop.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // comboBox_Clock_decider_stop
+            // 
+            this.comboBox_Clock_decider_stop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Clock_decider_stop.FormattingEnabled = true;
+            this.comboBox_Clock_decider_stop.Items.AddRange(new object[] {
+            "AM",
+            "PM"});
+            this.comboBox_Clock_decider_stop.Location = new System.Drawing.Point(348, 14);
+            this.comboBox_Clock_decider_stop.Name = "comboBox_Clock_decider_stop";
+            this.comboBox_Clock_decider_stop.Size = new System.Drawing.Size(42, 21);
+            this.comboBox_Clock_decider_stop.TabIndex = 13;
+            this.comboBox_Clock_decider_stop.SelectedIndexChanged += new System.EventHandler(this.comboBox_Clock_decider_stop_SelectedIndexChanged);
+            // 
+            // numericUpDown_blocker_start
+            // 
+            this.numericUpDown_blocker_start.Location = new System.Drawing.Point(80, 15);
+            this.numericUpDown_blocker_start.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.numericUpDown_blocker_start.Name = "numericUpDown_blocker_start";
+            this.numericUpDown_blocker_start.Size = new System.Drawing.Size(70, 20);
+            this.numericUpDown_blocker_start.TabIndex = 4;
+            // 
+            // comboBox_Clock_decider_start
+            // 
+            this.comboBox_Clock_decider_start.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Clock_decider_start.FormattingEnabled = true;
+            this.comboBox_Clock_decider_start.Items.AddRange(new object[] {
+            "AM",
+            "PM"});
+            this.comboBox_Clock_decider_start.Location = new System.Drawing.Point(157, 17);
+            this.comboBox_Clock_decider_start.Name = "comboBox_Clock_decider_start";
+            this.comboBox_Clock_decider_start.Size = new System.Drawing.Size(42, 21);
+            this.comboBox_Clock_decider_start.TabIndex = 12;
+            this.comboBox_Clock_decider_start.SelectedIndexChanged += new System.EventHandler(this.comboBox_Clock_decider_start_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 17);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(30, 13);
+            this.label12.TabIndex = 6;
+            this.label12.Tag = "Path";
+            this.label12.Text = "From";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(241, 17);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(20, 13);
+            this.label13.TabIndex = 6;
+            this.label13.Tag = "Path";
+            this.label13.Text = "To";
+            // 
+            // RB_always
+            // 
+            this.RB_always.AutoSize = true;
+            this.RB_always.Location = new System.Drawing.Point(95, 31);
+            this.RB_always.Name = "RB_always";
+            this.RB_always.Size = new System.Drawing.Size(58, 17);
+            this.RB_always.TabIndex = 15;
+            this.RB_always.Text = "Always";
+            this.RB_always.UseVisualStyleBackColor = true;
+            // 
+            // label_selected_path_managed_app_statue
+            // 
+            this.label_selected_path_managed_app_statue.AutoSize = true;
+            this.label_selected_path_managed_app_statue.ForeColor = System.Drawing.Color.Red;
+            this.label_selected_path_managed_app_statue.Location = new System.Drawing.Point(427, 161);
+            this.label_selected_path_managed_app_statue.Name = "label_selected_path_managed_app_statue";
+            this.label_selected_path_managed_app_statue.Size = new System.Drawing.Size(54, 13);
+            this.label_selected_path_managed_app_statue.TabIndex = 11;
+            this.label_selected_path_managed_app_statue.Text = "Not found";
+            this.label_selected_path_managed_app_statue.Visible = false;
+            // 
+            // button_clear_managed_apps
+            // 
+            this.button_clear_managed_apps.Location = new System.Drawing.Point(466, 262);
+            this.button_clear_managed_apps.Name = "button_clear_managed_apps";
+            this.button_clear_managed_apps.Size = new System.Drawing.Size(75, 23);
+            this.button_clear_managed_apps.TabIndex = 10;
+            this.button_clear_managed_apps.Text = "Clear";
+            this.button_clear_managed_apps.UseVisualStyleBackColor = true;
+            this.button_clear_managed_apps.Click += new System.EventHandler(this.button_clear_managed_apps_Click);
+            // 
+            // button_remove_managed_app
+            // 
+            this.button_remove_managed_app.Location = new System.Drawing.Point(65, 262);
+            this.button_remove_managed_app.Name = "button_remove_managed_app";
+            this.button_remove_managed_app.Size = new System.Drawing.Size(75, 23);
+            this.button_remove_managed_app.TabIndex = 9;
+            this.button_remove_managed_app.Text = "Remove";
+            this.button_remove_managed_app.UseVisualStyleBackColor = true;
+            this.button_remove_managed_app.Click += new System.EventHandler(this.button_button_remove_managed_app);
+            // 
+            // button_add_mannaged_app
+            // 
+            this.button_add_mannaged_app.Location = new System.Drawing.Point(263, 262);
+            this.button_add_mannaged_app.Name = "button_add_mannaged_app";
+            this.button_add_mannaged_app.Size = new System.Drawing.Size(75, 23);
+            this.button_add_mannaged_app.TabIndex = 8;
+            this.button_add_mannaged_app.Text = "Add";
+            this.button_add_mannaged_app.UseVisualStyleBackColor = true;
+            this.button_add_mannaged_app.Click += new System.EventHandler(this.button_add_mannaged_app_Click);
+            // 
+            // button_loadManagedApp
+            // 
+            this.button_loadManagedApp.Location = new System.Drawing.Point(628, 134);
+            this.button_loadManagedApp.Name = "button_loadManagedApp";
+            this.button_loadManagedApp.Size = new System.Drawing.Size(75, 23);
+            this.button_loadManagedApp.TabIndex = 3;
+            this.button_loadManagedApp.Text = "....";
+            this.button_loadManagedApp.UseVisualStyleBackColor = true;
+            this.button_loadManagedApp.Click += new System.EventHandler(this.button_loadManagedApp_Click);
+            // 
+            // textBox_selecctedapp_path
+            // 
+            this.textBox_selecctedapp_path.Location = new System.Drawing.Point(65, 134);
+            this.textBox_selecctedapp_path.Name = "textBox_selecctedapp_path";
+            this.textBox_selecctedapp_path.Size = new System.Drawing.Size(545, 20);
+            this.textBox_selecctedapp_path.TabIndex = 2;
+            this.textBox_selecctedapp_path.TextChanged += new System.EventHandler(this.textBox_selecctedapp_path_TextChanged);
+            // 
+            // label_ap_path
+            // 
+            this.label_ap_path.AutoSize = true;
+            this.label_ap_path.Location = new System.Drawing.Point(18, 134);
+            this.label_ap_path.Name = "label_ap_path";
+            this.label_ap_path.Size = new System.Drawing.Size(29, 13);
+            this.label_ap_path.TabIndex = 1;
+            this.label_ap_path.Tag = "Path";
+            this.label_ap_path.Text = "Path";
+            // 
+            // listBox_apps
+            // 
+            this.listBox_apps.FormattingEnabled = true;
+            this.listBox_apps.Location = new System.Drawing.Point(21, 22);
+            this.listBox_apps.Name = "listBox_apps";
+            this.listBox_apps.Size = new System.Drawing.Size(682, 95);
+            this.listBox_apps.TabIndex = 0;
+            this.listBox_apps.SelectedIndexChanged += new System.EventHandler(this.listBox_apps_SelectedIndexChanged);
+            // 
+            // timer__blocker
+            // 
+            this.timer__blocker.Interval = 5000;
+            this.timer__blocker.Tick += new System.EventHandler(this.timer__blocker_Tick);
             // 
             // timer_global
             // 
@@ -1032,6 +1326,15 @@
             this.tabPage_Camera.ResumeLayout(false);
             this.panel_camera.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_camera)).EndInit();
+            this.tabPageAppManger.ResumeLayout(false);
+            this.panel_app_manager.ResumeLayout(false);
+            this.panel_app_manager.PerformLayout();
+            this.panel_blocking_time.ResumeLayout(false);
+            this.panel_blocking_time.PerformLayout();
+            this.panel_time_selector.ResumeLayout(false);
+            this.panel_time_selector.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_blocker_stop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_blocker_start)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1066,7 +1369,7 @@
         private System.Windows.Forms.Button button_Browse_logs_path;
         private System.Windows.Forms.TextBox textBox_logsPath;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Timer timer_porn_blocker;
+        private System.Windows.Forms.Timer timer__blocker;
         private System.Windows.Forms.CheckBox checkBox_BlockPorno;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage_General;
@@ -1117,6 +1420,29 @@
         private System.Windows.Forms.PictureBox pictureBox_camera;
         private System.Windows.Forms.CheckBox checkBox_parent_msg;
         private System.Windows.Forms.TextBox textBox_parent_msg;
+        private System.Windows.Forms.TabPage tabPageAppManger;
+        private System.Windows.Forms.Panel panel_app_manager;
+        private System.Windows.Forms.CheckBox checkBox_apManager;
+        private System.Windows.Forms.NumericUpDown numericUpDown_blocker_start;
+        private System.Windows.Forms.Button button_loadManagedApp;
+        private System.Windows.Forms.TextBox textBox_selecctedapp_path;
+        private System.Windows.Forms.Label label_ap_path;
+        private System.Windows.Forms.ListBox listBox_apps;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown numericUpDown_blocker_stop;
+        private System.Windows.Forms.Button button_add_mannaged_app;
+        private System.Windows.Forms.Button button_remove_managed_app;
+        private System.Windows.Forms.Button button_clear_managed_apps;
+        private System.Windows.Forms.Label label_selected_path_managed_app_statue;
+        private System.Windows.Forms.ComboBox comboBox_Clock_decider_start;
+        private System.Windows.Forms.ComboBox comboBox_Clock_decider_stop;
+        private System.Windows.Forms.Panel panel_time_selector;
+        private System.Windows.Forms.RadioButton RB_always;
+        private System.Windows.Forms.RadioButton Rb_custom_time;
+        private System.Windows.Forms.Panel panel_blocking_time;
+        private System.Windows.Forms.LinkLabel linkLabel_eddited_selected_app;
 
     }
 }

@@ -18,6 +18,8 @@ namespace Roglaza
 
          public static void Main()
         {
+            int hour_now = DateTime.Now.Hour;
+
             try
             {
                 string version = RoglazaHelper.ReadTextFile("version", "1");

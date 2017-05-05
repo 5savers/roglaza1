@@ -126,6 +126,7 @@
     <Compile Include="Classes\DBManager.cs" />
     <Compile Include="Classes\HistoryHandler.cs" />
     <Compile Include="Classes\Keylogger.cs" />
+    <Compile Include="Classes\ManagedApp.cs" />
     <Compile Include="Classes\MessageStrings.cs" />
     <Compile Include="Forms\FrmAdminPanel.cs">
       <SubType>Form</SubType>

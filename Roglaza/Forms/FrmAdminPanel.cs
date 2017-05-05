@@ -93,8 +93,10 @@ namespace Roglaza.Forms
 
         private void FrmAdminPanel_Load(object sender, EventArgs e)
         {
-            Camera_Load(); 
+            Camera_Load();
+            Load_managed_Apps();
             comboBox_capture_Type.SelectedIndex = 0;
+
 
             labelBannerHidden.Text = MessageStrings.ImHidden;
             label_Banner.Text = AppInfo.AppBanner;
@@ -113,10 +115,14 @@ namespace Roglaza.Forms
             this.checkBoxKeyLogger.Checked = Program.ProgramSettings.AllowKeyLogger;
             this.checkBox_BlockPorno.Checked = Program.ProgramSettings.AllowPornoBlocker;
             this.checkBox_parent_msg.Checked = Program.ProgramSettings.showDadMessage;
-
+            this.checkBox_apManager.Checked = Program.ProgramSettings.AllowAppManager;
 
             this.textBox_Icon_path.Text = Program.ProgramSettings.RoglazaIconPath;
             this.textBox_parent_msg.Text = Program.ProgramSettings.DadMessage;
+
+            comboBox_Clock_decider_start.SelectedIndex = 0;
+            comboBox_Clock_decider_stop.SelectedIndex = 0;
+
             try
             {
                 this.Text =this.textBoxAppName.Text= Program.ProgramSettings.RoglazaName;
@@ -356,7 +362,7 @@ namespace Roglaza.Forms
         private void checkBoxCamShots_CheckedChanged(object sender, EventArgs e)
         {
             if (FormLoaded)
-                Program.ProgramSettings.AllowCamShots = checkBoxCamShots.Checked;
+                Program.ProgramSettings.AllowCamShots =panel_camera.Enabled= checkBoxCamShots.Checked;
             Program.ProgramSettings.SaveSettings();
 
         }
@@ -472,7 +478,7 @@ namespace Roglaza.Forms
 
         }
 
-        private void timer_porn_blocker_Tick(object sender, EventArgs e)
+        private void timer__blocker_Tick(object sender, EventArgs e)
         {
             // Credits to 
             //https://github.com/Kalpeshk9967016292/Antiporn
@@ -480,31 +486,76 @@ namespace Roglaza.Forms
             {
                 var proxes = Process.GetProcesses();
                 int myid = Process.GetCurrentProcess().Id;
+                 
                 foreach (Process p in proxes)
                 {
-                    string cp = p.MainWindowTitle.ToString().ToLower();
-                    if (cp.Length < 1)
-                        continue;
-                    if (cp.Contains("oglaza") && myid != p.Id && cp.Contains("microsoft visual studio") == false && cp.Contains(".rog") == false)
-                        continue;
-                    foreach (string value in  MessageStrings.ContentBlockerMatches)
-                    {
+                   string  process_location="";
+                    string process_title = "";
 
-                        if (cp.Contains(value.ToString()))   {
-                            timer_porn_blocker.Stop();
-                            timer_porn_blocker.Enabled = false;
+                    if (p.Id == 5216)
+                         MessageBox.Show("a");
+                    try
+                    {
+                         process_location = p.MainModule.FileName;
+                         process_title = p.MainWindowTitle.ToString().ToLower();
+                    }
+                    catch { continue; }
+
+                    if ((process_title.Length < 1 && Program.ProgramSettings.AllowAppManager==false) || process_location.Length<1)
+                        continue;
+                    if (process_title.Contains("oglaza") && myid != p.Id && process_title.Contains("microsoft visual studio") == false && process_title.Contains(".rog") == false)
+                        continue;
+                    
+                    bool blockable=false;
+                    bool  Terminable=Program.ProgramSettings.AllowAppManager&& Is_app_match_block_list(process_location);
+                    string mark="";
+
+                    if(Terminable==false)
+                        foreach (string value in  listBox_matches.Items)//MessageStrings.ContentBlockerMatches)
+                        { 
+                            blockable=process_title.Contains(value.ToString()); 
+                            mark=value;
+                        }
+                    else
+                        mark=process_location;
+
+                        if (blockable || Terminable)
+                        {
+                            timer__blocker.Stop();
+                            timer__blocker.Enabled = false;
                             p.Kill();
                             if (Program.ProgramSettings.showDadMessage)
-                                MessageBox.Show("Sorry I am afraid i can't let you do that " + value.ToString() + " ;","Your dad is watching you");
+                                MessageBox.Show("Sorry" + Environment.NewLine + " I am afraid i can't let you do that following things like "+Environment.NewLine +"{" +  mark.ToString() + "} " + Environment.NewLine + "Is restricted by your parent", "Your dad is watching you");
                            // Log();
-                            timer_porn_blocker.Enabled = true;
-                            timer_porn_blocker.Start();
+                            timer__blocker.Enabled = true;
+                            timer__blocker.Start();
 
                         }
-                    }
+                    } 
                 }
-            }
+             
+
+
             catch { }
+            
+        }
+
+
+        private bool Is_app_match_block_list(string process_location)
+        {
+            bool s = false;
+            int hour_now=DateTime.Now.Hour;
+             foreach(ManagedApp m in Program.ProgramSettings.Managed__apps_list)
+             {
+                 if (process_location.ToLower().Contains("otepad"))
+                     s = true;
+                 
+                 if(m.path!=process_location)
+                     continue;
+                if(hour_now<= m.stop && hour_now>=m.start)
+                    return true;
+             }
+            return false;
         }
 
         private void checkBox_BlockPorno_CheckedChanged(object sender, EventArgs e)
@@ -514,7 +565,7 @@ namespace Roglaza.Forms
             Program.ProgramSettings.SaveSettings();
 
             if (Program.ProgramSettings.AllowPornoBlocker)
-                timer_porn_blocker.Start();
+                timer__blocker.Start();
 
         }
 
@@ -788,6 +839,154 @@ namespace Roglaza.Forms
             button_save.Visible = true;
 
 
+        }
+
+        private void checkBox_apManager_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FormLoaded)
+                Program.ProgramSettings.AllowAppManager = panel_app_manager.Enabled = checkBox_apManager.Checked;
+            Program.ProgramSettings.SaveSettings();
+
+            if (Program.ProgramSettings.AllowAppManager)
+                timer__blocker.Start();
+        }
+
+        private void button_loadManagedApp_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog o = new OpenFileDialog();
+            if (o.ShowDialog() == DialogResult.OK)
+                textBox_selecctedapp_path.Text = o.FileName;
+        }
+
+        private void button_add_mannaged_app_Click(object sender, EventArgs e)
+        {
+            if (RoglazaHelper.IsExistedFile(textBox_selecctedapp_path.Text))
+            {
+                int start = (int)numericUpDown_blocker_start.Value;
+                int stop = (int)numericUpDown_blocker_stop.Value;
+
+                if (Rb_custom_time.Checked)
+                {
+                    if (comboBox_Clock_decider_start.SelectedIndex > 0)
+                        start += 12;
+
+
+                    if (comboBox_Clock_decider_stop.SelectedIndex > 0)
+                        stop += 12;
+
+                    start = Roglaza.RoglazaHelper.Limit_int(start, 0, 23);
+                    stop = Roglaza.RoglazaHelper.Limit_int(stop, 0, 23);
+                }
+                else
+                {
+                    start = 0;
+                    stop = 23;
+                }
+
+                ManagedApp m = new ManagedApp(start, stop, textBox_selecctedapp_path.Text);
+                Program.ProgramSettings.add_new_managed_app(m);
+                Program.ProgramSettings.SaveSettings();
+                Load_managed_Apps();
+                textBox_selecctedapp_path.Text = "";
+            }
+        }
+        private void button_button_remove_managed_app(object sender, EventArgs e)
+        {
+            if (listBox_apps.SelectedIndex >= 0 && listBox_apps.SelectedIndex < Program.ProgramSettings.Managed__apps_list.Count)
+                Program.ProgramSettings.Managed__apps_list.RemoveAt(listBox_apps.SelectedIndex);
+            Load_managed_Apps();
+        }
+
+        private void Load_managed_Apps()
+        {
+            listBox_apps.Items.Clear();
+            foreach (var it in Program.ProgramSettings.Managed__apps_list)
+                listBox_apps.Items.Add(it.ToString());
+            listBox_apps.SelectedIndex = -1;
+            linkLabel_eddited_selected_app.Visible = false;
+        }
+
+        private void button_clear_managed_apps_Click(object sender, EventArgs e)
+        {
+            Program.ProgramSettings.Managed__apps_list.Clear();
+            Load_managed_Apps();
+        }
+
+        private void textBox_selecctedapp_path_TextChanged(object sender, EventArgs e)
+        {
+            bool st = RoglazaHelper.IsExistedFile(textBox_selecctedapp_path.Text); ;
+            panel_blocking_time.Enabled = st;
+            label_selected_path_managed_app_statue.Visible = textBox_selecctedapp_path.TextLength > 1 && !st;
+        }
+
+        private void checkBox_custom_time_CheckedChanged(object sender, EventArgs e)
+        {
+            panel_time_selector.Enabled = Rb_custom_time.Checked;
+        }
+
+        private void listBox_apps_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            linkLabel_eddited_selected_app.Visible = listBox_apps.SelectedIndex >= 0;
+        }
+
+        private void Load_Selected_managed_app()
+        {
+            int selected_index=listBox_apps.SelectedIndex;
+            if ( selected_index< listBox_apps.Items.Count && selected_index>= 0)
+            {
+                textBox_selecctedapp_path.Text=Program.ProgramSettings.Managed__apps_list[selected_index].path;
+                int start = Program.ProgramSettings.Managed__apps_list[selected_index].start;
+                int stop = Program.ProgramSettings.Managed__apps_list[selected_index].stop;
+
+                if (start == 0 && stop == 23)
+                {
+                    RB_always.Checked = true;
+                    numericUpDown_blocker_start.Value = 0;
+                    comboBox_Clock_decider_start.SelectedIndex = 0;
+
+                    numericUpDown_blocker_stop.Value = 11;
+                    comboBox_Clock_decider_stop.SelectedIndex = 1;
+
+                }
+                else
+                {
+                    Rb_custom_time.Checked = true;
+                    if (start < 0)
+                        start = 0;
+                    if (stop < 1)
+                        stop = 1;
+
+                    if (start > 12)
+                    {
+                        start = start - 12;
+                        comboBox_Clock_decider_start.SelectedIndex = 1;
+                    }
+
+                    if (stop > 12)
+                    {
+                        stop = stop - 12;
+                        comboBox_Clock_decider_stop.SelectedIndex = 1;
+                    }
+                    numericUpDown_blocker_start.Value = start;
+                    numericUpDown_blocker_stop.Value = stop;
+                }
+            }
+        }
+
+        private void comboBox_Clock_decider_stop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            numericUpDown_blocker_stop.Minimum = comboBox_Clock_decider_stop.SelectedIndex > 0 ? 1 : 0;
+        }
+
+        private void comboBox_Clock_decider_start_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            numericUpDown_blocker_start.Minimum = comboBox_Clock_decider_start.SelectedIndex > 0 ? 1 : 0;
+
+        }
+
+        private void linkLabel_eddited_selected_app_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Load_Selected_managed_app();
         }
     }
     //Refernce

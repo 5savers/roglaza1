@@ -234,5 +234,29 @@ namespace Roglaza
             }
             catch { return null; }
         }
+
+        internal static int  str_to_int(string p1, int p2)
+        {
+            p1 = p1.Trim();
+            if (RoglazaHelper.isInt(p1))
+                return int.Parse(p1);
+            else return p2;
+        }
+
+        private static bool isInt(string p1)
+        {
+            int i = 0;
+            return int.TryParse(p1, out i);
+        }
+
+        internal static int Limit_int(int num, int min, int max)
+        {
+          if (num < min)
+                num=min;
+
+            if (num > max)
+                num = max;
+            return num;
+        }
     }
 }

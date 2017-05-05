@@ -14,6 +14,7 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - Loggings key strokes
 - Storing browser history  to monitor internet activitiy.
 - Prevent kids from positive contents.
+- Disallow running certain applications
 
 <h3>Team</h3>
 
@@ -38,6 +39,7 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - Keystrokes Logger			(✓)
 - undetectable.				(✓)
 - Content Blocker 			(✓)
+- Applications Monitor		(✓)
 
 
 
