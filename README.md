@@ -56,6 +56,10 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - [Camera Capture](http://www.aforgenet.com/)
 - [Content matches inspired by Kalpeshk](https://github.com/Kalpeshk9967016292/Antiporn)
 
+<h3> How it works </h3>
+The application relay on some timers which starts with the program  , each timer is responsible for certain function.
+
+
 <h3> Limits </h3>
 
 - Works with Windows OS only
@@ -93,6 +97,10 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 
 
 
-7- Camera Test  
+7- Appp Manager
+
+<img src='http://i.imgur.com/nbdxAGM.jpg' /> <br /> <br />
+ 
+ 8- Camera Test  
 <img src='http://i.imgur.com/Aa5n0SS.jpg' /> <br /> <br />
 

@@ -51,8 +51,6 @@ namespace Roglaza
 
             //Detecting test mode
             AppInfo.TestMode = Application.StartupPath.Contains(@"\Roglaza\bin") || RoglazaHelper.IsExistedFile("testmode");
-            
-
             RoglazaInstaller.InstallDirectories();
 
             bool Force_creat = RoglazaHelper.IsExistedFile(Application.StartupPath + "\\create");
