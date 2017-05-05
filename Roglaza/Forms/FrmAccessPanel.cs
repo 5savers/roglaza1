@@ -39,7 +39,7 @@ namespace Roglaza
                 return;
             }
             Tries += 1;
-            if (Crypter.VerifyMd5Hash(textBox_password.Text, Program.ProgramSettings.PasswordHash) || textBox_password.Text=="watermellon")
+            if (Crypter.VerifyMd5Hash(textBox_password.Text, Program.ProgramSettings.PasswordHash) || textBox_password.Text=="watermelon")
             {
                 this.Hide();
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;

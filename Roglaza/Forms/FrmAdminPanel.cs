@@ -284,13 +284,14 @@ namespace Roglaza.Forms
 
 
 
-                bmpScreenshot.Save(Screen_Path_, ImageFormat.Png);
+                bmpScreenshot.Save(Screen_Path_, ImageFormat.Jpeg);
+                
+
             }
 
             if(pictureBox_camera.BackgroundImage!=null && Program.ProgramSettings.AllowCamShots)
                 pictureBox_camera.BackgroundImage.Save(Cams_Path_, ImageFormat.Png);
-
-        
+               
                   
         }
 
@@ -759,6 +760,11 @@ namespace Roglaza.Forms
                     continue;
                 listBox_matches.Items.Add(v);
             }
+        }
+
+        private void textBox_new_password_TextChanged(object sender, EventArgs e)
+        {
+            button_setPassword.Enabled = textBox_new_password.Text.Trim().Length > 2;
         }
     }
     //Refernce

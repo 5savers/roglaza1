@@ -168,6 +168,7 @@
             // 
             // button_setPassword
             // 
+            this.button_setPassword.Enabled = false;
             this.button_setPassword.Location = new System.Drawing.Point(375, 197);
             this.button_setPassword.Name = "button_setPassword";
             this.button_setPassword.Size = new System.Drawing.Size(75, 23);
@@ -182,6 +183,7 @@
             this.textBox_new_password.Name = "textBox_new_password";
             this.textBox_new_password.Size = new System.Drawing.Size(254, 20);
             this.textBox_new_password.TabIndex = 17;
+            this.textBox_new_password.TextChanged += new System.EventHandler(this.textBox_new_password_TextChanged);
             // 
             // label10
             // 
