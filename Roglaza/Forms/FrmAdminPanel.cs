@@ -546,7 +546,7 @@ namespace Roglaza.Forms
 
         private void addnew_match(string nm)
         {
-            if (nm != "")
+            if (nm != "" && listBox_matches.Items.Contains(nm)==false)
                 listBox_matches.Items.Add(nm);
             label_matches_count.Text = listBox_matches.Items.Count.ToString() + " items";
             button_save.Visible = true;
@@ -754,12 +754,8 @@ namespace Roglaza.Forms
         {
             string[] lst = MessageStrings.ContentBlockerMatches__static.Split(',');
             foreach (string s in lst)
-            {
-                string v = s.Trim();
-                if (listBox_matches.Items.Contains(v))
-                    continue;
-                listBox_matches.Items.Add(v);
-            }
+                addnew_match(s.Trim());
+           
         }
 
         private void textBox_new_password_TextChanged(object sender, EventArgs e)

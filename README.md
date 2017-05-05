@@ -54,6 +54,11 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - [Camera Capture](http://www.aforgenet.com/)
 - [Content matches inspired by Kalpeshk](https://github.com/Kalpeshk9967016292/Antiporn)
 
+<h3> Limits </h3>
+
+- Works with Windows OS only
+- Keylogger detecet Engish only (will be fixed on future version)
+
 
 <h3> ScreenShots</h3>
 

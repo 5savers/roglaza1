@@ -67,7 +67,6 @@
             this.tabPage_Capture = new System.Windows.Forms.TabPage();
             this.panel_capture_main = new System.Windows.Forms.Panel();
             this.panel_capture_control = new System.Windows.Forms.Panel();
-            this.linkLabel_TestCamera = new System.Windows.Forms.LinkLabel();
             this.button_NextImage = new System.Windows.Forms.Button();
             this.button_Prev_image = new System.Windows.Forms.Button();
             this.label_images_counter = new System.Windows.Forms.Label();
@@ -531,7 +530,6 @@
             this.panel_capture_control.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel_capture_control.Controls.Add(this.linkLabel_TestCamera);
             this.panel_capture_control.Controls.Add(this.button_NextImage);
             this.panel_capture_control.Controls.Add(this.button_Prev_image);
             this.panel_capture_control.Controls.Add(this.label_images_counter);
@@ -551,16 +549,6 @@
             this.panel_capture_control.Name = "panel_capture_control";
             this.panel_capture_control.Size = new System.Drawing.Size(755, 365);
             this.panel_capture_control.TabIndex = 0;
-            // 
-            // linkLabel_TestCamera
-            // 
-            this.linkLabel_TestCamera.AutoSize = true;
-            this.linkLabel_TestCamera.Location = new System.Drawing.Point(648, 105);
-            this.linkLabel_TestCamera.Name = "linkLabel_TestCamera";
-            this.linkLabel_TestCamera.Size = new System.Drawing.Size(67, 13);
-            this.linkLabel_TestCamera.TabIndex = 15;
-            this.linkLabel_TestCamera.TabStop = true;
-            this.linkLabel_TestCamera.Text = "Test Camera";
             // 
             // button_NextImage
             // 
@@ -1099,7 +1087,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox_new_password;
         private System.Windows.Forms.Button button_setPassword;
-        private System.Windows.Forms.LinkLabel linkLabel_TestCamera;
         private System.Windows.Forms.TabPage tabPage_Camera;
         private System.Windows.Forms.Panel panel_camera;
         private System.Windows.Forms.LinkLabel linkLabel1;

