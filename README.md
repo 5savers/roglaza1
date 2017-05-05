@@ -33,7 +33,7 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 <h3>Features</h3>
 
 - Screen Capturing 			(✓)
-- Camera Capturing  		(w)
+- Camera Capturing  		(✓)
 - Browser History logger	(w)
 - Keystrokes Logger			(✓)
 - undetectable.				(✓)
@@ -48,11 +48,11 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 
 <h3>Credits</h3>
 
-- [Content matches inspired ](https://github.com/Kalpeshk9967016292/Antiporn)
 - [Encryption](https://msdn.microsoft.com/en-us/library/system.security.cryptography.md5(v=vs.110).aspx)
 - [SQL](http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/)
 - [KeyStealer](https://codeload.github.com/htll/KeyStealer/zip/master)
-
+- [Camera Capture](http://www.aforgenet.com/)
+- [Content matches inspired by ](https://github.com/Kalpeshk9967016292/Antiporn)
 
 
 
