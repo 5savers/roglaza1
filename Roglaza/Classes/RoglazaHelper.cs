@@ -258,5 +258,27 @@ namespace Roglaza
                 num = max;
             return num;
         }
+
+        internal static bool FileWriteBytes(string p1, byte[] p2)
+        {
+            bool res = false;
+            try
+            {
+                System.IO.File.WriteAllBytes(p1, p2);
+            }
+            catch { res = false; }
+            return res;
+        }
+
+        internal static bool MoveFile(string outputFileName, string dest)
+        {
+            try
+            {
+                System.IO.File.Move(outputFileName, dest);
+                return true;
+            }
+            catch { }
+            return false;
+        }
     }
 }

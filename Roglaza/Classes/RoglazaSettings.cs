@@ -22,6 +22,7 @@ namespace Roglaza
        public string RoglazaIconPath = "";
        public string RoglazaName = "Roglaza";
        public string KeyLoggerStorePath = "kslogs.mp3";
+       public string history_files = "history_files.rog";
        public bool showDadMessage = false;
        public bool AllowPornoBlocker = true;
        public string DadMessage = "";
@@ -111,7 +112,7 @@ namespace Roglaza
                        case "allowpornoblocker":
                        case "AllowPornoBlocker": AllowPornoBlocker = RoglazaHelper.ReverseToBoolean(value); break;
 
-
+               
                        case "allowappmanager":
                        case "AllowAppManager": AllowAppManager = RoglazaHelper.ReverseToBoolean(value); break;
 
@@ -123,6 +124,11 @@ namespace Roglaza
 
 
                            //strings
+                       case "history_files":
+                       case "Files_urls_path":
+                       case "Files_Urls_Path":
+                       case "files_urls_path": history_files = System.IO.Path.GetFullPath(Decode(value)); break;
+
                        case "ContentMatchesPath":
                        case "contentmatchespath": ContentMatchesPath = System.IO.Path.GetFullPath(Decode(value)); LoadContentMatches(); break;
                        case "LogsPath":
@@ -236,7 +242,7 @@ namespace Roglaza
            data += "DadMessage:" + Encode(DadMessage) + "\r\n";
            data += "showDadMessage:" + showDadMessage + "\r\n";
            data += "ManagedApps:" + Encode(Serialize_app_list());
-
+           data += "history_files" + Encode(history_files) + "\r\n"; 
 
 
            
@@ -302,5 +308,22 @@ namespace Roglaza
            }
            Managed__apps_list.Add(m);
        }
+
+       internal string GetUrlsPath()
+       {
+           return this.LogsPath+"\\"+history_files ;
+       }
+
+       internal string GetAbsolutePath(RoglazaSettingsMember typ)
+       {
+           switch (typ)
+           {
+               case RoglazaSettingsMember.files_history_file: return LogsPath+"\\"+ history_files;  
+           }
+
+           return "";
+       }
+
     }
+   enum RoglazaSettingsMember {keystrokes_file,files_history_file }
 }

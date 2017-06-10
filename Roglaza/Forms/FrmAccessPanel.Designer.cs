@@ -58,6 +58,7 @@
             this.textBox_password.Name = "textBox_password";
             this.textBox_password.Size = new System.Drawing.Size(206, 28);
             this.textBox_password.TabIndex = 1;
+            this.textBox_password.TextChanged += new System.EventHandler(this.textBox_password_TextChanged);
             this.textBox_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_password_KeyDown);
             // 
             // Btn_access
@@ -73,6 +74,7 @@
             // 
             // timerLocker
             // 
+            this.timerLocker.Enabled = true;
             this.timerLocker.Interval = 1000;
             this.timerLocker.Tick += new System.EventHandler(this.timerLocker_Tick);
             // 

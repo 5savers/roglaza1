@@ -16,6 +16,7 @@ namespace Roglaza
     {
         private RoglazaSettings RoglazaSettingsInstance;
 
+        int session_ticks = 0;
         public FrmGate()
         {
             InitializeComponent();
@@ -71,11 +72,17 @@ namespace Roglaza
         private void timerLocker_Tick(object sender, EventArgs e)
         {
             LockerTiks++;
+            session_ticks++;
+            if (session_ticks == 20)
+                this.Close();
             if (LockerTiks == Program.ProgramSettings.WaitInPasswordFailed)
             {
                 AllowAccess();
             }
             else labelwaitLocker.Text = "Try again in " + (this.RoglazaSettingsInstance.WaitInPasswordFailed - LockerTiks).ToString() + " seconds";
+
+            if (session_ticks == 20)
+                this.Close();
         }
 
         private void AllowAccess()
@@ -106,6 +113,11 @@ namespace Roglaza
             else
                 textBox_password.PasswordChar = '\0';
 
+        }
+
+        private void textBox_password_TextChanged(object sender, EventArgs e)
+        {
+            session_ticks = session_ticks+1;
         }
 
     }

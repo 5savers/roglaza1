@@ -40,6 +40,7 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - undetectable.				(✓)
 - Content Blocker 			(✓)
 - Applications Monitor		(✓)
+- File paths History        (✓)
 
 
 
@@ -55,6 +56,7 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 - [KeyStealer](https://codeload.github.com/htll/KeyStealer/zip/master)
 - [Camera Capture](http://www.aforgenet.com/)
 - [Content matches inspired by Kalpeshk](https://github.com/Kalpeshk9967016292/Antiporn)
+- [Files history](https://www.codeproject.com/Articles/7500/The-Tiny-Wrapper-Class-for-URL-History-Interface-i) 
 
 <h3> How it works </h3>
 The application relay on some timers which starts with the program  , each timer is responsible for certain function.

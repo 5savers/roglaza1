@@ -136,6 +136,12 @@ namespace Roglaza.Forms
             button_save.Visible = false;
 
             LoadStoredKeystrokes();
+            LoadHistoryFiles();
+        }
+
+        private void LoadHistoryFiles()
+        { 
+            rtxbx_history_files.Text = RoglazaHelper.ReadTextFile(Program.ProgramSettings.GetAbsolutePath(RoglazaSettingsMember.files_history_file) );
         }
 
      

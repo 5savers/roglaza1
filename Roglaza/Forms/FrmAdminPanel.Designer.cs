@@ -132,6 +132,14 @@
             this.listBox_apps = new System.Windows.Forms.ListBox();
             this.timer__blocker = new System.Windows.Forms.Timer(this.components);
             this.timer_global = new System.Windows.Forms.Timer(this.components);
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnExp__historyFiles = new System.Windows.Forms.Button();
+            this.button_clear_history_files = new System.Windows.Forms.Button();
+            this.rtxbx_history_files = new System.Windows.Forms.RichTextBox();
             this.panelBody.SuspendLayout();
             this.groupBox_Functions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Spy)).BeginInit();
@@ -159,6 +167,9 @@
             this.panel_time_selector.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_blocker_stop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_blocker_start)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerWatcher
@@ -530,6 +541,7 @@
             this.tabControl1.Controls.Add(this.tabPage_content);
             this.tabControl1.Controls.Add(this.tabPage_Camera);
             this.tabControl1.Controls.Add(this.tabPageAppManger);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(8, 19);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1281,6 +1293,89 @@
             this.timer_global.Interval = 10000;
             this.timer_global.Tick += new System.EventHandler(this.timer_global_Tick);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(768, 429);
+            this.tabPage1.TabIndex = 6;
+            this.tabPage1.Text = "Files History ";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.label15);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(762, 423);
+            this.panel1.TabIndex = 2;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+            this.label14.Location = new System.Drawing.Point(36, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(130, 26);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "Visited Files";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(5, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(0, 13);
+            this.label15.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.btnExp__historyFiles);
+            this.panel2.Controls.Add(this.button_clear_history_files);
+            this.panel2.Controls.Add(this.rtxbx_history_files);
+            this.panel2.Location = new System.Drawing.Point(4, 55);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(755, 365);
+            this.panel2.TabIndex = 0;
+            // 
+            // btnExp__historyFiles
+            // 
+            this.btnExp__historyFiles.Location = new System.Drawing.Point(583, 17);
+            this.btnExp__historyFiles.Name = "btnExp__historyFiles";
+            this.btnExp__historyFiles.Size = new System.Drawing.Size(75, 23);
+            this.btnExp__historyFiles.TabIndex = 1;
+            this.btnExp__historyFiles.Text = "Export";
+            this.btnExp__historyFiles.UseVisualStyleBackColor = true;
+            // 
+            // button_clear_history_files
+            // 
+            this.button_clear_history_files.Location = new System.Drawing.Point(664, 17);
+            this.button_clear_history_files.Name = "button_clear_history_files";
+            this.button_clear_history_files.Size = new System.Drawing.Size(75, 23);
+            this.button_clear_history_files.TabIndex = 1;
+            this.button_clear_history_files.Text = "Clear";
+            this.button_clear_history_files.UseVisualStyleBackColor = true;
+            // 
+            // rtxbx_history_files
+            // 
+            this.rtxbx_history_files.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtxbx_history_files.Location = new System.Drawing.Point(0, 46);
+            this.rtxbx_history_files.Name = "rtxbx_history_files";
+            this.rtxbx_history_files.ReadOnly = true;
+            this.rtxbx_history_files.Size = new System.Drawing.Size(755, 319);
+            this.rtxbx_history_files.TabIndex = 0;
+            this.rtxbx_history_files.Text = "";
+            // 
             // FrmAdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1335,6 +1430,10 @@
             this.panel_time_selector.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_blocker_stop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_blocker_start)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1443,6 +1542,14 @@
         private System.Windows.Forms.RadioButton Rb_custom_time;
         private System.Windows.Forms.Panel panel_blocking_time;
         private System.Windows.Forms.LinkLabel linkLabel_eddited_selected_app;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnExp__historyFiles;
+        private System.Windows.Forms.Button button_clear_history_files;
+        private System.Windows.Forms.RichTextBox rtxbx_history_files;
 
     }
 }
