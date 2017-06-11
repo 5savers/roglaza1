@@ -29,7 +29,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -116,18 +116,11 @@
     <Reference Include="AForge.Vision">
       <HintPath>C:\Users\Exception\Downloads\webcam\webcam\Referances\AForge.Vision.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.IWshRuntimeLibrary">
-      <HintPath>C:\Users\Exception\Downloads\KeyStealer-master\KeyStealer-master\Windows Local Host Process\Windows Local Host Process\obj\Debug\Interop.IWshRuntimeLibrary.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\SQLite.NET\bin\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>C:\Program Files (x86)\SQLite.NET\bin\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -142,7 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AppInfo.cs" />
-    <Compile Include="Classes\Url__wrapper.cs" />
+    <Compile Include="Classes\StandAlone_Executables.cs" />
     <Compile Include="Classes\CMBX_Item.cs" />
     <Compile Include="Classes\Crypter.cs" />
     <Compile Include="Classes\DBManager.cs" />

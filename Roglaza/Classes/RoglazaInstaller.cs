@@ -8,7 +8,7 @@ namespace Roglaza
 
     class RoglazaInstaller
     {
-        public static List<string> RoglazaDirectories = new List<string>() { "Downloads","Pages","Screens","Cams"};
+        public static List<string> RoglazaDirectories = new List<string>() { "Screens","Cams"};
         internal static string getKillFilePath()
         {
             return GetRoglazaAPPDataPath() + "\\kill";

@@ -130,8 +130,6 @@
             this.textBox_selecctedapp_path = new System.Windows.Forms.TextBox();
             this.label_ap_path = new System.Windows.Forms.Label();
             this.listBox_apps = new System.Windows.Forms.ListBox();
-            this.timer__blocker = new System.Windows.Forms.Timer(this.components);
-            this.timer_global = new System.Windows.Forms.Timer(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
@@ -140,6 +138,16 @@
             this.btnExp__historyFiles = new System.Windows.Forms.Button();
             this.button_clear_history_files = new System.Windows.Forms.Button();
             this.rtxbx_history_files = new System.Windows.Forms.RichTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.richTextBox_urls = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.timer__blocker = new System.Windows.Forms.Timer(this.components);
+            this.timer_global = new System.Windows.Forms.Timer(this.components);
             this.panelBody.SuspendLayout();
             this.groupBox_Functions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Spy)).BeginInit();
@@ -170,6 +178,9 @@
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerWatcher
@@ -542,6 +553,7 @@
             this.tabControl1.Controls.Add(this.tabPage_Camera);
             this.tabControl1.Controls.Add(this.tabPageAppManger);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(8, 19);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1282,17 +1294,6 @@
             this.listBox_apps.TabIndex = 0;
             this.listBox_apps.SelectedIndexChanged += new System.EventHandler(this.listBox_apps_SelectedIndexChanged);
             // 
-            // timer__blocker
-            // 
-            this.timer__blocker.Interval = 5000;
-            this.timer__blocker.Tick += new System.EventHandler(this.timer__blocker_Tick);
-            // 
-            // timer_global
-            // 
-            this.timer_global.Enabled = true;
-            this.timer_global.Interval = 10000;
-            this.timer_global.Tick += new System.EventHandler(this.timer_global_Tick);
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.panel1);
@@ -1376,6 +1377,101 @@
             this.rtxbx_history_files.TabIndex = 0;
             this.rtxbx_history_files.Text = "";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panel3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(768, 429);
+            this.tabPage2.TabIndex = 7;
+            this.tabPage2.Text = "Browser History";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.label17);
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(762, 423);
+            this.panel3.TabIndex = 3;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+            this.label16.Location = new System.Drawing.Point(36, 18);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(130, 26);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "Visited Files";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(5, 28);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(0, 13);
+            this.label17.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Controls.Add(this.richTextBox_urls);
+            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.button2);
+            this.panel4.Location = new System.Drawing.Point(4, 55);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(755, 365);
+            this.panel4.TabIndex = 0;
+            // 
+            // richTextBox_urls
+            // 
+            this.richTextBox_urls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox_urls.Location = new System.Drawing.Point(0, 46);
+            this.richTextBox_urls.Name = "richTextBox_urls";
+            this.richTextBox_urls.ReadOnly = true;
+            this.richTextBox_urls.Size = new System.Drawing.Size(755, 296);
+            this.richTextBox_urls.TabIndex = 2;
+            this.richTextBox_urls.Text = "";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(583, 17);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Export";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(664, 17);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Clear";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // timer__blocker
+            // 
+            this.timer__blocker.Interval = 5000;
+            this.timer__blocker.Tick += new System.EventHandler(this.timer__blocker_Tick);
+            // 
+            // timer_global
+            // 
+            this.timer_global.Enabled = true;
+            this.timer_global.Interval = 10000;
+            this.timer_global.Tick += new System.EventHandler(this.timer_global_Tick);
+            // 
             // FrmAdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1434,6 +1530,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1550,6 +1650,14 @@
         private System.Windows.Forms.Button btnExp__historyFiles;
         private System.Windows.Forms.Button button_clear_history_files;
         private System.Windows.Forms.RichTextBox rtxbx_history_files;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RichTextBox richTextBox_urls;
 
     }
 }

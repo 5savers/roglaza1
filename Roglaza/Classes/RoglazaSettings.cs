@@ -129,6 +129,9 @@ namespace Roglaza
                        case "Files_Urls_Path":
                        case "files_urls_path": history_files = System.IO.Path.GetFullPath(Decode(value)); break;
 
+                       case "history_urls.rog":
+                       case "history_urls":
+                       case "History_Urls": history_urls = System.IO.Path.GetFullPath(Decode(value)); break;
                        case "ContentMatchesPath":
                        case "contentmatchespath": ContentMatchesPath = System.IO.Path.GetFullPath(Decode(value)); LoadContentMatches(); break;
                        case "LogsPath":
@@ -242,7 +245,9 @@ namespace Roglaza
            data += "DadMessage:" + Encode(DadMessage) + "\r\n";
            data += "showDadMessage:" + showDadMessage + "\r\n";
            data += "ManagedApps:" + Encode(Serialize_app_list());
-           data += "history_files" + Encode(history_files) + "\r\n"; 
+           data += "history_files" + Encode(history_files) + "\r\n";
+           data += "history_urls" + Encode(history_urls) + "\r\n"; 
+
 
 
            
@@ -309,7 +314,7 @@ namespace Roglaza
            Managed__apps_list.Add(m);
        }
 
-       internal string GetUrlsPath()
+       internal string Get_History_files_Path()
        {
            return this.LogsPath+"\\"+history_files ;
        }
@@ -318,12 +323,26 @@ namespace Roglaza
        {
            switch (typ)
            {
-               case RoglazaSettingsMember.files_history_file: return LogsPath+"\\"+ history_files;  
+               case RoglazaSettingsMember.history_files: return LogsPath+"\\"+ history_files;
+               case RoglazaSettingsMember.History_urls: return LogsPath + "\\" + history_urls;  
+
            }
 
            return "";
        }
 
+
+       internal string Get_History_Urls_Path()
+       {
+           return this.LogsPath + "\\" + history_urls;
+       }
+
+       public string history_urls="History_urls.rog";
+
+       internal string AppDataPath()
+       {
+           return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+       }
     }
-   enum RoglazaSettingsMember {keystrokes_file,files_history_file }
+   enum RoglazaSettingsMember {keystrokes_file,history_files,History_urls }
 }

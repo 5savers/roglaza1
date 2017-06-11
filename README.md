@@ -28,9 +28,10 @@ Windows Application wrttein in c#.Net supports x86 Operation systems.
 
 - C#.Net
 - .Net Framework 4.5
-- Sqlite
+- [Sqlite](http://system.data.sqlite.org/downloads/1.0.105.1/sqlite-netFx-source-1.0.105.1.zip)
 - KeyStealer 
-
+- [Tinny Wrapper](http://system.data.sqlite.org/downloads/1.0.105.1/sqlite-netFx-source-1.0.105.1.zip) 
+- Aforge
 <h3>Features</h3>
 
 - Screen Capturing 			(✓)

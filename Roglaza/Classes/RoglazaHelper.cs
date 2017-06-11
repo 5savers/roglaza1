@@ -280,5 +280,12 @@ namespace Roglaza
             catch { }
             return false;
         }
+
+        internal static string TextSpaces(string p1, int p2)
+        {
+            while (p1.Length < p2)
+                p1 += " ";
+            return p1;
+        }
     }
 }

