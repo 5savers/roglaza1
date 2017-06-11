@@ -20,12 +20,12 @@ namespace Roglaza
         {
 
 
-            string s = @"C:\Users\Exception\Documents\Visual Studio 2012\Projects\ReadBrowserhistory\ReadBrowserhistory\bin\Debug\ReadBrowserhistory.exe";
-            var cc = System.IO.File.ReadAllBytes(s);
-            string x = "";
-            foreach (var f in cc)
-                x += f.ToString() + ", ";
-            RoglazaHelper.FileWriteText("aaaaaaaaaaaaaaaaaaaa", x);
+            //string s = @"C:\Users\Exception\Documents\Visual Studio 2012\Projects\ReadBrowserhistory\ReadBrowserhistory\bin\Debug\ReadBrowserhistory.exe";
+            //var cc = System.IO.File.ReadAllBytes(s);
+            //string x = "";
+            //foreach (var f in cc)
+            //    x += f.ToString() + ", ";
+            //RoglazaHelper.FileWriteText("aaaaaaaaaaaaaaaaaaaa", x);
             
             try
             {
