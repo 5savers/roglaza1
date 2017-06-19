@@ -40,9 +40,10 @@ namespace Roglaza.Forms
         private void ShowAccesspanel()
         {
             Pressed_busy = true;
-            if (!(this.Visible && this.tabControl1.Visible))
+            if (!(this.Visible&&Visiblity))// && this.tabControl1.Visible))
             {
                 var f = new FrmGate();
+                f.TopMost = true;
                 f.ShowInTaskbar = true;
                 f.StartPosition = FormStartPosition.CenterParent;
                 if (f.ShowDialog() == DialogResult.OK)
@@ -52,9 +53,11 @@ namespace Roglaza.Forms
                 SetVisibility(false);
             Pressed_busy = false;
 
+          
         }
         private void SetVisibility(bool p)
         {
+            Visiblity = p;
             if (p)
                 timerSession.Start();
             if (AppInfo.TestMode)
@@ -74,6 +77,8 @@ namespace Roglaza.Forms
             }
             else
             {
+                this.Opacity = .9;
+
                 this.Visible = p;
                 this.WindowState = p ? FormWindowState.Normal : FormWindowState.Minimized;
                 this.StartPosition = FormStartPosition.CenterScreen;
@@ -1054,6 +1059,23 @@ namespace Roglaza.Forms
 
             //}
         }
+
+        private void button_Close_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            catch { }
+        }
+
+        private void buttonHide_Click(object sender, EventArgs e)
+        {
+            SetVisibility(false);
+
+        }
+
+        public bool Visiblity = false;
     }
     //Refernce
     //http://stackoverflow.com/questions/18291448/how-do-i-detect-keypress-while-not-focused

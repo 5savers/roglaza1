@@ -27,5 +27,4 @@ E:\Roglaza\Roglaza\bin\Debug\System.Data.SQLite.dll
 E:\Roglaza\Roglaza\bin\Debug\System.Data.SQLite.xml
 E:\Roglaza\Roglaza\bin\Debug\Roglaza.exe.config
 E:\Roglaza\Roglaza\obj\Debug\Roglaza.Forms.ImagePreviewer.resources
-E:\Roglaza\Roglaza\bin\Debug\UrlHistoryLibrary.dll
 E:\Roglaza\Roglaza\obj\Debug\Roglaza.csprojResolveAssemblyReference.cache

