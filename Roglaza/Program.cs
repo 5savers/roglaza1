@@ -124,7 +124,7 @@ namespace Roglaza
 
         public static bool WillExit =false;
 
-        public static string version ="1.5";
+        public static string version ="1.2";
     }
 
 

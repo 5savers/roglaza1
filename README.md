@@ -4,6 +4,9 @@ Windows application to keep children save
 <img src='https://raw.githubusercontent.com/5savers/Roglaza/master/roglaza.png' />
 
 
+Icon <img src='http://i.imgur.com/KVPHpKB.png' />
+<img src='https://image.flaticon.com/icons/png/128/48/48857.png' />
+
 <h3>Environment</h3>
 Windows Application wrttein in c#.Net supports x86 Operation systems.
 <h3> Why To use</h3>

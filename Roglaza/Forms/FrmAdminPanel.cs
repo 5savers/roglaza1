@@ -99,7 +99,7 @@ namespace Roglaza.Forms
 
         private void FrmAdminPanel_Load(object sender, EventArgs e)
         {
-            labelVersion.Text = "Ver " + Program.version;
+            labelVersion.Text = "Ver 1." + Program.version;
          
 
 
