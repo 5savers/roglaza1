@@ -21,13 +21,16 @@ namespace Roglaza
          public static void Main()
         {
 
- 
-            
+
+            Program.version = "1.5";
             try
             {
                 string version = RoglazaHelper.ReadTextFile("version", "1");
+                Program.version = version;       
+        
                 int v = int.Parse(version) + 1;
-                RoglazaHelper.FileWriteText("version", v.ToString());
+                if (Application.StartupPath.Contains(@"\bin\Debug"))
+                    RoglazaHelper.FileWriteText("version", v.ToString());
                 
             }
             catch { }
@@ -119,7 +122,9 @@ namespace Roglaza
 
         }
 
-        public static bool WillExit =false; 
+        public static bool WillExit =false;
+
+        public static string version ="1.5";
     }
 
 

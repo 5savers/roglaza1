@@ -60,6 +60,7 @@
             this.label_app_Name = new System.Windows.Forms.Label();
             this.label_Banner = new System.Windows.Forms.Label();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.buttonHide = new System.Windows.Forms.Button();
             this.button_Close = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.timerSession = new System.Windows.Forms.Timer(this.components);
@@ -149,7 +150,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.timer__blocker = new System.Windows.Forms.Timer(this.components);
             this.timer_global = new System.Windows.Forms.Timer(this.components);
-            this.buttonHide = new System.Windows.Forms.Button();
+            this.labelVersion = new System.Windows.Forms.Label();
             this.panelBody.SuspendLayout();
             this.groupBox_Functions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Spy)).BeginInit();
@@ -506,6 +507,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContainer.BackColor = System.Drawing.Color.Transparent;
+            this.panelContainer.Controls.Add(this.labelVersion);
             this.panelContainer.Controls.Add(this.buttonHide);
             this.panelContainer.Controls.Add(this.button_Close);
             this.panelContainer.Controls.Add(this.label4);
@@ -517,6 +519,16 @@
             this.panelContainer.Size = new System.Drawing.Size(1345, 775);
             this.panelContainer.TabIndex = 4;
             this.panelContainer.Visible = false;
+            // 
+            // buttonHide
+            // 
+            this.buttonHide.Location = new System.Drawing.Point(622, 43);
+            this.buttonHide.Name = "buttonHide";
+            this.buttonHide.Size = new System.Drawing.Size(99, 23);
+            this.buttonHide.TabIndex = 6;
+            this.buttonHide.Text = "Hide";
+            this.buttonHide.UseVisualStyleBackColor = true;
+            this.buttonHide.Click += new System.EventHandler(this.buttonHide_Click);
             // 
             // button_Close
             // 
@@ -1486,15 +1498,14 @@
             this.timer_global.Interval = 10000;
             this.timer_global.Tick += new System.EventHandler(this.timer_global_Tick);
             // 
-            // buttonHide
+            // labelVersion
             // 
-            this.buttonHide.Location = new System.Drawing.Point(622, 43);
-            this.buttonHide.Name = "buttonHide";
-            this.buttonHide.Size = new System.Drawing.Size(99, 23);
-            this.buttonHide.TabIndex = 6;
-            this.buttonHide.Text = "Hide";
-            this.buttonHide.UseVisualStyleBackColor = true;
-            this.buttonHide.Click += new System.EventHandler(this.buttonHide_Click);
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(513, 52);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(13, 13);
+            this.labelVersion.TabIndex = 7;
+            this.labelVersion.Text = "..";
             // 
             // FrmAdminPanel
             // 
@@ -1684,6 +1695,7 @@
         private System.Windows.Forms.RichTextBox richTextBox_urls;
         private System.Windows.Forms.Button button_Close;
         private System.Windows.Forms.Button buttonHide;
+        private System.Windows.Forms.Label labelVersion;
 
     }
 }
